@@ -1,5 +1,5 @@
 // app/portal/notifications/page.tsx — IIMS IT Club System Alerts (v4.0)
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import NotificationsList from '@/components/portal/NotificationsList'
 import { redirect } from 'next/navigation'
 import { ShieldAlert, BellRing } from 'lucide-react'
@@ -14,7 +14,7 @@ export default async function NotificationsPage() {
     const member = await getMember(session.user.id)
     if (!member) redirect('/portal/pending')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // Fetch notifications using the accurate recipient_id field
     const { data: notifications } = await supabase

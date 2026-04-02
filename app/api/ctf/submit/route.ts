@@ -1,6 +1,6 @@
 // app/api/ctf/submit/route.ts — Secure CTF Flag Submission Endpoint (v4.0)
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@/lib/supabase-server'
+import { revalidatePath } from 'next/cache'
 import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { getSession, getMember } from '@/lib/auth'
 import { flagSubmitLimiter } from '@/lib/ratelimit'
@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
         }
 
         // 8. Revalidate paths so the UI updates ranking and challenges instantly
-        const { revalidatePath } = require('next/cache')
+        // revalidatePath is now a top-level import
         revalidatePath('/portal/dashboard')
         revalidatePath('/portal/ctf')
 

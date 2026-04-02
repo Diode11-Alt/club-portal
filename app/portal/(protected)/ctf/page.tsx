@@ -1,5 +1,5 @@
 // app/portal/ctf/page.tsx — IIMS IT Club CTF Arena (v4.0)
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import CTFClient from '@/components/portal/CTFClient'
 import { redirect } from 'next/navigation'
 import { getSession, getMember } from '@/lib/auth'
@@ -13,7 +13,7 @@ export default async function CTFPage() {
     const member = await getMember(session.user.id)
     if (!member) redirect('/portal/pending')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // Fetch challenges (explicitly NOT selecting the secret hash column)
     const { data: challenges } = await supabase

@@ -1,7 +1,7 @@
 // app/portal/(protected)/feed/actions.ts — IIMS IT Club Feed Actions
 'use server'
 
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { getSession, getMember } from '@/lib/auth'
@@ -30,7 +30,7 @@ export async function createPost(prevState: unknown, formData: FormData) {
         return { error: validated.error.flatten().fieldErrors.content?.[0] || 'Invalid input' }
     }
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { error } = await supabase.from('posts').insert({
         author_id: member.id,
         content: validated.data.content,
@@ -55,7 +55,7 @@ export async function toggleReaction(postId: string) {
     const member = await getMember(session.user.id)
     if (!member) return { error: 'Member not found' }
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // Using Rpc or direct check
     const { data: existing } = await (supabase
@@ -86,7 +86,7 @@ export async function addComment(postId: string, content: string) {
 
     if (!content.trim()) return { error: 'Comment cannot be empty' }
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { error } = await supabase.from('post_comments').insert({
         post_id: postId,
         author_id: member.id,

@@ -17,6 +17,10 @@ function getValidRedisUrl() {
 const redisUrl = getValidRedisUrl()
 const isUpstashConfigured = !!(redisUrl && process.env.UPSTASH_REDIS_REST_TOKEN)
 
+if (!isUpstashConfigured) {
+    console.warn('[ratelimit] ⚠ Upstash Redis not configured. Rate limiting is DISABLED. Set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN.')
+}
+
 const redis = isUpstashConfigured
     ? new Redis({
         url: redisUrl,

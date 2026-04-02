@@ -1,7 +1,7 @@
 // app/portal/profile/actions.ts — Member Profile Operations (v4.0)
 'use server'
 
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { getSession } from '@/lib/auth'
 import { z } from 'zod'
@@ -42,7 +42,7 @@ export async function updateProfile(formData: FormData) {
             skills: skillsArray.length > 0 ? skillsArray : null,
         }
 
-        const supabase = createServerClient()
+        const supabase = createAdminSupabaseClient()
 
         const { error } = await (supabase
             .from('members'))
@@ -77,7 +77,7 @@ export async function uploadAvatar(formData: FormData) {
     // Validate type
     if (!file.type.startsWith('image/')) return { error: 'Only image files are allowed' }
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const fileExt = file.name.split('.').pop()
     const fileName = `${session.user.id}-${Date.now()}.${fileExt}`
     const filePath = `${session.user.id}/${fileName}`

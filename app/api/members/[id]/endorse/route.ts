@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { getSession } from '@/lib/auth'
 import { z } from 'zod'
 
@@ -9,7 +9,7 @@ export async function POST(req: NextRequest, props: { params: Promise<{ id: stri
     const session = await getSession()
     if (!session) return NextResponse.json({ error: 'UNAUTHENTICATED' }, { status: 401 })
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { data: member } = await supabase.from('members').select('id, status').eq('user_id', session.user.id).single()
 
     if (!member || member.status !== 'approved') return NextResponse.json({ error: 'UNAUTHORIZED' }, { status: 403 })
@@ -42,7 +42,7 @@ export async function DELETE(req: NextRequest, props: { params: Promise<{ id: st
     const session = await getSession()
     if (!session) return NextResponse.json({ error: 'UNAUTHENTICATED' }, { status: 401 })
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { data } = await supabase.from('members').select('id, status').eq('user_id', session.user.id).single()
     const member = data
     if (!member || member.status !== 'approved') return NextResponse.json({ error: 'UNAUTHORIZED' }, { status: 403 })

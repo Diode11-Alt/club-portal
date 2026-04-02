@@ -1,5 +1,5 @@
 // app/portal/events/[id]/page.tsx — Detailed Mission Intel (v4.0)
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import Link from 'next/link'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
@@ -22,7 +22,7 @@ export default async function PortalEventDetailPage(props: { params: Promise<{ i
     const member = await getMember(session.user.id)
     if (!member) redirect('/portal/pending')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // Fetch event details from the verified 'public_events' table
     const { data: eventData } = await supabase

@@ -1,5 +1,5 @@
 // app/portal/messages/layout.tsx — IIMS IT Club Messaging Shell (v4.0)
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import MessagesShell from '@/components/portal/MessagesShell'
 import { getSession, getMember } from '@/lib/auth'
@@ -13,7 +13,7 @@ export default async function MessagesLayout({ children }: { children: React.Rea
     const member = await getMember(session.user.id)
     if (!member) redirect('/portal/pending')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // 1. Get all conversations the member is part of
     const { data: participations } = await (supabase

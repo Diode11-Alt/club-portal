@@ -1,5 +1,5 @@
 // app/portal/(protected)/feed/page.tsx — IIMS IT Club Feed Page (v4.0)
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import PostComposer from '@/components/portal/PostComposer'
 import FeedPost from '@/components/portal/FeedPost'
 import { redirect } from 'next/navigation'
@@ -13,7 +13,7 @@ import { SkeletonFeedPage } from '@/components/Skeletons'
 async function FeedData({ member, currentPage, pageSize }: { member: any, currentPage: number, pageSize: number }) {
     const from = (currentPage - 1) * pageSize
     const to = from + pageSize - 1
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     let { data: posts, count, error } = await (supabase
         .from('posts'))

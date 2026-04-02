@@ -1,5 +1,5 @@
 // app/portal/(protected)/members/page.tsx — IIMS IT Club Member Directory
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Users, Search, ShieldCheck, MessageSquare, MapPin, Calendar } from 'lucide-react'
@@ -16,7 +16,7 @@ export default async function MembersDirectoryPage() {
     const member = await getMember(session.user.id)
     if (!member) redirect('/portal/pending')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     const { data: members, error } = await supabase
         .from('members')

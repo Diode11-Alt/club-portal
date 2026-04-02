@@ -2,25 +2,8 @@
 // Internal Messaging Upload API — Uploads attachments to portal_documents/messages/
 
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@supabase/supabase-js'
-import { createServerClient } from '@supabase/ssr'
-import { cookies } from 'next/headers'
-
-const supabaseAdmin = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
-
-async function getSession() {
-    const cookieStore = await cookies()
-    const supabase = createServerClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-        { cookies: { get: (name) => cookieStore.get(name)?.value } }
-    )
-    const { data: { user } } = await supabase.auth.getUser()
-    return user ? { user } : null
-}
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
+import { getSession } from '@/lib/auth'
 
 
 
@@ -56,6 +39,7 @@ export async function POST(req: NextRequest) {
     const fileName = `messages/${session.user.id}/${Date.now()}.${ext}`
 
     // Upload to storage
+    const supabaseAdmin = createAdminSupabaseClient()
     const buffer = Buffer.from(await file.arrayBuffer())
     const { error: uploadError } = await supabaseAdmin.storage
         .from('portal_documents')

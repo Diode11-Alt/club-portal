@@ -1,5 +1,5 @@
 // app/portal/(protected)/dashboard/page.tsx — IIMS IT Club Dashboard (v4.0)
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { ShieldCheck, Calendar, ArrowRight, Megaphone, Terminal, Trophy, MessageSquare, ChevronRight, GraduationCap, Inbox, Users } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
@@ -169,7 +169,7 @@ export default async function DashboardPage() {
 // -----------------------------------------------------
 
 async function UserRankLoader({ points }: { points: number }) {
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { count } = await supabase
         .from('members')
         .select('id', { count: 'exact', head: true })
@@ -180,7 +180,7 @@ async function UserRankLoader({ points }: { points: number }) {
 }
 
 async function AnnouncementsLoader() {
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { data: posts } = await supabase
         .from('posts')
         .select('id, title, content, created_at, type')
@@ -231,7 +231,7 @@ async function AnnouncementsLoader() {
 }
 
 async function EventsLoader() {
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { data: dbEvents } = await supabase
         .from('public_events')
         .select('id, title, type, event_date, location, is_published')

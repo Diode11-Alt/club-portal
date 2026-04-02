@@ -1,7 +1,7 @@
 // app/portal/(protected)/messages/actions.ts — Direct Messaging Actions (v4.0)
 'use server'
 
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { getSession, getMember } from '@/lib/auth'
 import type { SupabaseClient } from '@supabase/supabase-js'
@@ -60,7 +60,7 @@ export async function sendMessage(receiverId: string, content: string, attachmen
 
     if (member.id === receiverId) return { error: 'Cannot message yourself' }
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // 1. Get or create conversation
     const conversationId = await getOrCreateConversation(supabase, member.id, receiverId)
@@ -94,7 +94,7 @@ export async function markAsRead(conversationId: string) {
     const member = await getMember(session.user.id)
     if (!member) return
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     await (supabase
         .from('conversation_participants'))

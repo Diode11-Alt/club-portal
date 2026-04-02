@@ -1,5 +1,5 @@
 // app/portal/pending/page.tsx — Awaiting approval screen (IIMS v4.0)
-import { createServerClient } from '@supabase/ssr'
+import { createServerSupabaseClient } from '@/lib/supabase/server'
 import { cookies } from 'next/headers'
 import { Shield, Mail, CheckCircle2, Clock } from 'lucide-react'
 import SignOutButton from './SignOutButton'
@@ -7,12 +7,7 @@ import { redirect } from 'next/navigation'
 import { BRAND } from '@/lib/brand'
 
 export default async function PendingPage() {
-    const cookieStore = await cookies()
-    const supabase = createServerClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-        { cookies: { get: (name) => cookieStore.get(name)?.value } }
-    )
+    const supabase = await createServerSupabaseClient()
     const { data: { user } } = await supabase.auth.getUser()
 
     if (!user) {

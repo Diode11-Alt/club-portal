@@ -1,5 +1,5 @@
 // app/portal/profile/page.tsx — IIMS IT Club Profile View
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { User, Mail, Github, Linkedin, Calendar, Edit2, ShieldCheck, Trophy, Target, Zap, ChevronRight, MapPin, Terminal } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
@@ -18,7 +18,7 @@ export default async function ProfilePage() {
     const session = await getSession()
     if (!session) redirect('/portal/login')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     const { data } = await supabase
         .from('members')

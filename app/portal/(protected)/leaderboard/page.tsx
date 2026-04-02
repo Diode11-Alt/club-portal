@@ -1,5 +1,5 @@
 // app/portal/leaderboard/page.tsx — IIMS IT Club Global Leaderboard (v4.0)
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Trophy, Zap, Crown, Award, Target } from 'lucide-react'
@@ -22,7 +22,7 @@ export default async function LeaderboardPage(props: {
     const from = (currentPage - 1) * pageSize
     const to = from + pageSize - 1
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // Get current member for highlighting
     const { data: currentMember } = await (supabase

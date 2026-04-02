@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import Sidebar from '@/components/portal/Sidebar'
 import PortalNavbar from '@/components/portal/PortalNavbar'
 import { getSession, getMember } from '@/lib/auth'
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 
 export default async function ProtectedPortalLayout({
     children,
@@ -31,7 +31,7 @@ export default async function ProtectedPortalLayout({
     if ((member.status) === 'banned') redirect('/portal/login?reason=banned')
 
     // ── Step 3: Fetch unread count efficiently ──
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { count: unreadNotifications } = await supabase
         .from('notifications')
         .select('*', { count: 'exact', head: true })

@@ -1,7 +1,7 @@
 // lib/auth.ts — Auth helpers for IIMS IT Club Portal
 // assertRole() is the FIRST call in every admin API route.
 import 'server-only'
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { cookies } from 'next/headers'
 import { cache } from 'react'
 import { createServerClient as createSSRClient } from '@supabase/ssr'
@@ -34,7 +34,7 @@ export const getSession = cache(async () => {
  * Uses user_id FK (auth.users.id) — NEVER id (members.id).
  */
 export const getMember = cache(async (userId: string): Promise<MemberRow | null> => {
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { data, error } = await (supabase
         .from('members' as any) as any)
         .select('id, user_id, full_name, email, role, status, club_post, avatar_url, points, program')
@@ -53,7 +53,7 @@ export async function assertRole(minRole: Role): Promise<Pick<MemberRow, 'id' | 
     const session = await getSession()
     if (!session) throw new Error('UNAUTHENTICATED')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { data: member, error } = await (supabase
         .from('members' as any) as any)
         .select('id, role, status, club_post')
@@ -79,7 +79,7 @@ export async function assertSuperadminOrPresident(): Promise<Pick<MemberRow, 'id
     const session = await getSession()
     if (!session) throw new Error('UNAUTHENTICATED')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { data: member, error } = await (supabase
         .from('members' as any) as any)
         .select('id, role, status, club_post')
@@ -103,7 +103,7 @@ export async function assertSuperadmin(): Promise<Pick<MemberRow, 'id' | 'role' 
     const session = await getSession()
     if (!session) throw new Error('UNAUTHENTICATED')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { data: member, error } = await (supabase
         .from('members' as any) as any)
         .select('id, role, status, club_post')
@@ -127,7 +127,7 @@ export async function assertSuperadminOrPresidentOrAdmin(): Promise<Pick<MemberR
     const session = await getSession()
     if (!session) throw new Error('UNAUTHENTICATED')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
     const { data: member, error } = await (supabase
         .from('members' as any) as any)
         .select('id, role, status, club_post')

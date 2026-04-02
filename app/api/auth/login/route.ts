@@ -1,7 +1,7 @@
 // app/api/auth/login/route.ts — Email/Password Sign-In for IIMS IT Club Portal
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { createServerClient as createSSRClient } from '@supabase/ssr'
+import { createServerSupabaseClient } from '@/lib/supabase/server'
 import { cookies } from 'next/headers'
 import { magicLinkLimiter } from '@/lib/ratelimit'
 import { z } from 'zod'
@@ -32,22 +32,7 @@ export async function POST(req: NextRequest) {
         const { email, password } = parsed.data
 
         // 2. Create Supabase client with cookie handling for session persistence
-        const cookieStore = await cookies()
-        const supabase = createSSRClient(
-            process.env.NEXT_PUBLIC_SUPABASE_URL!,
-            process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-            {
-                cookies: {
-                    get: (name) => cookieStore.get(name)?.value,
-                    set: (name, value, options) => {
-                        cookieStore.set({ name, value, ...options })
-                    },
-                    remove: (name, options) => {
-                        cookieStore.set({ name, value: '', ...options, maxAge: 0, path: '/' })
-                    },
-                },
-            }
-        )
+        const supabase = await createServerSupabaseClient()
 
         // 3. Sign in with email/password
         const { error } = await supabase.auth.signInWithPassword({

@@ -1,5 +1,5 @@
 // app/portal/resources/page.tsx — IIMS IT Club Document Archive (v4.0)
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import ResourcesClient from '@/components/portal/ResourcesClient'
 import { redirect } from 'next/navigation'
 import Pagination from '@/components/ui/Pagination'
@@ -22,7 +22,7 @@ export default async function ResourcesPage(props: {
     const from = (currentPage - 1) * pageSize
     const to = from + pageSize - 1
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // Fetch documents with .range() for pagination
     const { data: docs, count } = await supabase

@@ -1,5 +1,5 @@
 // app/portal/(protected)/feed/[id]/page.tsx — IIMS IT Club Single Post View (v4.0)
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import Avatar from '@/components/ui/Avatar'
@@ -21,7 +21,7 @@ export default async function SinglePostPage(props: { params: Promise<{ id: stri
     const member = await getMember(session.user.id)
     if (!member) redirect('/portal/pending')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // Fetch post and relations
     const { data: postData } = await supabase

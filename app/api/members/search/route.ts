@@ -1,6 +1,6 @@
 // app/api/members/search/route.ts — Member Search API
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { getSession, getMember } from '@/lib/auth'
 
 export async function GET(req: NextRequest) {
@@ -19,7 +19,7 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ members: [] })
     }
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     const { data, error } = await supabase
         .from('members')

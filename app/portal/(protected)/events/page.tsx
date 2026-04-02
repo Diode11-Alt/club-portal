@@ -1,5 +1,5 @@
 // app/portal/events/page.tsx — IIMS IT Club Event Registry (v4.0)
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import EventCard from '@/components/portal/EventCard'
 import { redirect } from 'next/navigation'
 import { Calendar, Search, Filter, Loader2 } from 'lucide-react'
@@ -14,7 +14,7 @@ export default async function PortalEventsPage() {
     const member = await getMember(session.user.id)
     if (!member) redirect('/portal/pending')
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // Fetch events from verified 'public_events' table
     const { data: events } = await supabase

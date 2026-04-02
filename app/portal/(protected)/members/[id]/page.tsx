@@ -1,5 +1,5 @@
 // app/portal/members/[id]/page.tsx — IIMS IT Club Member View
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { redirect, notFound } from 'next/navigation'
 import { Mail, Github, Linkedin, Calendar, ShieldCheck, Trophy, Target, Zap, MessageSquare, MapPin, Terminal, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
@@ -24,7 +24,7 @@ export default async function MemberViewPage(props: { params: Promise<{ id: stri
         redirect('/portal/profile')
     }
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     const { data } = await supabase
         .from('members')

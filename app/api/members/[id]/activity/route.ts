@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { getSession } from '@/lib/auth'
 
 export async function GET(req: NextRequest, props: { params: Promise<{ id: string }> }) {
@@ -7,7 +7,7 @@ export async function GET(req: NextRequest, props: { params: Promise<{ id: strin
     if (!session) return NextResponse.json({ error: 'UNAUTHENTICATED' }, { status: 401 })
 
     const params = await props.params
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // Assuming member activity comprises posts, event attendances (if tracking), or points history.
     // For now we return their authored posts as their "activity" feed since we have a posts table.

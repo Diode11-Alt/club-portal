@@ -1,6 +1,6 @@
 // app/api/auth/register/route.ts — Email/Password Registration for IIMS IT Club
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { registerLimiter } from '@/lib/ratelimit'
 import { z } from 'zod'
 
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
 
         const { email, password, full_name, student_id, program, intake, bio, skills } = parsed.data
 
-        const supabase = createServerClient()
+        const supabase = createAdminSupabaseClient()
 
         // 2. Create auth user with email/password
         const { data: authData, error: signUpError } = await supabase.auth.admin.createUser({

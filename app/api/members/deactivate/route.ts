@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { getSession } from '@/lib/auth'
 
 export async function POST(req: NextRequest) {
@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const { reason } = body
 
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // The user's member ID is linked via user_id
     const { data: member, error: fetchErr } = await (supabase

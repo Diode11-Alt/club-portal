@@ -1,7 +1,7 @@
 // app/api/auth/magic-link/route.ts — Send Magic Link for IIMS IT Club (CONTEXT §10.1)
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { magicLinkSchema } from '@/lib/validations'
 import { magicLinkLimiter } from '@/lib/ratelimit'
 
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
         }
 
         const { email } = result.data
-        const supabase = createServerClient()
+        const supabase = createAdminSupabaseClient()
 
         // Auth redirect URL should point to our callback route
         const redirectUrl = new URL('/auth/callback', req.url).toString()

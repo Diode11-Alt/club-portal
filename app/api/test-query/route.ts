@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server'
-import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 
 export const dynamic = 'force-dynamic'
 
 export async function GET() {
-    const supabase = createServerClient()
+    const supabase = createAdminSupabaseClient()
 
     // Test member relation with disambiguated relationship
     const idMember = '12ddd69e-1b31-4272-9560-79fff44259da'
