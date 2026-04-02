@@ -6,8 +6,8 @@ import { Loader2 } from 'lucide-react'
 export default function LoginPage() {
     return (
         <Suspense fallback={
-            <div className="min-h-screen bg-[#F8F9FA] flex items-center justify-center">
-                <Loader2 className="h-8 w-8 text-[#111111] animate-spin" />
+            <div className="min-h-screen bg-cosmic-light flex items-center justify-center">
+                <Loader2 className="h-8 w-8 text-cosmic-brand animate-spin" />
             </div>
         }>
             <LoginForm />

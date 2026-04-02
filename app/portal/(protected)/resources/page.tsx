@@ -34,12 +34,12 @@ export default async function ResourcesPage(props: {
     return (
         <div className="max-w-7xl mx-auto space-y-10 pb-16 animate-fade-up">
             <ResourcesClient
-                initialDocs={(docs || []) as any[]}
+                initialDocs={(docs || [])}
                 userRole={member.role}
             />
 
             {count && count > pageSize && (
-                <div className="py-10 border-t border-[#E0E0E0]">
+                <div className="py-10 border-t border-cosmic-accent">
                     <Pagination
                         page={currentPage}
                         totalPages={Math.ceil(count / pageSize)}

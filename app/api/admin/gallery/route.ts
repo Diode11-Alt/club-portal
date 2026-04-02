@@ -19,13 +19,13 @@ export async function POST(req: NextRequest) {
     }
 
     const supabase = createServerClient()
-    const { error } = await (supabase.from('gallery_images' as any) as any).insert({
+    const { error } = await supabase.from('gallery_images').insert({
         ...parsed.data,
         uploader_id: admin.id,
     })
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
-    await (supabase.from('audit_logs' as any) as any).insert({
+    await supabase.from('audit_logs').insert({
         actor_id: admin.id,
         action: 'upload_gallery',
         details: { caption: parsed.data.caption }
@@ -47,7 +47,7 @@ export async function PATCH(req: NextRequest) {
 
     const { id, ...fields } = parsed.data
     const supabase = createServerClient()
-    const { error } = await (supabase.from('gallery_images' as any) as any).update(fields).eq('id', id)
+    const { error } = await supabase.from('gallery_images').update(fields).eq('id', id)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
     return NextResponse.json({ success: true })
@@ -62,7 +62,7 @@ export async function DELETE(req: NextRequest) {
 
     // Fetch image URL before deleting to clean up storage
     const { data: image } = await (supabase
-        .from('gallery_images' as any) as any)
+        .from('gallery_images'))
         .select('url')
         .eq('id', id)
         .single()
@@ -72,10 +72,10 @@ export async function DELETE(req: NextRequest) {
         if (path) await supabase.storage.from('public-gallery').remove([path])
     }
 
-    const { error } = await (supabase.from('gallery_images' as any) as any).delete().eq('id', id)
+    const { error } = await supabase.from('gallery_images').delete().eq('id', id)
     if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
-    await (supabase.from('audit_logs' as any) as any).insert({
+    await supabase.from('audit_logs').insert({
         actor_id: admin.id,
         action: 'delete_gallery',
         target_id: id,

@@ -60,7 +60,7 @@ export async function middleware(request: NextRequest) {
     }
 
     // Admin-only route guard
-    if (path.startsWith('/portal/admin') && !['admin', 'bod', 'superadmin'].includes(member.role)) {
+    if (path.startsWith('/portal/admin') && !['admin', 'superadmin'].includes(member.role)) {
         return NextResponse.redirect(new URL('/portal/dashboard', request.url))
     }
 

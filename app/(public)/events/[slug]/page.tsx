@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { Calendar, MapPin, Clock, Users, ArrowLeft, ExternalLink, ShieldCheck, ChevronRight } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
+import Image from 'next/image'
 // Import types safely
 type PublicEvent = any
 
@@ -20,11 +21,11 @@ export default async function EventDetailPage(props: { params: Promise<{ slug: s
     let event: PublicEvent | null = null
 
     // Using verified table name 'public_events'
-    const { data: bySlug } = await sb.from('public_events' as any).select('*').eq('slug', slug).maybeSingle()
+    const { data: bySlug } = await sb.from('public_events').select('*').eq('slug', slug).maybeSingle()
     if (bySlug) {
         event = bySlug as unknown as PublicEvent
     } else {
-        const { data: byId } = await sb.from('public_events' as any).select('*').eq('id', slug).maybeSingle()
+        const { data: byId } = await sb.from('public_events').select('*').eq('id', slug).maybeSingle()
         event = byId as unknown as PublicEvent
     }
 
@@ -42,7 +43,7 @@ export default async function EventDetailPage(props: { params: Promise<{ slug: s
             {/* Hero / Header */}
             <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
                 {imgUrl ? (
-                    <img src={imgUrl} alt={event.title} className="absolute inset-0 w-full h-full object-cover" />
+                    <Image src={imgUrl} alt={event.title} fill unoptimized className="object-cover" />
                 ) : (
                     <div className="absolute inset-0 hero-grid opacity-10 bg-[#58151C]/5" />
                 )}

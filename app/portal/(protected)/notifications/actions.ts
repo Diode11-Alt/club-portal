@@ -12,7 +12,7 @@ export async function markNotificationRead(notificationId: string) {
     if (!session) return { error: 'Unauthorized uplink' }
 
     const { data: member } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .select('id')
         .eq('user_id', session.user.id)
         .single()
@@ -20,10 +20,10 @@ export async function markNotificationRead(notificationId: string) {
     if (!member) return { error: 'Member not found' }
 
     await (supabase
-        .from('notifications' as any) as any)
+        .from('notifications'))
         .update({ is_read: true })
         .eq('id', notificationId)
-        .eq('member_id', (member as any).id)
+        .eq('member_id', (member).id)
 
     revalidatePath('/portal/notifications')
     return { success: true }
@@ -37,7 +37,7 @@ export async function markAllNotificationsRead() {
     if (!session) return { error: 'Unauthorized uplink' }
 
     const { data: member } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .select('id')
         .eq('user_id', session.user.id)
         .single()
@@ -45,9 +45,9 @@ export async function markAllNotificationsRead() {
     if (!member) return { error: 'Member not found' }
 
     await (supabase
-        .from('notifications' as any) as any)
+        .from('notifications'))
         .update({ is_read: true })
-        .eq('member_id', (member as any).id)
+        .eq('member_id', (member).id)
         .eq('is_read', false)
 
     revalidatePath('/portal/notifications')

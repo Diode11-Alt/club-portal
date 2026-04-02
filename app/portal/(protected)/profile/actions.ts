@@ -8,9 +8,9 @@ import { z } from 'zod'
 
 const profileSchema = z.object({
     full_name: z.string().min(2, "Name must be at least 2 characters").max(60).optional(),
-    bio: z.string().max(500, "Bio cannot exceed 500 characters").optional().or(z.literal('')),
-    github_url: z.string().url("Must be a valid URL").optional().or(z.literal('')),
-    linkedin_url: z.string().url("Must be a valid URL").optional().or(z.literal('')),
+    bio: z.string().max(500, "Bio cannot exceed 500 characters").optional(),
+    github_url: z.string().url("Must be a valid URL for GitHub").optional(),
+    linkedin_url: z.string().url("Must be a valid URL for LinkedIn").optional(),
     skills: z.string().optional() // Comma separated list of skills
 })
 
@@ -18,12 +18,13 @@ export async function updateProfile(formData: FormData) {
     const session = await getSession()
     if (!session) return { error: 'Unauthorized access' }
 
+    // Trim and cast empty strings to undefined so zod .optional() handles them cleanly
     const rawData = {
-        full_name: formData.get('full_name')?.toString() || '',
-        bio: formData.get('bio')?.toString() || '',
-        github_url: formData.get('github_url')?.toString() || '',
-        linkedin_url: formData.get('linkedin_url')?.toString() || '',
-        skills: formData.get('skills')?.toString() || ''
+        full_name: formData.get('full_name')?.toString().trim() || undefined,
+        bio: formData.get('bio')?.toString().trim() || undefined,
+        github_url: formData.get('github_url')?.toString().trim() || undefined,
+        linkedin_url: formData.get('linkedin_url')?.toString().trim() || undefined,
+        skills: formData.get('skills')?.toString().trim() || undefined
     }
 
     try {
@@ -33,7 +34,7 @@ export async function updateProfile(formData: FormData) {
             ? validated.skills.split(',').map(s => s.trim()).filter(Boolean)
             : []
 
-        const updatePayload: any = {
+        const updatePayload: Record<string, unknown> = {
             full_name: validated.full_name || null,
             bio: validated.bio || null,
             github_url: validated.github_url || null,
@@ -44,12 +45,11 @@ export async function updateProfile(formData: FormData) {
         const supabase = createServerClient()
 
         const { error } = await (supabase
-            .from('members' as any) as any)
+            .from('members'))
             .update(updatePayload)
             .eq('user_id', session.user.id)
 
         if (error) {
-            console.error('Profile update error:', error)
             return { error: 'Failed to synchronize profile data.' }
         }
 
@@ -71,8 +71,8 @@ export async function uploadAvatar(formData: FormData) {
     const file = formData.get('file') as File
     if (!file || file.size === 0) return { error: 'No image file provided' }
 
-    // Validate size (max 2MB)
-    if (file.size > 2 * 1024 * 1024) return { error: 'Avatar must be less than 2MB' }
+    // Validate size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) return { error: 'Avatar must be less than 5MB' }
 
     // Validate type
     if (!file.type.startsWith('image/')) return { error: 'Only image files are allowed' }
@@ -87,7 +87,6 @@ export async function uploadAvatar(formData: FormData) {
         .upload(filePath, file, { upsert: true })
 
     if (uploadError) {
-        console.error('Avatar upload failed:', uploadError)
         return { error: 'Failed to upload profile image to storage' }
     }
 
@@ -98,7 +97,7 @@ export async function uploadAvatar(formData: FormData) {
 
     // Update member record
     const { error: updateError } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .update({ avatar_url: publicUrl })
         .eq('user_id', session.user.id)
 

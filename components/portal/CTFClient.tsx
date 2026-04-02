@@ -40,15 +40,15 @@ export default function CTFClient({ challenges, leaderboard, userPoints, userRan
             <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-2 bg-[#161B22] rounded-sm p-8 md:p-10 text-white shadow-sm relative overflow-hidden group border border-[#30363D]">
                     <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-[#111111]/20 rounded-full blur-3xl -translate-y-32 translate-x-32" />
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-cosmic-black/20 rounded-full blur-3xl -translate-y-32 translate-x-32" />
 
                     <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
                         <div className="space-y-5">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#E53935]/10 text-[#E53935] font-bold text-[10px] uppercase tracking-widest border border-[#E53935]/20 font-mono">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cosmic-black/10 text-cosmic-black font-bold text-[10px] uppercase tracking-widest border border-cosmic-black/20 font-mono">
                                 <Target className="h-3 w-3" /> Live Operation
                             </div>
                             <h1 className="text-3xl md:text-5xl font-bold leading-tight font-mono">
-                                CTF <span className="text-[#111111] bg-white px-2 rounded-sm ml-1">Arena</span>
+                                CTF <span className="text-cosmic-black bg-white px-2 rounded-sm ml-1">Arena</span>
                             </h1>
                             <p className="text-gray-400 font-mono text-sm max-w-sm leading-relaxed">
                                 Identify vulnerabilities, exploit the systems, and capture flags to advance your rank within the IIMS IT Club hierarchy.
@@ -58,7 +58,7 @@ export default function CTFClient({ challenges, leaderboard, userPoints, userRan
                         <div className="flex gap-10 bg-black/40 backdrop-blur-md p-8 rounded-sm border border-white/5 shadow-inner">
                             <div className="text-center">
                                 <span className="block text-[10px] font-bold uppercase text-gray-500 tracking-widest mb-2 font-mono">My Score</span>
-                                <span className="block text-4xl font-bold text-[#E53935] font-mono">{userPoints}</span>
+                                <span className="block text-4xl font-bold text-cosmic-black font-mono">{userPoints}</span>
                             </div>
                             <div className="w-px h-16 bg-white/10" />
                             <div className="text-center">
@@ -70,19 +70,19 @@ export default function CTFClient({ challenges, leaderboard, userPoints, userRan
                 </div>
 
                 <div className="bg-[#161B22] rounded-sm p-8 shadow-sm flex flex-col justify-between group border border-[#30363D] relative overflow-hidden">
-                    <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#E53935]/10 to-transparent pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#212A31]/10 to-transparent pointer-events-none" />
 
                     <div className="relative z-10 space-y-5">
                         <div className="flex items-center justify-between">
                             <h3 className="font-bold text-white flex items-center gap-2 font-mono">
-                                <Zap className="h-5 w-5 text-[#E53935]" /> Mastery
+                                <Zap className="h-5 w-5 text-cosmic-black" /> Mastery
                             </h3>
-                            <span className="text-2xl font-bold text-[#E53935] font-mono">{progress}%</span>
+                            <span className="text-2xl font-bold text-cosmic-black font-mono">{progress}%</span>
                         </div>
 
                         <div className="relative h-3 bg-black/50 rounded-full overflow-hidden border border-white/5 p-0.5">
                             <div
-                                className="h-full bg-gradient-to-r from-[#111111] to-[#E53935] rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(229,57,53,0.5)]"
+                                className="h-full bg-gradient-to-r from-[#212A31] to-[#212A31] rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(229,57,53,0.5)]"
                                 style={{ width: `${progress}%` }}
                             />
                         </div>
@@ -112,7 +112,7 @@ export default function CTFClient({ challenges, leaderboard, userPoints, userRan
                                     className={cn(
                                         "px-4 py-2 rounded-sm font-bold text-[10px] uppercase tracking-widest transition-all font-mono",
                                         activeCategory === cat
-                                            ? "bg-[#E53935] text-white shadow-sm shadow-[#E53935]/20"
+                                            ? "bg-cosmic-black text-white shadow-sm shadow-[#212A31]/20"
                                             : "bg-black/30 text-gray-400 hover:bg-black/50 hover:text-gray-200 border border-white/5"
                                     )}
                                 >
@@ -128,7 +128,7 @@ export default function CTFClient({ challenges, leaderboard, userPoints, userRan
                                 placeholder="Grep targets..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full bg-black/40 border border-white/10 rounded-sm py-2 pl-10 pr-4 text-sm font-mono text-white focus:border-[#E53935] focus:ring-1 focus:ring-[#E53935] outline-none transition-all placeholder:text-gray-600"
+                                className="w-full bg-black/40 border border-white/10 rounded-sm py-2 pl-10 pr-4 text-sm font-mono text-white focus:border-cosmic-black focus:ring-1 focus:ring-cosmic-black outline-none transition-all placeholder:text-gray-600"
                             />
                         </div>
                     </div>
@@ -154,7 +154,7 @@ export default function CTFClient({ challenges, leaderboard, userPoints, userRan
                 <div className="space-y-6">
                     <div className="bg-[#161B22] rounded-sm p-6 md:p-8 border border-[#30363D] shadow-sm sticky top-24">
                         <h3 className="font-bold text-white flex items-center gap-2 mb-6 uppercase tracking-widest text-xs font-mono">
-                            <Trophy className="h-4 w-4 text-[#FFEB3B]" /> Hall of Fame
+                            <Trophy className="h-4 w-4 text-[#FFD54F]" /> Hall of Fame
                         </h3>
 
                         <div className="space-y-5">
@@ -163,7 +163,7 @@ export default function CTFClient({ challenges, leaderboard, userPoints, userRan
                                     <div className="flex items-center gap-3">
                                         <div className={cn(
                                             "w-7 h-7 flex items-center justify-center rounded-sm font-bold text-xs shadow-inner font-mono",
-                                            idx === 0 ? "bg-[#FFEB3B] text-[#1E1E2E] shadow-[0_0_10px_rgba(255,235,59,0.3)]" :
+                                            idx === 0 ? "bg-[#FFD54F] text-[#1E1E2E] shadow-[0_0_10px_rgba(255,235,59,0.3)]" :
                                                 idx === 1 ? "bg-gray-300 text-[#1E1E2E]" :
                                                     idx === 2 ? "bg-amber-600 text-white" :
                                                         "bg-black/40 text-gray-500 border border-white/5"
@@ -183,7 +183,7 @@ export default function CTFClient({ challenges, leaderboard, userPoints, userRan
                                             </span>
                                         </div>
                                     </div>
-                                    <span className="text-xs font-bold text-[#E53935] font-mono">{member.points}</span>
+                                    <span className="text-xs font-bold text-cosmic-black font-mono">{member.points}</span>
                                 </div>
                             ))}
                         </div>

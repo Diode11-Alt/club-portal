@@ -22,6 +22,12 @@ async function getSession() {
     return user ? { user } : null
 }
 
+
+
+
+
+
+
 export async function POST(req: NextRequest) {
     const session = await getSession()
     if (!session) return NextResponse.json({ error: 'Unauthorized payload' }, { status: 401 })

@@ -46,7 +46,6 @@ export async function POST(req: NextRequest) {
         })
 
         if (signUpError) {
-            console.error('[register] signUp error:', signUpError)
             if (signUpError.message?.includes('already registered')) {
                 return NextResponse.json({ error: 'An account with this email already exists.' }, { status: 409 })
             }
@@ -62,7 +61,7 @@ export async function POST(req: NextRequest) {
         await new Promise(r => setTimeout(r, 500))
 
         const { error: updateError } = await (supabase
-            .from('members' as any) as any)
+            .from('members'))
             .update({
                 full_name,
                 student_id: student_id || null,
@@ -75,13 +74,11 @@ export async function POST(req: NextRequest) {
             .eq('user_id', authData.user.id)
 
         if (updateError) {
-            console.error('[register] profile update error:', updateError)
             // Auth user was created, profile just failed to update — not fatal
         }
 
         return NextResponse.json({ success: true })
     } catch (err) {
-        console.error('[register] Unexpected error:', err)
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
     }
 }

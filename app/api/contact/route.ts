@@ -4,6 +4,11 @@ import { contactSchema } from '@/lib/validations'
 import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { Resend } from 'resend'
 import { contactFormLimiter } from '@/lib/ratelimit'
+import { SDiffStoreCommand } from '@upstash/redis'
+import { rootCertificates } from 'tls'
+import { combineChunks } from '@supabase/ssr'
+import { Didact_Gothic, Intel_One_Mono } from 'next/font/google'
+import { LucideSquircleDashed } from 'lucide-react'
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
     try {
@@ -33,18 +38,18 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         const { name, email, subject, message } = result.data
 
         // Insert into contact_messages table
-        try {
-            const supabase = createAdminSupabaseClient()
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            await (supabase as any).from('contact_messages').insert({
-                name,
-                email,
-                subject,
-                message,
-                ip_address: ip,
-            })
-        } catch {
-            console.warn('[contact] Could not insert into contact_messages table')
+        const supabase = createAdminSupabaseClient()
+        const { error: dbError } = await supabase.from('contact_messages').insert({
+            name,
+            email,
+            subject,
+            message,
+            ip_address: ip,
+        })
+        
+        if (dbError) {
+            console.error('[ContactAPI] DB Insert Error:', dbError)
+            return NextResponse.json({ error: 'Failed to record message securely' }, { status: 500 })
         }
 
         // Send notification email via Resend
@@ -52,24 +57,24 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
         const { error: emailError } = await resend.emails.send({
             from: 'IIMS IT Club <onboarding@resend.dev>',
-            to: ['itclub@iimscollege.edu.np'],
+            to: ['icehc@iimscollege.edu.np'],
             replyTo: email,
             subject: `[IT Club Inquiry] ${subject}`,
             html: `
-                <div style="font-family: Arial, sans-serif; padding: 30px; background: #F8F9FA; color: #212121; border: 1px solid #E0E0E0; border-radius: 12px; max-width: 600px; margin: 0 auto;">
-                    <div style="text-align: center; border-bottom: 2px solid #1A237E; padding-bottom: 20px; margin-bottom: 20px;">
-                        <h2 style="color: #1A237E; margin: 0; font-size: 24px; letter-spacing: -0.5px;">IIMS IT Club Dispatch</h2>
+                <div style="font-family: Arial, sans-serif; padding: 30px; background: #D3D9D4; color: #212A31; border: 1px solid #748D92; border-radius: 12px; max-width: 600px; margin: 0 auto;">
+                    <div style="text-align: center; border-bottom: 2px solid #124E66; padding-bottom: 20px; margin-bottom: 20px;">
+                        <h2 style="color: #124E66; margin: 0; font-size: 24px; letter-spacing: -0.5px;">IIMS IT Club Dispatch</h2>
                         <p style="color: #757575; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px;">New External Transmission</p>
                     </div>
                     
                     <div style="background: white; padding: 25px; border-radius: 8px; border: 1px solid #EEEEEE; margin-bottom: 20px;">
-                        <p style="margin: 0 0 10px 0;"><strong style="color: #1A237E; display: inline-block; width: 80px;">Name:</strong> <span style="font-weight: 500;">${name}</span></p>
-                        <p style="margin: 0 0 10px 0;"><strong style="color: #1A237E; display: inline-block; width: 80px;">Email:</strong> <a href="mailto:${email}" style="color: #E53935; text-decoration: none; font-weight: 500;">${email}</a></p>
-                        <p style="margin: 0 0 10px 0;"><strong style="color: #1A237E; display: inline-block; width: 80px;">Subject:</strong> <span style="font-weight: 500;">${subject}</span></p>
+                        <p style="margin: 0 0 10px 0;"><strong style="color: #124E66; display: inline-block; width: 80px;">Name:</strong> <span style="font-weight: 500;">${name}</span></p>
+                        <p style="margin: 0 0 10px 0;"><strong style="color: #124E66; display: inline-block; width: 80px;">Email:</strong> <a href="mailto:${email}" style="color: #212A31; text-decoration: none; font-weight: 500;">${email}</a></p>
+                        <p style="margin: 0 0 10px 0;"><strong style="color: #124E66; display: inline-block; width: 80px;">Subject:</strong> <span style="font-weight: 500;">${subject}</span></p>
                     </div>
 
                     <div style="background: white; padding: 25px; border-radius: 8px; border: 1px solid #EEEEEE;">
-                        <h3 style="color: #1A237E; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #EEEEEE; padding-bottom: 10px; margin-top: 0;">Message Content</h3>
+                        <h3 style="color: #124E66; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #EEEEEE; padding-bottom: 10px; margin-top: 0;">Message Content</h3>
                         <p style="white-space: pre-wrap; color: #424242; line-height: 1.6; font-size: 15px; margin-bottom: 0;">${message}</p>
                     </div>
                     
@@ -81,13 +86,12 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         })
 
         if (emailError) {
-            console.error('[contact] Resend error:', emailError)
             return NextResponse.json({ error: 'Failed to send message' }, { status: 500 })
         }
 
         return NextResponse.json({ success: true })
     } catch (err: unknown) {
-        console.error('[contact] Server error:', err)
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
     }
 }
+

@@ -11,7 +11,7 @@ export async function GET() {
     const memQuery = await supabase.from('members').select('id, full_name, skill_endorsements(id)').eq('id', idMember).maybeSingle()
 
     // Also test direct skill_endorsements
-    const directSkills = await supabase.from('skill_endorsements').select('*').limit(1)
+    const directSkills = await supabase.from('skill_endorsements').select('id, member_id, skill, created_at').limit(1)
 
     // Test post relation with specific failing UUID
     const idPost = '70ef33e9-54fa-4347-80c5-be79bfc500b9'
@@ -26,7 +26,7 @@ export async function GET() {
         `).eq('id', idPost).maybeSingle()
 
     // Test direct reaction columns
-    const reactions = await supabase.from('post_reactions').select('*').limit(1)
+    const reactions = await supabase.from('post_reactions').select('id, post_id, member_id, created_at').limit(1)
 
     return NextResponse.json({ memQuery, directSkills, postQuery, reactions })
 }

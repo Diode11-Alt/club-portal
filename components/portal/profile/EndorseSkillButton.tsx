@@ -52,8 +52,8 @@ export default function EndorseSkillButton({ targetUserId, skill, endorsements, 
             className={cn(
                 "group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-sm border text-[10px] font-bold uppercase tracking-widest transition-all",
                 hasEndorsed
-                    ? "bg-[#E3F2FD] text-[#1976D2] border-[#BBDEFB] shadow-sm hover:bg-[#BBDEFB]"
-                    : "bg-[#F8F9FA] text-[#212121] border-[#E0E0E0] hover:bg-[#FAFAFA] hover:text-[#111111] hover:border-[#E5E5E5]",
+                    ? "bg-cosmic-brand/10 text-[#1976D2] border-[#BBDEFB] shadow-sm hover:bg-[#BBDEFB]"
+                    : "bg-cosmic-light text-cosmic-black border-cosmic-accent hover:bg-cosmic-light hover:text-cosmic-brand hover:border-cosmic-accent",
                 readOnly && "cursor-default opacity-90 hover:transform-none select-text",
                 !readOnly && "hover:scale-105"
             )}
@@ -63,7 +63,7 @@ export default function EndorseSkillButton({ targetUserId, skill, endorsements, 
             ) : hasEndorsed ? (
                 <CheckCircle2 className="w-3.5 h-3.5" />
             ) : !readOnly ? (
-                <Plus className="w-3.5 h-3.5 text-[#9E9E9E] group-hover:text-[#111111]" />
+                <Plus className="w-3.5 h-3.5 text-cosmic-accent group-hover:text-cosmic-brand" />
             ) : null}
 
             <span>{skill}</span>
@@ -73,7 +73,7 @@ export default function EndorseSkillButton({ targetUserId, skill, endorsements, 
                     "ml-1.5 px-2 py-0.5 rounded-md text-[9px] border",
                     hasEndorsed
                         ? "bg-white text-[#1976D2] border-[#BBDEFB]/50"
-                        : "bg-white text-[#757575] border-[#E0E0E0]"
+                        : "bg-white text-cosmic-accent border-cosmic-accent"
                 )}>
                     {count}
                 </span>

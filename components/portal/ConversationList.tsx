@@ -84,39 +84,39 @@ export default function ConversationList({ conversations, currentMemberId }: Con
     return (
         <div className="w-full h-full flex flex-col">
             {/* List Header */}
-            <div className="p-5 md:p-6 border-b border-[#E0E0E0] bg-white">
+            <div className="p-5 md:p-6 border-b border-cosmic-accent bg-white">
                 <div className="flex items-center justify-between mb-5">
-                    <h2 className="text-[#212121] font-bold text-sm flex items-center gap-2 uppercase tracking-widest">
-                        <MessageSquare className="h-4 w-4 text-[#111111]" />
+                    <h2 className="text-cosmic-black font-bold text-sm flex items-center gap-2 uppercase tracking-widest">
+                        <MessageSquare className="h-4 w-4 text-cosmic-brand" />
                         Direct Messages
                     </h2>
-                    <button className="p-2 rounded-sm bg-[#F8F9FA] text-[#757575] hover:text-[#111111] hover:bg-[#FAFAFA] transition-colors border border-transparent hover:border-[#FAFAFA]">
+                    <button className="p-2 rounded-sm bg-cosmic-light text-cosmic-accent hover:text-cosmic-brand hover:bg-cosmic-light transition-colors border border-transparent hover:border-cosmic-muted">
                         <Filter className="h-3.5 w-3.5" />
                     </button>
                 </div>
 
                 <div className="relative group">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#9E9E9E] group-focus-within:text-[#111111] transition-colors" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-cosmic-accent group-focus-within:text-cosmic-brand transition-colors" />
                     <input
                         type="text"
                         placeholder="Search members..."
                         value={query}
                         onChange={e => setQuery(e.target.value)}
-                        className="w-full bg-[#F5F5F5] border border-transparent rounded-sm py-2.5 pl-10 pr-4 text-xs font-semibold focus:bg-white focus:border-[#111111]/30 focus:ring-4 focus:ring-[#111111]/10 transition-all outline-none text-[#212121] placeholder:text-[#9E9E9E]"
+                        className="w-full bg-[var(--color-cosmic-light)] border border-transparent rounded-sm py-2.5 pl-10 pr-4 text-xs font-semibold focus:bg-white focus:border-cosmic-brand/30 focus:ring-4 focus:ring-cosmic-brand/10 transition-all outline-none text-cosmic-black placeholder:text-cosmic-accent"
                     />
                     {searching && (
-                        <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#111111] animate-spin" />
+                        <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-cosmic-brand animate-spin" />
                     )}
                 </div>
             </div>
 
             {/* List Content */}
-            <div className="flex-1 overflow-y-auto custom-scrollbar bg-[#F8F9FA]/50">
+            <div className="flex-1 overflow-y-auto custom-scrollbar bg-cosmic-light/50">
                 {/* Search Results — new members to message */}
                 {isSearchMode && searchResults.length > 0 && (
-                    <div className="border-b border-[#E0E0E0]">
+                    <div className="border-b border-cosmic-accent">
                         <div className="px-5 pt-4 pb-2">
-                            <span className="text-[9px] font-bold text-[#9E9E9E] uppercase tracking-widest flex items-center gap-1.5">
+                            <span className="text-[9px] font-bold text-cosmic-accent uppercase tracking-widest flex items-center gap-1.5">
                                 <UserPlus className="h-3 w-3" /> New Conversation
                             </span>
                         </div>
@@ -129,7 +129,7 @@ export default function ConversationList({ conversations, currentMemberId }: Con
                                 <button
                                     key={member.id}
                                     onClick={() => handleSelectMember(member.id)}
-                                    className="block w-full p-4 md:p-5 transition-all relative group border-b border-[#E0E0E0]/50 hover:bg-white border-l-4 border-l-transparent hover:border-l-[#E53935] text-left"
+                                    className="block w-full p-4 md:p-5 transition-all relative group border-b border-cosmic-accent/50 hover:bg-white border-l-4 border-l-transparent hover:border-l-[#212A31] text-left"
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className="relative shrink-0">
@@ -138,15 +138,15 @@ export default function ConversationList({ conversations, currentMemberId }: Con
                                                 name={member.full_name}
                                                 className="w-11 h-11 md:w-12 md:h-12 ring-2 ring-white shadow-sm"
                                             />
-                                            <span className="absolute -bottom-0.5 -right-0.5 h-4 w-4 bg-[#E53935] border-2 border-white rounded-full flex items-center justify-center">
+                                            <span className="absolute -bottom-0.5 -right-0.5 h-4 w-4 bg-cosmic-black border-2 border-white rounded-full flex items-center justify-center">
                                                 <UserPlus className="h-2.5 w-2.5 text-white" />
                                             </span>
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <h4 className="text-sm font-bold text-[#212121] truncate">
+                                            <h4 className="text-sm font-bold text-cosmic-black truncate">
                                                 {member.full_name}
                                             </h4>
-                                            <span className="text-[10px] font-bold text-[#E53935] uppercase tracking-wider">
+                                            <span className="text-[10px] font-bold text-cosmic-black uppercase tracking-wider">
                                                 {member.club_post || 'Member'}
                                             </span>
                                         </div>
@@ -160,7 +160,7 @@ export default function ConversationList({ conversations, currentMemberId }: Con
                 {/* Existing Conversations */}
                 {isSearchMode && filteredConversations.length > 0 && (
                     <div className="px-5 pt-4 pb-2">
-                        <span className="text-[9px] font-bold text-[#9E9E9E] uppercase tracking-widest">
+                        <span className="text-[9px] font-bold text-cosmic-accent uppercase tracking-widest">
                             Existing Conversations
                         </span>
                     </div>
@@ -175,9 +175,9 @@ export default function ConversationList({ conversations, currentMemberId }: Con
                                 key={otherMember.id}
                                 href={`/portal/messages/${otherMember.id}`}
                                 className={cn(
-                                    "block p-4 md:p-5 transition-all relative group border-b border-[#E0E0E0]/50",
+                                    "block p-4 md:p-5 transition-all relative group border-b border-cosmic-accent/50",
                                     isActive
-                                        ? "bg-white shadow-sm z-10 scale-[1.01] border-l-4 border-l-[#111111]"
+                                        ? "bg-white shadow-sm z-10 scale-[1.01] border-l-4 border-l-[#124E66]"
                                         : "hover:bg-white border-l-4 border-l-transparent"
                                 )}
                             >
@@ -188,11 +188,11 @@ export default function ConversationList({ conversations, currentMemberId }: Con
                                             name={otherMember.name}
                                             className={cn(
                                                 "w-11 h-11 md:w-12 md:h-12 ring-2 transition-all shadow-sm",
-                                                isActive ? "ring-[#111111]/20" : "ring-white"
+                                                isActive ? "ring-cosmic-brand/20" : "ring-white"
                                             )}
                                         />
                                         {unreadCount > 0 && (
-                                            <span className="absolute -top-1 -right-1 h-3.5 w-3.5 bg-[#E53935] border-2 border-white rounded-full flex" />
+                                            <span className="absolute -top-1 -right-1 h-3.5 w-3.5 bg-cosmic-black border-2 border-white rounded-full flex" />
                                         )}
                                     </div>
 
@@ -200,11 +200,11 @@ export default function ConversationList({ conversations, currentMemberId }: Con
                                         <div className="flex justify-between items-baseline mb-0.5">
                                             <h4 className={cn(
                                                 "text-sm font-bold truncate transition-colors",
-                                                isActive ? "text-[#111111]" : "text-[#212121]"
+                                                isActive ? "text-cosmic-brand" : "text-cosmic-black"
                                             )}>
                                                 {otherMember.name}
                                             </h4>
-                                            <span className="text-[9px] font-bold text-[#9E9E9E] uppercase tracking-wider shrink-0 ml-2">
+                                            <span className="text-[9px] font-bold text-cosmic-accent uppercase tracking-wider shrink-0 ml-2">
                                                 {formatDate(lastMessage.created_at)}
                                             </span>
                                         </div>
@@ -212,12 +212,12 @@ export default function ConversationList({ conversations, currentMemberId }: Con
                                         <div className="flex items-center gap-2">
                                             <p className={cn(
                                                 "text-xs truncate flex-1 leading-snug",
-                                                unreadCount > 0 ? "text-[#212121] font-bold" : "text-[#757575] font-medium"
+                                                unreadCount > 0 ? "text-cosmic-black font-bold" : "text-cosmic-accent font-medium"
                                             )}>
                                                 {lastMessage.isMine && "You: "}{lastMessage.content}
                                             </p>
                                             {unreadCount > 0 && (
-                                                <span className="bg-[#E53935] text-white text-[9px] font-bold rounded-md px-1.5 py-0.5 shadow-sm shrink-0">
+                                                <span className="bg-cosmic-black text-white text-[9px] font-bold rounded-md px-1.5 py-0.5 shadow-sm shrink-0">
                                                     New
                                                 </span>
                                             )}
@@ -230,22 +230,22 @@ export default function ConversationList({ conversations, currentMemberId }: Con
                 ) : (
                     !isSearchMode && (
                         <div className="p-10 text-center animate-fade-up flex flex-col items-center justify-center h-full">
-                            <div className="w-14 h-14 bg-white rounded-sm flex items-center justify-center mb-5 shadow-sm border border-[#E0E0E0]">
-                                <MessageSquare className="h-6 w-6 text-[#9E9E9E]" />
+                            <div className="w-14 h-14 bg-white rounded-sm flex items-center justify-center mb-5 shadow-sm border border-cosmic-accent">
+                                <MessageSquare className="h-6 w-6 text-cosmic-accent" />
                             </div>
-                            <p className="text-[#424242] font-bold text-sm uppercase tracking-widest">Inbox Zero</p>
-                            <p className="text-[#9E9E9E] text-xs font-medium mt-1">Search for a member to start a conversation.</p>
+                            <p className="text-cosmic-dark font-bold text-sm uppercase tracking-widest">Inbox Zero</p>
+                            <p className="text-cosmic-accent text-xs font-medium mt-1">Search for a member to start a conversation.</p>
                         </div>
                     )
                 )}
 
                 {isSearchMode && searchResults.length === 0 && filteredConversations.length === 0 && !searching && (
                     <div className="p-10 text-center animate-fade-up flex flex-col items-center justify-center">
-                        <div className="w-14 h-14 bg-white rounded-sm flex items-center justify-center mb-5 shadow-sm border border-[#E0E0E0]">
-                            <Search className="h-6 w-6 text-[#9E9E9E]" />
+                        <div className="w-14 h-14 bg-white rounded-sm flex items-center justify-center mb-5 shadow-sm border border-cosmic-accent">
+                            <Search className="h-6 w-6 text-cosmic-accent" />
                         </div>
-                        <p className="text-[#424242] font-bold text-sm uppercase tracking-widest">No Results</p>
-                        <p className="text-[#9E9E9E] text-xs font-medium mt-1">No members found matching &ldquo;{query}&rdquo;</p>
+                        <p className="text-cosmic-dark font-bold text-sm uppercase tracking-widest">No Results</p>
+                        <p className="text-cosmic-accent text-xs font-medium mt-1">No members found matching &ldquo;{query}&rdquo;</p>
                     </div>
                 )}
             </div>

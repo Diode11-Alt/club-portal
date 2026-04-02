@@ -87,13 +87,13 @@ export default function ContactPage() {
     }
 
     return (
-        <div className="bg-[#F8F9FA] min-h-screen pt-24 pb-20">
+        <div className="bg-cosmic-light min-h-screen pt-24 pb-20">
             {/* Header Section */}
-            <div className="bg-[#1A237E] text-white py-16 mb-12 shadow-inner relative overflow-hidden">
+            <div className="bg-cosmic-brand text-white py-16 mb-12 shadow-inner relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.02)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px]" />
                 <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
                     <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-                        Contact <span className="text-[#E53935]">Us</span>
+                        Contact <span className="text-cosmic-black">Us</span>
                     </h1>
                     <p className="text-[#C5CAE9] text-lg max-w-2xl mx-auto leading-relaxed">
                         Have a question, suggestion, or want to collaborate? <br className="hidden md:block" />
@@ -106,46 +106,46 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
                     {/* Left — Contact Info */}
                     <div className="lg:col-span-2 space-y-6">
-                        <div className="bg-white border border-[#E0E0E0] rounded-[2rem] p-8 shadow-sm hover:shadow-xl hover:border-[#1A237E]/20 transition-all">
+                        <div className="bg-white border border-cosmic-accent rounded-[2rem] p-8 shadow-sm hover:shadow-xl hover:border-cosmic-brand/20 transition-all">
                             <div className="flex items-center gap-4 mb-8">
                                 <div className="h-14 w-14 rounded-2xl bg-[#E8EAF6] flex items-center justify-center border border-[#C5CAE9]">
-                                    <Shield className="h-7 w-7 text-[#1A237E]" />
+                                    <Shield className="h-7 w-7 text-cosmic-brand" />
                                 </div>
                                 <div>
-                                    <p className="font-bold text-[#212121] text-lg">{BRAND.clubShort}</p>
-                                    <p className="text-[#757575] text-sm font-medium">Cybersecurity & Ethical Hacking Club of IIMS College</p>
+                                    <p className="font-bold text-cosmic-black text-lg">{BRAND.clubShort}</p>
+                                    <p className="text-cosmic-accent text-sm font-medium">Cybersecurity & Ethical Hacking Club of IIMS College</p>
                                 </div>
                             </div>
 
                             <div className="space-y-6">
-                                <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-[#F8F9FA] transition-colors border border-transparent hover:border-[#E0E0E0]">
-                                    <div className="h-10 w-10 shrink-0 bg-[#FFEBEE] rounded-full flex items-center justify-center">
-                                        <Mail className="h-5 w-5 text-[#E53935]" />
+                                <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-cosmic-light transition-colors border border-transparent hover:border-cosmic-accent">
+                                    <div className="h-10 w-10 shrink-0 bg-cosmic-brand/10 rounded-full flex items-center justify-center">
+                                        <Mail className="h-5 w-5 text-cosmic-black" />
                                     </div>
                                     <div>
-                                        <p className="text-[#9E9E9E] text-[10px] font-bold uppercase tracking-widest mb-1">Email Support</p>
-                                        <a href={`mailto:${BRAND.clubEmail}`} className="text-[#1A237E] font-semibold hover:text-[#E53935] transition-colors">
+                                        <p className="text-cosmic-accent text-[10px] font-bold uppercase tracking-widest mb-1">Email Support</p>
+                                        <a href={`mailto:${BRAND.clubEmail}`} className="text-cosmic-brand font-semibold hover:text-cosmic-black transition-colors">
                                             {BRAND.clubEmail}
                                         </a>
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-[#F8F9FA] transition-colors border border-transparent hover:border-[#E0E0E0]">
+                                <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-cosmic-light transition-colors border border-transparent hover:border-cosmic-accent">
                                     <div className="h-10 w-10 shrink-0 bg-[#E8EAF6] rounded-full flex items-center justify-center">
-                                        <MapPin className="h-5 w-5 text-[#1A237E]" />
+                                        <MapPin className="h-5 w-5 text-cosmic-brand" />
                                     </div>
                                     <div>
-                                        <p className="text-[#9E9E9E] text-[10px] font-bold uppercase tracking-widest mb-1">Campus Location</p>
-                                        <p className="text-[#424242] font-semibold">IIMS College, Kathmandu, Nepal</p>
+                                        <p className="text-cosmic-accent text-[10px] font-bold uppercase tracking-widest mb-1">Campus Location</p>
+                                        <p className="text-cosmic-dark font-semibold">IIMS College, Kathmandu, Nepal</p>
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-[#F8F9FA] transition-colors border border-transparent hover:border-[#E0E0E0]">
+                                <div className="flex items-start gap-4 p-4 rounded-xl hover:bg-cosmic-light transition-colors border border-transparent hover:border-cosmic-accent">
                                     <div className="h-10 w-10 shrink-0 bg-[#E8F5E9] rounded-full flex items-center justify-center">
                                         <ExternalLink className="h-5 w-5 text-[#2E7D32]" />
                                     </div>
                                     <div>
-                                        <p className="text-[#9E9E9E] text-[10px] font-bold uppercase tracking-widest mb-1">Institution</p>
+                                        <p className="text-cosmic-accent text-[10px] font-bold uppercase tracking-widest mb-1">Institution</p>
                                         <a
                                             href="https://iimscollege.edu.np/"
                                             target="_blank"
@@ -162,19 +162,19 @@ export default function ContactPage() {
 
                     {/* Right — Contact Form */}
                     <div className="lg:col-span-3">
-                        <div className="bg-white border border-[#E0E0E0] rounded-[2rem] p-8 md:p-10 shadow-lg shadow-[#1A237E]/5">
+                        <div className="bg-white border border-cosmic-accent rounded-[2rem] p-8 md:p-10 shadow-lg shadow-[#124E66]/5">
                             {success ? (
                                 <div className="text-center py-12">
                                     <div className="h-20 w-20 rounded-full bg-[#E8F5E9] border border-[#A5D6A7] flex items-center justify-center mx-auto mb-6">
                                         <CheckCircle2 className="h-10 w-10 text-[#2E7D32]" />
                                     </div>
-                                    <p className="text-2xl font-bold text-[#212121] mb-2">Message Received.</p>
-                                    <p className="text-[#757575] text-base mb-8 max-w-sm mx-auto">
+                                    <p className="text-2xl font-bold text-cosmic-black mb-2">Message Received.</p>
+                                    <p className="text-cosmic-accent text-base mb-8 max-w-sm mx-auto">
                                         Your transmission has been securely logged. The ICEHC dispatch will respond shortly.
                                     </p>
                                     <button
                                         onClick={() => { setSuccess(false); setForm({ name: '', email: '', subject: '', message: '' }) }}
-                                        className="text-[#1A237E] font-bold text-sm tracking-wide hover:text-[#E53935] transition-colors px-6 py-3 rounded-full hover:bg-[#F8F9FA]"
+                                        className="text-cosmic-brand font-bold text-sm tracking-wide hover:text-cosmic-black transition-colors px-6 py-3 rounded-full hover:bg-cosmic-light"
                                     >
                                         Send another message <span aria-hidden="true">&rarr;</span>
                                     </button>
@@ -182,12 +182,12 @@ export default function ContactPage() {
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     <div className="mb-4">
-                                        <h2 className="text-2xl font-bold text-[#212121] mb-2">Send us a Message</h2>
-                                        <p className="text-[#9E9E9E] text-sm">Fill out the fields below and we'll get back to you as soon as possible.</p>
+                                        <h2 className="text-2xl font-bold text-cosmic-black mb-2">Send us a Message</h2>
+                                        <p className="text-cosmic-accent text-sm">Fill out the fields below and we'll get back to you as soon as possible.</p>
                                     </div>
 
                                     {serverError && (
-                                        <div className="p-4 rounded-xl bg-[#FFEBEE] border border-[#FFCDD2] text-[#D32F2F] text-sm font-semibold flex items-center gap-3">
+                                        <div className="p-4 rounded-xl bg-cosmic-brand/10 border border-[#FFCDD2] text-cosmic-brand text-sm font-semibold flex items-center gap-3">
                                             <Shield className="h-5 w-5 shrink-0" />
                                             {serverError}
                                         </div>
@@ -228,7 +228,7 @@ export default function ContactPage() {
                                     />
 
                                     <div>
-                                        <label htmlFor="message" className="block text-[#757575] text-[10px] font-bold uppercase tracking-widest mb-2">
+                                        <label htmlFor="message" className="block text-cosmic-accent text-[10px] font-bold uppercase tracking-widest mb-2">
                                             Message
                                         </label>
                                         <textarea
@@ -238,17 +238,17 @@ export default function ContactPage() {
                                             placeholder="Write your message here..."
                                             required
                                             rows={6}
-                                            className="bg-[#F8F9FA] border border-[#E0E0E0] text-[#212121] rounded-xl px-4 py-3 focus:outline-none focus:border-[#1A237E] focus:ring-2 focus:ring-[#1A237E]/20 placeholder:text-[#BDBDBD] w-full text-base transition-all resize-none shadow-sm hover:border-[#BDBDBD]"
+                                            className="bg-cosmic-light border border-cosmic-accent text-cosmic-black rounded-xl px-4 py-3 focus:outline-none focus:border-cosmic-brand focus:ring-2 focus:ring-cosmic-brand/20 placeholder:text-[#BDBDBD] w-full text-base transition-all resize-none shadow-sm hover:border-[#BDBDBD]"
                                         />
                                         {errors.message?.[0] && (
-                                            <p className="text-[#D32F2F] text-xs font-semibold mt-1.5">{errors.message[0]}</p>
+                                            <p className="text-cosmic-brand text-xs font-semibold mt-1.5">{errors.message[0]}</p>
                                         )}
                                     </div>
 
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="w-full bg-[#1A237E] text-white font-bold text-sm tracking-wide px-6 py-4 rounded-xl hover:bg-[#283593] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-xl hover:shadow-[#1A237E]/20 mt-4"
+                                        className="w-full bg-cosmic-brand text-white font-bold text-sm tracking-wide px-6 py-4 rounded-xl hover:bg-[#283593] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-xl hover:shadow-[#124E66]/20 mt-4"
                                     >
                                         {loading ? (
                                             <>
@@ -290,7 +290,7 @@ function FormField({
 }) {
     return (
         <div>
-            <label htmlFor={id} className="block text-[#757575] text-[10px] font-bold uppercase tracking-widest mb-2">
+            <label htmlFor={id} className="block text-cosmic-accent text-[10px] font-bold uppercase tracking-widest mb-2">
                 {label}
             </label>
             <input
@@ -300,10 +300,10 @@ function FormField({
                 onChange={e => onChange(e.target.value)}
                 placeholder={placeholder}
                 required={required}
-                className="bg-[#F8F9FA] border border-[#E0E0E0] text-[#212121] rounded-xl px-4 py-3 focus:outline-none focus:border-[#1A237E] focus:ring-2 focus:ring-[#1A237E]/20 placeholder:text-[#BDBDBD] w-full text-base transition-all shadow-sm hover:border-[#BDBDBD]"
+                className="bg-cosmic-light border border-cosmic-accent text-cosmic-black rounded-xl px-4 py-3 focus:outline-none focus:border-cosmic-brand focus:ring-2 focus:ring-cosmic-brand/20 placeholder:text-[#BDBDBD] w-full text-base transition-all shadow-sm hover:border-[#BDBDBD]"
             />
             {error && (
-                <p className="text-[#D32F2F] text-xs font-semibold mt-1.5">{error}</p>
+                <p className="text-cosmic-brand text-xs font-semibold mt-1.5">{error}</p>
             )}
         </div>
     )

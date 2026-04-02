@@ -85,7 +85,7 @@ export default function EventsTab({ events, refresh }: { events: any[], refresh:
             <div className="flex justify-end">
                 <button
                     onClick={() => setShowForm(!showForm)}
-                    className="bg-[#111111] text-white px-8 py-3.5 rounded-sm font-bold uppercase text-xs tracking-widest shadow-sm shadow-[#111111]/20 flex items-center gap-3 hover:translate-y-[-2px] transition-all hover:bg-[#C8102E]"
+                    className="bg-cosmic-brand text-white px-8 py-3.5 rounded-sm font-bold uppercase text-xs tracking-widest shadow-sm shadow-[#124E66]/20 flex items-center gap-3 hover:translate-y-[-2px] transition-all hover:bg-cosmic-dark"
                 >
                     {showForm ? <X className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
                     {showForm ? 'Cancel' : 'Initiate New Event'}
@@ -94,26 +94,26 @@ export default function EventsTab({ events, refresh }: { events: any[], refresh:
 
             {/* Event Creation Form */}
             {showForm && (
-                <form onSubmit={handleCreateEvent} className="bg-white p-8 rounded-[2rem] border border-[#E0E0E0] shadow-sm space-y-6">
-                    <h3 className="text-lg font-bold text-[#111111] uppercase tracking-wider">New Event Details</h3>
+                <form onSubmit={handleCreateEvent} className="bg-white p-8 rounded-[2rem] border border-cosmic-accent shadow-sm space-y-6">
+                    <h3 className="text-lg font-bold text-cosmic-brand uppercase tracking-wider">New Event Details</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#757575] uppercase tracking-widest">Title *</label>
+                            <label className="text-xs font-bold text-cosmic-accent uppercase tracking-widest">Title *</label>
                             <input
                                 type="text"
                                 value={form.title}
                                 onChange={e => setForm({ ...form, title: e.target.value })}
                                 placeholder="Introduction to the Red Team"
-                                className="w-full px-4 py-3 border border-[#E0E0E0] rounded-sm bg-[#F8F9FA] text-[#212121] focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111]"
+                                className="w-full px-4 py-3 border border-cosmic-accent rounded-sm bg-cosmic-light text-cosmic-black focus:outline-none focus:border-cosmic-brand focus:ring-1 focus:ring-cosmic-brand"
                                 required
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#757575] uppercase tracking-widest">Type *</label>
+                            <label className="text-xs font-bold text-cosmic-accent uppercase tracking-widest">Type *</label>
                             <select
                                 value={form.type}
                                 onChange={e => setForm({ ...form, type: e.target.value })}
-                                className="w-full px-4 py-3 border border-[#E0E0E0] rounded-sm bg-[#F8F9FA] text-[#212121] focus:outline-none focus:border-[#111111]"
+                                className="w-full px-4 py-3 border border-cosmic-accent rounded-sm bg-cosmic-light text-cosmic-black focus:outline-none focus:border-cosmic-brand"
                             >
                                 <option value="workshop">Workshop</option>
                                 <option value="ctf">CTF</option>
@@ -125,50 +125,50 @@ export default function EventsTab({ events, refresh }: { events: any[], refresh:
                             </select>
                         </div>
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#757575] uppercase tracking-widest">Event Date *</label>
+                            <label className="text-xs font-bold text-cosmic-accent uppercase tracking-widest">Event Date *</label>
                             <input
                                 type="datetime-local"
                                 value={form.event_date}
                                 onChange={e => setForm({ ...form, event_date: e.target.value })}
-                                className="w-full px-4 py-3 border border-[#E0E0E0] rounded-sm bg-[#F8F9FA] text-[#212121] focus:outline-none focus:border-[#111111]"
+                                className="w-full px-4 py-3 border border-cosmic-accent rounded-sm bg-cosmic-light text-cosmic-black focus:outline-none focus:border-cosmic-brand"
                                 required
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#757575] uppercase tracking-widest">End Date</label>
+                            <label className="text-xs font-bold text-cosmic-accent uppercase tracking-widest">End Date</label>
                             <input
                                 type="datetime-local"
                                 value={form.end_date}
                                 onChange={e => setForm({ ...form, end_date: e.target.value })}
-                                className="w-full px-4 py-3 border border-[#E0E0E0] rounded-sm bg-[#F8F9FA] text-[#212121] focus:outline-none focus:border-[#111111]"
+                                className="w-full px-4 py-3 border border-cosmic-accent rounded-sm bg-cosmic-light text-cosmic-black focus:outline-none focus:border-cosmic-brand"
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#757575] uppercase tracking-widest">Location</label>
+                            <label className="text-xs font-bold text-cosmic-accent uppercase tracking-widest">Location</label>
                             <input
                                 type="text"
                                 value={form.location}
                                 onChange={e => setForm({ ...form, location: e.target.value })}
                                 placeholder="IIMS College Computer Lab, Kathmandu"
-                                className="w-full px-4 py-3 border border-[#E0E0E0] rounded-sm bg-[#F8F9FA] text-[#212121] focus:outline-none focus:border-[#111111]"
+                                className="w-full px-4 py-3 border border-cosmic-accent rounded-sm bg-cosmic-light text-cosmic-black focus:outline-none focus:border-cosmic-brand"
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#757575] uppercase tracking-widest">Max Attendees</label>
+                            <label className="text-xs font-bold text-cosmic-accent uppercase tracking-widest">Max Attendees</label>
                             <input
                                 type="number"
                                 value={form.max_attendees}
                                 onChange={e => setForm({ ...form, max_attendees: e.target.value })}
                                 placeholder="50"
-                                className="w-full px-4 py-3 border border-[#E0E0E0] rounded-sm bg-[#F8F9FA] text-[#212121] focus:outline-none focus:border-[#111111]"
+                                className="w-full px-4 py-3 border border-cosmic-accent rounded-sm bg-cosmic-light text-cosmic-black focus:outline-none focus:border-cosmic-brand"
                             />
                         </div>
                         <div className="space-y-2 lg:col-span-2">
-                            <label className="text-xs font-bold text-[#757575] uppercase tracking-widest">Cover Image</label>
+                            <label className="text-xs font-bold text-cosmic-accent uppercase tracking-widest">Cover Image</label>
                             <div className="flex items-center gap-4">
                                 {form.cover_image_url ? (
-                                    <div className="relative group p-2 border border-[#E0E0E0] rounded-sm inline-block">
-                                        <img src={form.cover_image_url} alt="Cover Preview" className="h-32 w-48 object-cover rounded-sm border border-[#E0E0E0]" />
+                                    <div className="relative group p-2 border border-cosmic-accent rounded-sm inline-block">
+                                        <img src={form.cover_image_url} alt="Cover Preview" className="h-32 w-48 object-cover rounded-sm border border-cosmic-accent" />
                                         <button type="button" onClick={() => setForm({ ...form, cover_image_url: '' })} className="absolute top-3 right-3 p-1.5 bg-white/90 text-red-500 rounded-sm shadow hover:bg-white transition-colors">
                                             <X className="h-4 w-4" />
                                         </button>
@@ -200,30 +200,30 @@ export default function EventsTab({ events, refresh }: { events: any[], refresh:
                                                 toast.error(err.message, { id: toastId })
                                             }
                                         }}
-                                        className="block w-full text-sm text-[#757575] file:mr-4 file:py-2.5 file:px-4 file:rounded-sm file:border-0 file:text-xs file:font-semibold file:bg-[#111111] file:text-white hover:file:bg-[#C8102E] transition-all cursor-pointer bg-[#F8F9FA] border border-[#E0E0E0] p-1.5"
+                                        className="block w-full text-sm text-cosmic-accent file:mr-4 file:py-2.5 file:px-4 file:rounded-sm file:border-0 file:text-xs file:font-semibold file:bg-cosmic-brand file:text-white hover:file:bg-cosmic-brand transition-all cursor-pointer bg-cosmic-light border border-cosmic-accent p-1.5"
                                     />
                                 )}
                             </div>
                         </div>
                     </div>
                     <div className="space-y-2">
-                        <label className="text-xs font-bold text-[#757575] uppercase tracking-widest">Short Description</label>
+                        <label className="text-xs font-bold text-cosmic-accent uppercase tracking-widest">Short Description</label>
                         <input
                             type="text"
                             value={form.short_desc}
                             onChange={e => setForm({ ...form, short_desc: e.target.value })}
                             placeholder="Brief one-line description"
-                            className="w-full px-4 py-3 border border-[#E0E0E0] rounded-sm bg-[#F8F9FA] text-[#212121] focus:outline-none focus:border-[#111111]"
+                            className="w-full px-4 py-3 border border-cosmic-accent rounded-sm bg-cosmic-light text-cosmic-black focus:outline-none focus:border-cosmic-brand"
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-xs font-bold text-[#757575] uppercase tracking-widest">Description *</label>
+                        <label className="text-xs font-bold text-cosmic-accent uppercase tracking-widest">Description *</label>
                         <textarea
                             value={form.description}
                             onChange={e => setForm({ ...form, description: e.target.value })}
                             placeholder="Full event description (supports Markdown)"
                             rows={4}
-                            className="w-full px-4 py-3 border border-[#E0E0E0] rounded-sm bg-[#F8F9FA] text-[#212121] focus:outline-none focus:border-[#111111] resize-none"
+                            className="w-full px-4 py-3 border border-cosmic-accent rounded-sm bg-cosmic-light text-cosmic-black focus:outline-none focus:border-cosmic-brand resize-none"
                             required
                         />
                     </div>
@@ -233,14 +233,14 @@ export default function EventsTab({ events, refresh }: { events: any[], refresh:
                             id="is_published"
                             checked={form.is_published}
                             onChange={e => setForm({ ...form, is_published: e.target.checked })}
-                            className="w-4 h-4 accent-[#E53935]"
+                            className="w-4 h-4 accent-[#212A31]"
                         />
-                        <label htmlFor="is_published" className="text-sm font-medium text-[#424242]">Publish immediately</label>
+                        <label htmlFor="is_published" className="text-sm font-medium text-cosmic-dark">Publish immediately</label>
                     </div>
                     <button
                         type="submit"
                         disabled={submitting}
-                        className="bg-[#E53935] text-white px-8 py-3 rounded-sm font-bold text-sm hover:bg-[#C62828] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-cosmic-black text-white px-8 py-3 rounded-sm font-bold text-sm hover:bg-[#C62828] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {submitting ? 'Creating...' : 'Create Event'}
                     </button>
@@ -249,26 +249,26 @@ export default function EventsTab({ events, refresh }: { events: any[], refresh:
 
             <div className="grid grid-cols-1 gap-8">
                 {events.length === 0 && !showForm && (
-                    <div className="text-center py-20 text-[#9E9E9E]">
+                    <div className="text-center py-20 text-cosmic-accent">
                         <Calendar className="h-12 w-12 mx-auto mb-4 opacity-30" />
                         <p className="font-bold text-sm">No events yet. Click "Initiate New Event" to create one.</p>
                     </div>
                 )}
                 {events.map(event => (
-                    <div key={event.id} className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-[#E0E0E0] shadow-sm hover:shadow-sm transition-all group flex flex-col xl:flex-row gap-8 md:gap-10">
+                    <div key={event.id} className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-cosmic-accent shadow-sm hover:shadow-sm transition-all group flex flex-col xl:flex-row gap-8 md:gap-10">
                         {/* Event Preview */}
-                        <div className="w-full xl:w-72 h-48 rounded-[2rem] bg-[#F8F9FA] overflow-hidden relative border border-[#E0E0E0] shrink-0">
+                        <div className="w-full xl:w-72 h-48 rounded-[2rem] bg-cosmic-light overflow-hidden relative border border-cosmic-accent shrink-0">
                             {event.image_url ? (
                                 <img src={event.image_url} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center">
-                                    <Calendar className="h-12 w-12 text-[#E0E0E0]" />
+                                    <Calendar className="h-12 w-12 text-cosmic-accent" />
                                 </div>
                             )}
                             <div className="absolute top-4 left-4">
                                 <span className={cn(
                                     "px-3 py-1.5 rounded-sm text-[9px] font-bold uppercase tracking-widest border backdrop-blur-md shadow-sm",
-                                    event.status === 'upcoming' ? "bg-[#4CAF50]/90 text-white border-[#81C784]" : "bg-[#212121]/80 text-[#EEEEEE] border-[#424242]"
+                                    event.status === 'upcoming' ? "bg-[#4CAF50]/90 text-white border-[#81C784]" : "bg-cosmic-black/80 text-[#EEEEEE] border-[#424242]"
                                 )}>
                                     {event.status === 'upcoming' ? 'Operational' : 'Draft Intel'}
                                 </span>
@@ -278,15 +278,15 @@ export default function EventsTab({ events, refresh }: { events: any[], refresh:
                         {/* Event Details */}
                         <div className="flex-1 space-y-5">
                             <div className="space-y-3">
-                                <div className="flex items-center gap-3 text-[10px] font-bold text-[#9E9E9E] uppercase tracking-widest">
-                                    <span className="text-[#E53935]">{event.type}</span>
-                                    <span className="w-1 h-1 bg-[#E0E0E0] rounded-full" />
+                                <div className="flex items-center gap-3 text-[10px] font-bold text-cosmic-accent uppercase tracking-widest">
+                                    <span className="text-cosmic-black">{event.type}</span>
+                                    <span className="w-1 h-1 bg-cosmic-accent rounded-full" />
                                     <span>{formatDate(event.event_date)}</span>
                                 </div>
-                                <h3 className="text-2xl md:text-3xl font-bold text-[#212121] group-hover:text-[#111111] transition-colors leading-tight">
+                                <h3 className="text-2xl md:text-3xl font-bold text-cosmic-black group-hover:text-cosmic-brand transition-colors leading-tight">
                                     {event.title}
                                 </h3>
-                                <div className="flex items-center gap-5 text-[#757575] font-medium text-sm">
+                                <div className="flex items-center gap-5 text-cosmic-accent font-medium text-sm">
                                     <div className="flex items-center gap-2">
                                         <MapPin className="h-4 w-4 opacity-70" />
                                         {event.location || 'Remote Feed'}
@@ -297,7 +297,7 @@ export default function EventsTab({ events, refresh }: { events: any[], refresh:
                                     </div>
                                 </div>
                             </div>
-                            <p className="text-[#9E9E9E] font-medium text-sm line-clamp-2 leading-relaxed">{event.description}</p>
+                            <p className="text-cosmic-accent font-medium text-sm line-clamp-2 leading-relaxed">{event.description}</p>
                         </div>
 
                         {/* Event Actions */}
@@ -308,20 +308,20 @@ export default function EventsTab({ events, refresh }: { events: any[], refresh:
                                 className={cn(
                                     "flex-1 xl:w-14 h-14 rounded-sm flex items-center justify-center transition-all border shadow-sm",
                                     event.status === 'upcoming'
-                                        ? "bg-[#212121] text-white border-[#424242] hover:bg-black"
+                                        ? "bg-cosmic-black text-white border-[#424242] hover:bg-black"
                                         : "bg-[#E8F5E9] text-[#2E7D32] border-[#C8E6C9] hover:bg-[#4CAF50] hover:text-white"
                                 )}
                                 title={event.status === 'upcoming' ? "Archive Event" : "Deploy Event"}
                             >
                                 {event.status === 'upcoming' ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                             </button>
-                            <button className="flex-1 xl:w-14 h-14 bg-white border border-[#E0E0E0] text-[#111111] hover:bg-[#FAFAFA] hover:border-[#E5E5E5] rounded-sm flex items-center justify-center transition-all shadow-sm">
+                            <button className="flex-1 xl:w-14 h-14 bg-white border border-cosmic-accent text-cosmic-brand hover:bg-cosmic-light hover:border-cosmic-accent rounded-sm flex items-center justify-center transition-all shadow-sm">
                                 <Edit2 className="h-5 w-5" />
                             </button>
                             <a
                                 href={`/portal/events/${event.id}`}
                                 target="_blank"
-                                className="flex-1 xl:w-14 h-14 bg-white border border-[#E0E0E0] text-[#BDBDBD] hover:text-[#212121] hover:bg-[#F8F9FA] rounded-sm flex items-center justify-center transition-all shadow-sm"
+                                className="flex-1 xl:w-14 h-14 bg-white border border-cosmic-accent text-[#BDBDBD] hover:text-cosmic-black hover:bg-cosmic-light rounded-sm flex items-center justify-center transition-all shadow-sm"
                             >
                                 <ExternalLink className="h-5 w-5" />
                             </a>

@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
     const supabase = createServerClient()
     const { data: member, error } = await supabase
         .from('members')
-        .select('*')
+        .select('id, user_id, full_name, email, role, status, club_post, joined_at, avatar_url, student_id, points, bio, is_public_profile, display_order')
         .eq('user_id', session.user.id)
         .single()
 

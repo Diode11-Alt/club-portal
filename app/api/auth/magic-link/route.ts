@@ -46,14 +46,12 @@ export async function POST(req: NextRequest) {
         })
 
         if (error) {
-            console.error('[magic-link] Supabase error:', error)
             // Generic error message to prevent email enumeration
             return NextResponse.json({ error: 'Failed to send login link. Please try again.' }, { status: 500 })
         }
 
         return NextResponse.json({ success: true })
     } catch (err) {
-        console.error('[magic-link] Unexpected error:', err)
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
     }
 }

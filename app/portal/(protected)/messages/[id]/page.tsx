@@ -20,7 +20,7 @@ export default async function MessageThreadPage(props: { params: Promise<{ id: s
 
     // Identify 'other' member
     const { data: otherUser } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .select('id, full_name, avatar_url, role, club_post')
         .eq('id', id)
         .single()
@@ -29,7 +29,7 @@ export default async function MessageThreadPage(props: { params: Promise<{ id: s
 
     // Find the conversation ID between these two members
     const { data: participations } = await (supabase
-        .from('conversation_participants' as any) as any)
+        .from('conversation_participants'))
         .select('conversation_id')
         .in('member_id', [member.id, otherUser.id])
 
@@ -46,7 +46,7 @@ export default async function MessageThreadPage(props: { params: Promise<{ id: s
 
     if (activeConvId) {
         const { data: msgs } = await (supabase
-            .from('messages' as any) as any)
+            .from('messages'))
             .select('*')
             .eq('conversation_id', activeConvId)
             .order('created_at', { ascending: true })
@@ -55,7 +55,7 @@ export default async function MessageThreadPage(props: { params: Promise<{ id: s
 
         // Update my participant record as read since I just opened the thread
         await (supabase
-            .from('conversation_participants' as any) as any)
+            .from('conversation_participants'))
             .update({ last_read_at: new Date().toISOString() })
             .eq('conversation_id', activeConvId)
             .eq('member_id', member.id)
@@ -64,11 +64,11 @@ export default async function MessageThreadPage(props: { params: Promise<{ id: s
     return (
         <ChatWindow
             initialMessages={messages}
-            currentUser={member as any}
+            currentUser={member}
             otherUser={{
                 ...otherUser,
                 name: otherUser.full_name // Map to generic name property for UI
-            } as any}
+            }}
             conversationId={activeConvId}
         />
     )

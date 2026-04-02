@@ -8,13 +8,13 @@ export default function AboutSection({ aboutText }: { aboutText?: string | null 
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 {/* Content */}
                 <div className="space-y-8 animate-fade-up">
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#D32F2F]/8 text-[#D32F2F] font-poppins text-xs font-bold tracking-wider uppercase">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cosmic-brand/8 text-cosmic-brand font-poppins text-xs font-bold tracking-wider uppercase">
                         <BookOpen className="h-4 w-4" />
                         <span>About IIMS College</span>
                     </div>
 
                     <h2 className="text-4xl md:text-5xl font-poppins font-bold text-[#1A1A2E] leading-tight">
-                        Academic <span className="text-[#D32F2F]">Excellence</span> Meets Innovation
+                        Academic <span className="text-cosmic-brand">Excellence</span> Meets Innovation
                     </h2>
 
                     <div className="space-y-5 text-[#444444] text-lg leading-relaxed">
@@ -53,18 +53,18 @@ export default function AboutSection({ aboutText }: { aboutText?: string | null 
 
                 {/* Visual Area */}
                 <div className="relative animate-fade-up">
-                    <div className="absolute -inset-4 bg-gradient-to-tr from-[#D32F2F]/5 to-[#F4C542]/5 blur-3xl rounded-3xl" />
+                    <div className="absolute -inset-4 bg-gradient-to-tr from-[#124E66]/5 to-[#F4C542]/5 blur-3xl rounded-3xl" />
                     <div className="relative grid grid-cols-2 gap-4">
                         {/* Image Cards */}
                         <div className="space-y-4">
-                            <div className="rounded-2xl overflow-hidden shadow-lg border border-[#EEEEEE] aspect-[4/5] bg-[#F5F5F5]">
+                            <div className="rounded-2xl overflow-hidden shadow-lg border border-[#EEEEEE] aspect-[4/5] bg-[var(--color-cosmic-light)]">
                                 <img
                                     src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&q=80"
                                     alt="Students collaborating"
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                                 />
                             </div>
-                            <div className="rounded-2xl bg-[#D32F2F] p-6 text-white shadow-lg">
+                            <div className="rounded-2xl bg-cosmic-brand p-6 text-white shadow-lg">
                                 <Award className="h-8 w-8 mb-3 text-[#F4C542]" />
                                 <p className="font-poppins font-bold text-2xl">A+</p>
                                 <p className="text-white/70 text-sm font-medium">Graded Institution</p>
@@ -76,7 +76,7 @@ export default function AboutSection({ aboutText }: { aboutText?: string | null 
                                 <p className="font-poppins font-bold text-2xl">5000+</p>
                                 <p className="text-white/60 text-sm font-medium">Successful Alumni</p>
                             </div>
-                            <div className="rounded-2xl overflow-hidden shadow-lg border border-[#EEEEEE] aspect-[4/5] bg-[#F5F5F5]">
+                            <div className="rounded-2xl overflow-hidden shadow-lg border border-[#EEEEEE] aspect-[4/5] bg-[var(--color-cosmic-light)]">
                                 <img
                                     src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80"
                                     alt="Campus life"
@@ -94,7 +94,7 @@ export default function AboutSection({ aboutText }: { aboutText?: string | null 
 function KeyPoint({ text }: { text: string }) {
     return (
         <div className="flex items-center gap-3">
-            <CheckCircle2 className="h-5 w-5 text-[#D32F2F] flex-shrink-0" />
+            <CheckCircle2 className="h-5 w-5 text-cosmic-brand flex-shrink-0" />
             <span className="text-[#444444] font-medium">{text}</span>
         </div>
     )

@@ -56,13 +56,11 @@ export async function POST(req: NextRequest) {
         })
 
         if (error) {
-            console.error('[login] Supabase auth error:', error.message)
             return NextResponse.json({ error: 'Invalid email or password.' }, { status: 401 })
         }
 
         return NextResponse.json({ success: true })
     } catch (err) {
-        console.error('[login] Unexpected error:', err)
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
     }
 }

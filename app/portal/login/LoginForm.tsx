@@ -60,40 +60,40 @@ export default function LoginForm() {
     }
 
     return (
-        <div className="min-h-screen bg-[#F8F9FA] flex items-center justify-center p-6 relative">
+        <div className="min-h-screen bg-cosmic-light flex items-center justify-center p-6 relative">
             <div className="w-full max-w-md relative animate-fade-up">
                 {/* Brand header */}
                 <div className="flex items-center justify-center flex-col gap-4 mb-8">
-                    <div className="h-14 w-14 rounded-sm bg-[#111111] flex items-center justify-center shadow-sm shadow-[#111111]/20">
+                    <div className="h-14 w-14 rounded-sm bg-cosmic-brand flex items-center justify-center shadow-sm shadow-[#124E66]/20">
                         <Shield className="h-7 w-7 text-white" />
                     </div>
                     <div className="text-center">
-                        <h2 className="font-bold text-[#111111] text-xl tracking-tight">{BRAND.clubShort}</h2>
-                        <span className="text-xs text-[#757575] font-medium tracking-wide uppercase">Member Portal</span>
+                        <h2 className="font-bold text-cosmic-brand text-xl tracking-tight">{BRAND.clubShort}</h2>
+                        <span className="text-xs text-cosmic-accent font-medium tracking-wide uppercase">Member Portal</span>
                     </div>
                 </div>
 
                 {/* Reason banner */}
                 {reason && reasonMessages[reason] && (
-                    <div className="mb-6 p-4 rounded-sm bg-[#FFF8E1] border border-[#F57F17]/30 flex items-start gap-3 shadow-sm">
+                    <div className="mb-6 p-4 rounded-sm bg-cosmic-light border border-[#F57F17]/30 flex items-start gap-3 shadow-sm">
                         <AlertTriangle className="h-5 w-5 text-[#F57F17] flex-shrink-0 mt-0.5" />
                         <p className="text-[#F57F17] text-sm font-medium">{reasonMessages[reason]}</p>
                     </div>
                 )}
 
                 {/* Main card */}
-                <div className="bg-white rounded-sm shadow-sm shadow-black/5 p-8 border border-[#E0E0E0]">
+                <div className="bg-white rounded-sm shadow-sm shadow-black/5 p-8 border border-cosmic-accent">
                     <div className="mb-8">
-                        <h1 className="font-bold text-[#212121] text-2xl mb-2">
+                        <h1 className="font-bold text-cosmic-black text-2xl mb-2">
                             Sign In
                         </h1>
-                        <p className="text-[#757575] text-sm">
+                        <p className="text-cosmic-accent text-sm">
                             Enter your email and password to access the portal.
                         </p>
                     </div>
 
                     {error && (
-                        <div className="mb-6 p-3 rounded-sm bg-[#FFEBEE] border border-[#E53935]/20 text-[#C62828] text-sm font-medium animate-slide-in">
+                        <div className="mb-6 p-3 rounded-sm bg-cosmic-brand/10 border border-cosmic-black/20 text-[#C62828] text-sm font-medium animate-slide-in">
                             {error}
                         </div>
                     )}
@@ -101,12 +101,12 @@ export default function LoginForm() {
                     <form onSubmit={handleSubmit} className="space-y-5">
                         {/* Email field */}
                         <div>
-                            <label htmlFor="email" className="block text-[#424242] text-sm font-semibold mb-2">
+                            <label htmlFor="email" className="block text-cosmic-dark text-sm font-semibold mb-2">
                                 Email Address
                             </label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <Mail className="h-5 w-5 text-[#9E9E9E]" />
+                                    <Mail className="h-5 w-5 text-cosmic-accent" />
                                 </div>
                                 <input
                                     id="email"
@@ -117,19 +117,19 @@ export default function LoginForm() {
                                     required
                                     autoComplete="email"
                                     autoFocus
-                                    className="block w-full pl-10 pr-3 py-3 border border-[#E0E0E0] rounded-sm focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] text-[#212121] placeholder-[#9E9E9E] text-sm transition-all"
+                                    className="block w-full pl-10 pr-3 py-3 border border-cosmic-accent rounded-sm focus:ring-2 focus:ring-cosmic-brand/20 focus:border-cosmic-brand text-cosmic-black placeholder-[#9E9E9E] text-sm transition-all"
                                 />
                             </div>
                         </div>
 
                         {/* Password field */}
                         <div>
-                            <label htmlFor="password" className="block text-[#424242] text-sm font-semibold mb-2">
+                            <label htmlFor="password" className="block text-cosmic-dark text-sm font-semibold mb-2">
                                 Password
                             </label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <Lock className="h-5 w-5 text-[#9E9E9E]" />
+                                    <Lock className="h-5 w-5 text-cosmic-accent" />
                                 </div>
                                 <input
                                     id="password"
@@ -140,12 +140,12 @@ export default function LoginForm() {
                                     required
                                     autoComplete="current-password"
                                     minLength={6}
-                                    className="block w-full pl-10 pr-10 py-3 border border-[#E0E0E0] rounded-sm focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] text-[#212121] placeholder-[#9E9E9E] text-sm transition-all"
+                                    className="block w-full pl-10 pr-10 py-3 border border-cosmic-accent rounded-sm focus:ring-2 focus:ring-cosmic-brand/20 focus:border-cosmic-brand text-cosmic-black placeholder-[#9E9E9E] text-sm transition-all"
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#9E9E9E] hover:text-[#616161] transition-colors"
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-cosmic-accent hover:text-[#616161] transition-colors"
                                     tabIndex={-1}
                                 >
                                     {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -156,7 +156,7 @@ export default function LoginForm() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-[#111111] text-white font-semibold flex items-center justify-center gap-2 py-3 rounded-sm hover:bg-[#C8102E] active:bg-[#111111] disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm shadow-[#111111]/20"
+                            className="w-full bg-cosmic-brand text-white font-semibold flex items-center justify-center gap-2 py-3 rounded-sm hover:bg-cosmic-dark active:bg-cosmic-brand disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm shadow-[#124E66]/20"
                         >
                             {loading ? (
                                 <>
@@ -173,10 +173,10 @@ export default function LoginForm() {
                     </form>
 
                     {/* Register link */}
-                    <div className="mt-6 pt-6 border-t border-[#E0E0E0] text-center">
-                        <p className="text-[#757575] text-sm">
+                    <div className="mt-6 pt-6 border-t border-cosmic-accent text-center">
+                        <p className="text-cosmic-accent text-sm">
                             Don&apos;t have an account?{' '}
-                            <Link href="/portal/register" className="text-[#111111] font-semibold hover:underline">
+                            <Link href="/portal/register" className="text-cosmic-brand font-semibold hover:underline">
                                 Register here
                             </Link>
                         </p>
@@ -185,13 +185,13 @@ export default function LoginForm() {
 
                 {/* Footer */}
                 <div className="mt-8 text-center space-y-2">
-                    <p className="text-[#757575] text-sm font-medium">
+                    <p className="text-cosmic-accent text-sm font-medium">
                         Official cybersecurity club of{' '}
                         <a
                             href="https://iimscollege.edu.np/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[#111111] hover:underline font-semibold"
+                            className="text-cosmic-brand hover:underline font-semibold"
                         >
                             IIMS College
                         </a>

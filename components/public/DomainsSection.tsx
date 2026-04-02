@@ -12,13 +12,13 @@ const PROGRAMS = [
 
 export default function DomainsSection() {
     return (
-        <section className="py-24 bg-[#F5F5F5]">
+        <section className="py-24 bg-[var(--color-cosmic-light)]">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                     <div className="max-w-2xl">
-                        <span className="text-[#D32F2F] text-xs font-bold uppercase tracking-widest mb-4 block">Academic Excellence</span>
+                        <span className="text-cosmic-brand text-xs font-bold uppercase tracking-widest mb-4 block">Academic Excellence</span>
                         <h2 className="text-4xl md:text-5xl font-poppins font-bold text-[#1A1A2E] mb-4">
-                            Our <span className="text-[#D32F2F]">Programs</span>
+                            Our <span className="text-cosmic-brand">Programs</span>
                         </h2>
                         <p className="text-[#444444] text-lg font-medium leading-relaxed">
                             Designed to equip students with the knowledge and skills needed to excel in today's competitive landscape.
@@ -33,25 +33,25 @@ export default function DomainsSection() {
                     {PROGRAMS.map((program, index) => (
                         <div
                             key={program.id}
-                            className="group relative p-8 rounded-xl bg-white border border-[#EEEEEE] hover:border-[#D32F2F]/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
+                            className="group relative p-8 rounded-xl bg-white border border-[#EEEEEE] hover:border-cosmic-brand/30 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
                         >
                             <div className="flex items-start justify-between mb-6">
                                 <div className={`p-3.5 rounded-xl ${program.color} text-white shadow-lg group-hover:scale-110 transition-transform`}>
                                     <program.icon className="h-6 w-6" />
                                 </div>
-                                <span className="font-poppins font-black text-4xl text-gray-100 group-hover:text-[#D32F2F]/10 transition-colors leading-none select-none">
+                                <span className="font-poppins font-black text-4xl text-gray-100 group-hover:text-cosmic-brand/10 transition-colors leading-none select-none">
                                     0{index + 1}
                                 </span>
                             </div>
 
-                            <h3 className="font-poppins font-bold text-xl text-[#1A1A2E] mb-3 group-hover:text-[#D32F2F] transition-colors">
+                            <h3 className="font-poppins font-bold text-xl text-[#1A1A2E] mb-3 group-hover:text-cosmic-brand transition-colors">
                                 {program.title}
                             </h3>
                             <p className="text-[#666666] text-sm leading-relaxed mb-6 flex-1">
                                 {program.desc}
                             </p>
 
-                            <div className="pt-4 border-t border-[#F5F5F5] flex items-center gap-2 text-sm font-bold text-[#D32F2F] opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                            <div className="pt-4 border-t border-[var(--color-cosmic-light)] flex items-center gap-2 text-sm font-bold text-cosmic-brand opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
                                 Read More
                                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                             </div>

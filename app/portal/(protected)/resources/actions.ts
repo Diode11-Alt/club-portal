@@ -4,7 +4,7 @@
 import { createServerSupabaseClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 
-export async function uploadDocument(prevState: any, formData: FormData) {
+export async function uploadDocument(prevState: unknown, formData: FormData) {
     const supabase = await createServerSupabaseClient()
     const { data: { user } } = await supabase.auth.getUser()
     const session = user ? { user } : null
@@ -31,7 +31,7 @@ export async function uploadDocument(prevState: any, formData: FormData) {
 
     // Get current member
     const { data: member } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .select('id, role')
         .eq('user_id', session.user.id)
         .single()
@@ -55,8 +55,8 @@ export async function uploadDocument(prevState: any, formData: FormData) {
         .from('portal_documents')
         .getPublicUrl(fileName)
 
-    const { error } = await (supabase.from('documents' as any) as any).insert({
-        uploader_id: (member as any).id,
+    const { error } = await supabase.from('documents').insert({
+        uploader_id: (member).id,
         title,
         description,
         file_url: urlData.publicUrl,
@@ -79,22 +79,22 @@ export async function deleteDocument(id: string) {
     if (!session) return { error: 'Unauthorized' }
 
     const { data: member } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .select('id, role')
         .eq('user_id', session.user.id)
         .single()
 
     // Enforce Tiered Logic
     const { data: doc } = await (supabase
-        .from('documents' as any) as any)
+        .from('documents'))
         .select('uploader_id, file_url')
         .eq('id', id)
         .single()
 
     if (!doc) return { error: 'Document not found' }
 
-    const role = (member as any).role
-    const isOwner = doc.uploader_id === (member as any).id
+    const role = (member).role
+    const isOwner = doc.uploader_id === (member).id
     const isTopTier = ['admin', 'superadmin', 'president'].includes(role)
 
     if (isTopTier) {
@@ -106,11 +106,11 @@ export async function deleteDocument(id: string) {
             await supabase.storage.from('portal_documents').remove([match[1]])
         }
         // Delete Record
-        const { error } = await (supabase.from('documents' as any) as any).delete().eq('id', id)
+        const { error } = await supabase.from('documents').delete().eq('id', id)
         if (error) return { error: 'Database Redaction failed' }
     } else if (role === 'bod' && isOwner) {
         // SOFT DELETE
-        const { error } = await (supabase.from('documents' as any) as any)
+        const { error } = await supabase.from('documents')
             .update({ deleted_at: new Date().toISOString() })
             .eq('id', id)
         if (error) return { error: 'Soft-redaction failed' }
@@ -128,16 +128,16 @@ export async function restoreDocument(id: string) {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return { error: 'Unauthorized' }
 
-    const { data: member } = await (supabase.from('members' as any) as any)
+    const { data: member } = await supabase.from('members')
         .select('role')
         .eq('user_id', user.id)
         .single()
 
-    if (!['admin', 'superadmin', 'president'].includes((member as any).role)) {
+    if (!['admin', 'superadmin', 'president'].includes((member).role)) {
         return { error: 'Only high-level command can restore redacted assets' }
     }
 
-    const { error } = await (supabase.from('documents' as any) as any)
+    const { error } = await supabase.from('documents')
         .update({ deleted_at: null })
         .eq('id', id)
 

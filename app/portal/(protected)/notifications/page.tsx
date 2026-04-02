@@ -29,26 +29,26 @@ export default async function NotificationsPage() {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-[#E3F2FD] text-[#1976D2] font-bold text-[10px] uppercase tracking-widest mb-3 border border-[#E3F2FD]">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-cosmic-brand/10 text-[#1976D2] font-bold text-[10px] uppercase tracking-widest mb-3 border border-[#FFEBEE]">
                         <ShieldAlert className="h-3 w-3" /> Priority Inbox
                     </div>
-                    <h1 className="text-3xl md:text-5xl font-bold text-[#212121] leading-tight">
-                        System <span className="text-[#111111]">Alerts</span>
+                    <h1 className="text-3xl md:text-5xl font-bold text-cosmic-black leading-tight">
+                        System <span className="text-cosmic-brand">Alerts</span>
                     </h1>
-                    <p className="text-[#757575] font-medium text-sm mt-3 max-w-xl leading-relaxed">
+                    <p className="text-cosmic-accent font-medium text-sm mt-3 max-w-xl leading-relaxed">
                         Automated club notifications, event reminders, and important system broadcasts logged in real-time.
                     </p>
                 </div>
 
-                <div className="p-4 bg-white rounded-sm flex items-center gap-4 border border-[#E0E0E0] shadow-sm">
-                    <BellRing className="h-6 w-6 text-[#111111] opacity-50" />
-                    <div className="text-[10px] font-bold text-[#9E9E9E] uppercase tracking-widest">
+                <div className="p-4 bg-white rounded-sm flex items-center gap-4 border border-cosmic-accent shadow-sm">
+                    <BellRing className="h-6 w-6 text-cosmic-brand opacity-50" />
+                    <div className="text-[10px] font-bold text-cosmic-accent uppercase tracking-widest">
                         Live Feed Active
                     </div>
                 </div>
             </div>
 
-            <NotificationsList initialNotifications={(notifications || []) as any[]} />
+            <NotificationsList initialNotifications={(notifications || [])} />
 
             <footer className="text-center pt-8">
                 <p className="text-[10px] text-[#BDBDBD] font-bold uppercase tracking-[0.3em]">

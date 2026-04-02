@@ -37,8 +37,8 @@ export default function AboutPage() {
         <div className="bg-white min-h-screen pt-24 pb-20">
             {/* Header Section */}
             <div className="max-w-4xl mx-auto px-6 mb-16">
-                <div className="border-l-4 border-[#C8102E] pl-6 py-2 content-start">
-                    <h1 className="text-4xl md:text-5xl font-bold text-[#111111] mb-4 tracking-tight">About the Club</h1>
+                <div className="border-l-4 border-cosmic-brand pl-6 py-2 content-start">
+                    <h1 className="text-4xl md:text-5xl font-bold text-cosmic-brand mb-4 tracking-tight">About the Club</h1>
                     <p className="text-[#4A4A4A] text-lg leading-relaxed">
                         Dedicated to advancing cybersecurity education and ethical hacking practices at IIMS College.
                     </p>
@@ -46,10 +46,10 @@ export default function AboutPage() {
             </div>
 
             {/* Vision Statement */}
-            <section className="bg-[#FAFAFA] border-y border-[#E5E5E5] py-20 mb-20">
+            <section className="bg-cosmic-light border-y border-cosmic-accent py-20 mb-20">
                 <div className="max-w-4xl mx-auto px-6 text-center">
-                    <h2 className="text-sm font-bold text-[#C8102E] tracking-widest uppercase mb-6">Our Vision</h2>
-                    <p className="text-2xl md:text-3xl text-[#111111] font-medium leading-relaxed tracking-tight">
+                    <h2 className="text-sm font-bold text-cosmic-brand tracking-widest uppercase mb-6">Our Vision</h2>
+                    <p className="text-2xl md:text-3xl text-cosmic-brand font-medium leading-relaxed tracking-tight">
                         "To establish IIMS College as a premier hub for cybersecurity excellence in Nepal. We envision a community where students bridge the gap between theoretical computer science and real-world defense strategies, fostering a culture of ethical responsibility, digital safety, and proactive threat mitigation."
                     </p>
                 </div>
@@ -57,15 +57,15 @@ export default function AboutPage() {
 
             {/* Objectives */}
             <section className="max-w-4xl mx-auto px-6 mb-24">
-                <h2 className="text-2xl font-bold text-[#111111] mb-8 pb-4 border-b border-[#E5E5E5]">Core Objectives</h2>
+                <h2 className="text-2xl font-bold text-cosmic-brand mb-8 pb-4 border-b border-cosmic-accent">Core Objectives</h2>
                 <div className="space-y-4">
                     {OBJECTIVES.map((obj, index) => (
-                        <div key={index} className="flex flex-col md:flex-row gap-4 md:gap-8 p-6 bg-white border border-[#E5E5E5] group hover:border-[#4A4A4A] transition-colors">
-                            <div className="text-3xl font-bold text-[#F5F5F5] group-hover:text-[#E5E5E5] transition-colors min-w-[3rem]">
+                        <div key={index} className="flex flex-col md:flex-row gap-4 md:gap-8 p-6 bg-white border border-cosmic-accent group hover:border-[#4A4A4A] transition-colors">
+                            <div className="text-3xl font-bold text-[var(--color-cosmic-light)] group-hover:text-cosmic-accent transition-colors min-w-[3rem]">
                                 {(index + 1).toString().padStart(2, '0')}
                             </div>
                             <div>
-                                <h3 className="text-lg font-bold text-[#111111] mb-2">{obj.title}</h3>
+                                <h3 className="text-lg font-bold text-cosmic-brand mb-2">{obj.title}</h3>
                                 <p className="text-[#4A4A4A] leading-relaxed">{obj.desc}</p>
                             </div>
                         </div>
@@ -75,42 +75,42 @@ export default function AboutPage() {
 
             {/* 6-Month Timeline */}
             <section className="max-w-4xl mx-auto px-6 mb-24">
-                <h2 className="text-2xl font-bold text-[#111111] mb-8 pb-4 border-b border-[#E5E5E5]">6-Month Roadmap</h2>
-                <div className="border-l-2 border-[#E5E5E5] ml-3 md:ml-4 space-y-10 py-4">
+                <h2 className="text-2xl font-bold text-cosmic-brand mb-8 pb-4 border-b border-cosmic-accent">6-Month Roadmap</h2>
+                <div className="border-l-2 border-cosmic-accent ml-3 md:ml-4 space-y-10 py-4">
                     <div className="relative pl-8 md:pl-12">
-                        <div className="absolute left-[-5px] top-1.5 w-2 h-2 rounded-full bg-[#111111] ring-4 ring-white"></div>
-                        <h3 className="font-bold text-[#111111] mb-1">Month 1: Foundation</h3>
+                        <div className="absolute left-[-5px] top-1.5 w-2 h-2 rounded-full bg-cosmic-brand ring-4 ring-white"></div>
+                        <h3 className="font-bold text-cosmic-brand mb-1">Month 1: Foundation</h3>
                         <p className="text-[#4A4A4A] text-sm">Committee formation, official charter, and first general meeting.</p>
                     </div>
                     <div className="relative pl-8 md:pl-12">
-                        <div className="absolute left-[-5px] top-1.5 w-2 h-2 rounded-full bg-[#111111] ring-4 ring-white"></div>
-                        <h3 className="font-bold text-[#111111] mb-1">Month 2-3: Core Workshops</h3>
+                        <div className="absolute left-[-5px] top-1.5 w-2 h-2 rounded-full bg-cosmic-brand ring-4 ring-white"></div>
+                        <h3 className="font-bold text-cosmic-brand mb-1">Month 2-3: Core Workshops</h3>
                         <p className="text-[#4A4A4A] text-sm">Intro to Linux, Networking Basics, and initial Web Vulnerability sessions.</p>
                     </div>
                     <div className="relative pl-8 md:pl-12">
-                        <div className="absolute left-[-5px] top-1.5 w-2 h-2 rounded-full bg-[#111111] ring-4 ring-white"></div>
-                        <h3 className="font-bold text-[#111111] mb-1">Month 4-5: Advanced Concepts</h3>
+                        <div className="absolute left-[-5px] top-1.5 w-2 h-2 rounded-full bg-cosmic-brand ring-4 ring-white"></div>
+                        <h3 className="font-bold text-cosmic-brand mb-1">Month 4-5: Advanced Concepts</h3>
                         <p className="text-[#4A4A4A] text-sm">CTF practice, cryptography, and guest lectures from industry professionals.</p>
                     </div>
                     <div className="relative pl-8 md:pl-12">
-                        <div className="absolute left-[-4px] top-1.5 w-2 h-2 bg-[#C8102E] ring-4 ring-white"></div> {/* Square marker for milestone */}
-                        <h3 className="font-bold text-[#C8102E] mb-1">Month 6: IIMS Intra-College CTF</h3>
+                        <div className="absolute left-[-4px] top-1.5 w-2 h-2 bg-cosmic-brand ring-4 ring-white"></div> {/* Square marker for milestone */}
+                        <h3 className="font-bold text-cosmic-brand mb-1">Month 6: IIMS Intra-College CTF</h3>
                         <p className="text-[#4A4A4A] text-sm font-medium">Flagship event testing members' skills in a competitive environment.</p>
                     </div>
                 </div>
             </section>
 
             {/* Sustainability */}
-            <section className="bg-[#FAFAFA] border-y border-[#E5E5E5] py-20">
+            <section className="bg-cosmic-light border-y border-cosmic-accent py-20">
                 <div className="max-w-6xl mx-auto px-6">
                     <div className="text-center mb-12">
-                        <h2 className="text-2xl font-bold text-[#111111] mb-4">Sustainability Plan</h2>
+                        <h2 className="text-2xl font-bold text-cosmic-brand mb-4">Sustainability Plan</h2>
                         <p className="text-[#4A4A4A]">Ensuring long-term impact and continuous growth.</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {SUSTAINABILITY.map((item, index) => (
-                            <div key={index} className="bg-white p-8 border border-[#E5E5E5]">
-                                <h3 className="text-lg font-bold text-[#111111] mb-3 pb-3 border-b border-[#F5F5F5]">{item.title}</h3>
+                            <div key={index} className="bg-white p-8 border border-cosmic-accent">
+                                <h3 className="text-lg font-bold text-cosmic-brand mb-3 pb-3 border-b border-[var(--color-cosmic-light)]">{item.title}</h3>
                                 <p className="text-[#4A4A4A] text-sm leading-relaxed">{item.desc}</p>
                             </div>
                         ))}
@@ -121,10 +121,10 @@ export default function AboutPage() {
             {/* Join CTA */}
             <section className="py-20 text-center">
                 <div className="max-w-2xl mx-auto px-6">
-                    <h2 className="text-2xl font-bold text-[#111111] mb-6">Ready to get involved?</h2>
+                    <h2 className="text-2xl font-bold text-cosmic-brand mb-6">Ready to get involved?</h2>
                     <Link
                         href="/join"
-                        className="inline-block px-8 py-3 bg-[#C8102E] text-white font-bold text-sm tracking-wide rounded-sm hover:bg-[#A30D25] transition-colors"
+                        className="inline-block px-8 py-3 bg-cosmic-brand text-white font-bold text-sm tracking-wide rounded-sm hover:bg-cosmic-dark transition-colors"
                     >
                         Join ICEHC Today
                     </Link>

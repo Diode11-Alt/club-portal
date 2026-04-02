@@ -8,14 +8,14 @@ export default function TeamSection({ team }: { team: TeamMember[] }) {
     if (team.length === 0) return null
 
     return (
-        <section className="py-24 bg-[#F8F9FA]">
+        <section className="py-24 bg-cosmic-light">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-16 animate-fade-up">
-                    <span className="text-[#E53935] text-xs font-semibold uppercase tracking-widest mb-4 block">Our People</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[#212121] mb-4">
-                        Meet the <span className="text-[#1A237E]">Team</span>
+                    <span className="text-cosmic-black text-xs font-semibold uppercase tracking-widest mb-4 block">Our People</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-cosmic-black mb-4">
+                        Meet the <span className="text-cosmic-brand">Team</span>
                     </h2>
-                    <p className="text-[#757575] max-w-xl mx-auto text-lg leading-relaxed">
+                    <p className="text-cosmic-accent max-w-xl mx-auto text-lg leading-relaxed">
                         Passionate student leaders and cybersecurity enthusiasts driving ICEHC forward.
                     </p>
                 </div>
@@ -38,10 +38,10 @@ export default function TeamSection({ team }: { team: TeamMember[] }) {
                                     )}
                                 </div>
                             </div>
-                            <h3 className="font-bold text-lg text-[#212121] group-hover:text-[#E53935] transition-colors mb-1">
+                            <h3 className="font-bold text-lg text-cosmic-black group-hover:text-cosmic-black transition-colors mb-1">
                                 {member.name}
                             </h3>
-                            <p className="text-[#757575] text-xs font-semibold tracking-wider uppercase">
+                            <p className="text-cosmic-accent text-xs font-semibold tracking-wider uppercase">
                                 {member.club_post || member.role}
                             </p>
                         </div>

@@ -38,7 +38,7 @@ export default function CommentForm({ postId, userAvatar, userName }: CommentFor
     }
 
     return (
-        <form onSubmit={handleSubmit} className="flex gap-4 p-4 rounded-sm bg-[#F8F9FA] border border-[#E0E0E0] shadow-sm mb-8 animate-fade-in">
+        <form onSubmit={handleSubmit} className="flex gap-4 p-4 rounded-sm bg-cosmic-light border border-cosmic-accent shadow-sm mb-8 animate-fade-in">
             <Avatar src={userAvatar} name={userName || 'Me'} size="sm" className="hidden sm:block" />
             <div className="flex-1 relative">
                 <textarea
@@ -53,12 +53,12 @@ export default function CommentForm({ postId, userAvatar, userName }: CommentFor
                             handleSubmit(e)
                         }
                     }}
-                    className="w-full bg-white border border-[#E0E0E0] rounded-sm py-2 px-3 pr-12 text-sm font-medium focus:ring-4 focus:ring-[#111111]/5 focus:border-[#111111]/30 transition-all outline-none resize-none min-h-[40px] text-[#212121] placeholder:text-[#9E9E9E]"
+                    className="w-full bg-white border border-cosmic-accent rounded-sm py-2 px-3 pr-12 text-sm font-medium focus:ring-4 focus:ring-cosmic-brand/5 focus:border-cosmic-brand/30 transition-all outline-none resize-none min-h-[40px] text-cosmic-black placeholder:text-cosmic-accent"
                 />
                 <button
                     type="submit"
                     disabled={isSubmitting || !content.trim()}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-[#111111] hover:text-[#C8102E] disabled:opacity-30 disabled:hover:text-[#111111] transition-all"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-cosmic-brand hover:text-cosmic-brand disabled:opacity-30 disabled:hover:text-cosmic-brand transition-all"
                 >
                     {isSubmitting ? (
                         <Loader2 className="h-4 w-4 animate-spin" />

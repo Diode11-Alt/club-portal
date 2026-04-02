@@ -16,7 +16,7 @@ async function FeedData({ member, currentPage, pageSize }: { member: any, curren
     const supabase = createServerClient()
 
     let { data: posts, count, error } = await (supabase
-        .from('posts' as any) as any)
+        .from('posts'))
         .select('id, author_id, title, content, type, is_pinned, created_at, updated_at, author:members(id, full_name, avatar_url, role, club_post)', { count: 'exact' })
         .order('is_pinned', { ascending: false })
         .order('created_at', { ascending: false })
@@ -38,9 +38,9 @@ async function FeedData({ member, currentPage, pageSize }: { member: any, curren
                 { data: allReactionsData },
                 { data: allCommentsData }
             ] = await Promise.all([
-                (supabase.from('post_reactions' as any) as any).select('post_id').eq('member_id', member.id).in('post_id', postIds),
-                (supabase.from('post_reactions' as any) as any).select('post_id').in('post_id', postIds),
-                (supabase.from('post_comments' as any) as any).select('post_id').in('post_id', postIds)
+                supabase.from('post_reactions').select('post_id').eq('member_id', member.id).in('post_id', postIds),
+                supabase.from('post_reactions').select('post_id').in('post_id', postIds),
+                supabase.from('post_comments').select('post_id').in('post_id', postIds)
             ])
 
             // EXTREME PERFORMANCE: O(1) Map Lookups instead of O(N^2) Array.filter()
@@ -95,12 +95,12 @@ async function FeedData({ member, currentPage, pageSize }: { member: any, curren
                     )}
                 </>
             ) : (
-                <div className="py-24 rounded-sm border border-dashed border-[#E0E0E0] bg-white shadow-sm text-center">
-                    <div className="h-16 w-16 bg-[#F8F9FA] rounded-sm flex items-center justify-center mx-auto mb-5 border border-[#E0E0E0]">
-                        <Sparkles className="h-8 w-8 text-[#9E9E9E]" />
+                <div className="py-24 rounded-sm border border-dashed border-cosmic-accent bg-white shadow-sm text-center">
+                    <div className="h-16 w-16 bg-cosmic-light rounded-sm flex items-center justify-center mx-auto mb-5 border border-cosmic-accent">
+                        <Sparkles className="h-8 w-8 text-cosmic-accent" />
                     </div>
-                    <p className="text-[#424242] font-bold text-lg mb-1">It's quiet in here.</p>
-                    <p className="text-[#9E9E9E] font-medium text-sm">Be the first to share an update with the club.</p>
+                    <p className="text-cosmic-dark font-bold text-lg mb-1">It's quiet in here.</p>
+                    <p className="text-cosmic-accent font-medium text-sm">Be the first to share an update with the club.</p>
                 </div>
             )}
         </div>
@@ -123,13 +123,13 @@ export default async function FeedPage({ searchParams }: { searchParams: Promise
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-[#FAFAFA] text-[#111111] font-bold text-[10px] uppercase tracking-widest mb-3 border border-[#111111]/10">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-cosmic-light text-cosmic-brand font-bold text-[10px] uppercase tracking-widest mb-3 border border-cosmic-brand/10">
                         <Rss className="h-3.5 w-3.5" /> Club Feed
                     </div>
-                    <h1 className="text-3xl font-bold text-[#212121] leading-tight">
-                        Community <span className="text-[#E53935]">Discussions</span>
+                    <h1 className="text-3xl font-bold text-cosmic-black leading-tight">
+                        Community <span className="text-cosmic-black">Discussions</span>
                     </h1>
-                    <p className="text-[#757575] font-medium text-sm mt-2 max-w-xl">
+                    <p className="text-cosmic-accent font-medium text-sm mt-2 max-w-xl">
                         Share ideas, resources, and stay up to date with the latest ICEHC announcements.
                     </p>
                 </div>
@@ -140,13 +140,11 @@ export default async function FeedPage({ searchParams }: { searchParams: Promise
                 memberName={(member.full_name || 'Member').split(' ')[0]}
             />
 
-            {/* Suspense Boundary for Feed Data */}
-            <Suspense fallback={<SkeletonFeedPage />}>
-                <FeedData member={member} currentPage={currentPage} pageSize={pageSize} />
-            </Suspense>
+            {/* Removed Suspense to bypass React DevTools Extension Bug */}
+            <FeedData member={member} currentPage={currentPage} pageSize={pageSize} />
 
-            <footer className="text-center pt-8 border-t border-[#E0E0E0]">
-                <p className="text-[10px] text-[#9E9E9E] font-bold uppercase tracking-widest">
+            <footer className="text-center pt-8 border-t border-cosmic-accent">
+                <p className="text-[10px] text-cosmic-accent font-bold uppercase tracking-widest">
                     End of Feed Activity
                 </p>
             </footer>

@@ -26,31 +26,31 @@ export default async function MembersDirectoryPage() {
 
     if (error) console.error("MEMBERS QUERY ERROR:", error)
 
-    const allMembers = (members || []) as any[]
+    const allMembers = (members || [])
 
     return (
         <div className="max-w-6xl mx-auto space-y-10 pb-16 animate-fade-up">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-[#FAFAFA] text-[#111111] font-bold text-[10px] uppercase tracking-widest mb-3 border border-[#E5E5E5] shadow-sm">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-cosmic-light text-cosmic-brand font-bold text-[10px] uppercase tracking-widest mb-3 border border-cosmic-accent shadow-sm">
                         <Users className="h-3.5 w-3.5" /> Member Directory
                     </div>
-                    <h1 className="text-3xl md:text-5xl font-bold text-[#212121] leading-tight">
-                        Club <span className="text-[#E53935]">Members</span>
+                    <h1 className="text-3xl md:text-5xl font-bold text-cosmic-black leading-tight">
+                        Club <span className="text-cosmic-black">Members</span>
                     </h1>
-                    <p className="text-[#757575] font-medium text-sm mt-3 max-w-xl leading-relaxed">
+                    <p className="text-cosmic-accent font-medium text-sm mt-3 max-w-xl leading-relaxed">
                         Browse approved ICEHC members. Click on a member to view their profile, skills, and send them a message.
                     </p>
                 </div>
 
-                <div className="bg-white rounded-sm p-6 border border-[#E0E0E0] shadow-sm flex items-center gap-5">
-                    <div className="p-3 bg-[#FAFAFA] text-[#111111] rounded-sm shadow-inner">
+                <div className="bg-white rounded-sm p-6 border border-cosmic-accent shadow-sm flex items-center gap-5">
+                    <div className="p-3 bg-cosmic-light text-cosmic-brand rounded-sm shadow-inner">
                         <Users className="h-5 w-5" />
                     </div>
                     <div>
-                        <span className="block text-[10px] font-bold text-[#9E9E9E] uppercase tracking-widest leading-none mb-1">Active Members</span>
-                        <span className="block text-2xl font-bold text-[#212121]">{allMembers.length}</span>
+                        <span className="block text-[10px] font-bold text-cosmic-accent uppercase tracking-widest leading-none mb-1">Active Members</span>
+                        <span className="block text-2xl font-bold text-cosmic-black">{allMembers.length}</span>
                     </div>
                 </div>
             </div>
@@ -65,11 +65,11 @@ export default async function MembersDirectoryPage() {
                         <Link
                             key={m.id}
                             href={isMe ? '/portal/profile' : `/portal/members/${m.id}`}
-                            className="group bg-white rounded-sm border border-[#E0E0E0] shadow-sm hover:shadow-sm hover:border-[#111111]/20 transition-all overflow-hidden"
+                            className="group bg-white rounded-sm border border-cosmic-accent shadow-sm hover:shadow-sm hover:border-cosmic-brand/20 transition-all overflow-hidden"
                         >
                             {/* Card Header */}
-                            <div className="bg-[#111111] p-6 relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#E53935]/10 rounded-full blur-2xl -translate-y-16 translate-x-16" />
+                            <div className="bg-cosmic-brand p-6 relative overflow-hidden">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-cosmic-black/10 rounded-full blur-2xl -translate-y-16 translate-x-16" />
                                 <div className="relative z-10 flex items-center gap-4">
                                     <Avatar
                                         src={m.avatar_url}
@@ -83,7 +83,7 @@ export default async function MembersDirectoryPage() {
                                                 <span className="text-[8px] bg-white/20 px-2 py-0.5 rounded-full">You</span>
                                             )}
                                             {['admin', 'superadmin'].includes(m.role) && (
-                                                <ShieldCheck className="h-3.5 w-3.5 text-[#E53935] shrink-0" />
+                                                <ShieldCheck className="h-3.5 w-3.5 text-cosmic-black shrink-0" />
                                             )}
                                         </h3>
                                         <p className="text-white/60 text-[10px] font-bold uppercase tracking-widest mt-1">
@@ -96,7 +96,7 @@ export default async function MembersDirectoryPage() {
                             {/* Card Body */}
                             <div className="p-5 space-y-4">
                                 {/* Bio Preview */}
-                                <p className="text-[#757575] text-xs font-medium line-clamp-2 leading-relaxed min-h-[2.5rem]">
+                                <p className="text-cosmic-accent text-xs font-medium line-clamp-2 leading-relaxed min-h-[2.5rem]">
                                     {m.bio || 'No biography set.'}
                                 </p>
 
@@ -104,28 +104,28 @@ export default async function MembersDirectoryPage() {
                                 <div className="flex flex-wrap gap-1.5">
                                     {m.skills && m.skills.length > 0 ? (
                                         m.skills.slice(0, 3).map((skill: string) => (
-                                            <span key={skill} className="px-2.5 py-1 rounded-md bg-[#F8F9FA] text-[#757575] border border-[#E0E0E0] text-[9px] font-bold uppercase tracking-wider">
+                                            <span key={skill} className="px-2.5 py-1 rounded-md bg-cosmic-light text-cosmic-accent border border-cosmic-accent text-[9px] font-bold uppercase tracking-wider">
                                                 {skill}
                                             </span>
                                         ))
                                     ) : (
-                                        <span className="text-[9px] font-bold text-[#9E9E9E] uppercase tracking-widest">No skills listed</span>
+                                        <span className="text-[9px] font-bold text-cosmic-accent uppercase tracking-widest">No skills listed</span>
                                     )}
                                     {m.skills && m.skills.length > 3 && (
-                                        <span className="px-2.5 py-1 rounded-md bg-[#FAFAFA] text-[#111111] text-[9px] font-bold">
+                                        <span className="px-2.5 py-1 rounded-md bg-cosmic-light text-cosmic-brand text-[9px] font-bold">
                                             +{m.skills.length - 3}
                                         </span>
                                     )}
                                 </div>
 
                                 {/* Footer Stats */}
-                                <div className="flex items-center justify-between pt-3 border-t border-[#F5F5F5]">
+                                <div className="flex items-center justify-between pt-3 border-t border-[var(--color-cosmic-light)]">
                                     <div className="flex items-center gap-3">
-                                        <span className="text-xs font-bold text-[#111111]">{m.points || 0} pts</span>
-                                        <span className="text-[9px] text-[#9E9E9E] font-bold uppercase">Level {level}</span>
+                                        <span className="text-xs font-bold text-cosmic-brand">{m.points || 0} pts</span>
+                                        <span className="text-[9px] text-cosmic-accent font-bold uppercase">Level {level}</span>
                                     </div>
                                     {!isMe && (
-                                        <span className="text-[9px] font-bold text-[#E53935] uppercase tracking-wider flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <span className="text-[9px] font-bold text-cosmic-black uppercase tracking-wider flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                             <MessageSquare className="h-3 w-3" /> Message
                                         </span>
                                     )}
@@ -137,12 +137,12 @@ export default async function MembersDirectoryPage() {
             </div>
 
             {allMembers.length === 0 && (
-                <div className="bg-white rounded-sm border border-[#E0E0E0] p-16 text-center">
-                    <div className="h-16 w-16 bg-[#F8F9FA] rounded-sm flex items-center justify-center mx-auto mb-5 border border-[#E0E0E0]">
-                        <Users className="h-8 w-8 text-[#9E9E9E]" />
+                <div className="bg-white rounded-sm border border-cosmic-accent p-16 text-center">
+                    <div className="h-16 w-16 bg-cosmic-light rounded-sm flex items-center justify-center mx-auto mb-5 border border-cosmic-accent">
+                        <Users className="h-8 w-8 text-cosmic-accent" />
                     </div>
-                    <p className="text-[#424242] font-bold text-lg mb-1">No Members Yet</p>
-                    <p className="text-[#9E9E9E] font-medium text-sm">Be the first to join ICEHC!</p>
+                    <p className="text-cosmic-dark font-bold text-lg mb-1">No Members Yet</p>
+                    <p className="text-cosmic-accent font-medium text-sm">Be the first to join ICEHC!</p>
                 </div>
             )}
         </div>

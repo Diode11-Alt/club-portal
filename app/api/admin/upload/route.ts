@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
 
     const { data: urlData } = supabase.storage.from(bucket).getPublicUrl(filename)
 
-    await (supabase.from('audit_logs' as any) as any).insert({
+    await supabase.from('audit_logs').insert({
         actor_id: admin.id,
         action: 'upload_file',
         details: { bucket, filename }

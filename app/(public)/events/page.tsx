@@ -30,17 +30,17 @@ export default async function EventsPage() {
     }))
 
     return (
-        <div className="bg-[#F8F9FA] min-h-screen pt-24">
+        <div className="bg-cosmic-light min-h-screen pt-24">
             <div className="max-w-7xl mx-auto px-6 pb-20">
                 {/* Page Header */}
                 <div className="mb-12">
-                    <span className="text-[#E53935] text-xs font-semibold uppercase tracking-widest mb-3 block">
+                    <span className="text-cosmic-black text-xs font-semibold uppercase tracking-widest mb-3 block">
                         {BRAND.clubShort}
                     </span>
-                    <h1 className="font-bold text-[#212121] text-3xl md:text-4xl mb-3">
+                    <h1 className="font-bold text-cosmic-black text-3xl md:text-4xl mb-3">
                         Events & Activities
                     </h1>
-                    <p className="text-[#757575] text-base max-w-xl">
+                    <p className="text-cosmic-accent text-base max-w-xl">
                         Workshops, CTF competitions, seminars, and hackathons — all open to IIMS students.
                     </p>
                 </div>

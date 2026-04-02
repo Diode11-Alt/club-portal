@@ -10,7 +10,7 @@ export async function POST(req: NextRequest, props: { params: Promise<{ id: stri
     if (!session) return NextResponse.json({ error: 'UNAUTHENTICATED' }, { status: 401 })
 
     const supabase = createServerClient()
-    const { data: member } = await (supabase.from('members' as any) as any).select('id, status').eq('user_id', session.user.id).single()
+    const { data: member } = await supabase.from('members').select('id, status').eq('user_id', session.user.id).single()
 
     if (!member || member.status !== 'approved') return NextResponse.json({ error: 'UNAUTHORIZED' }, { status: 403 })
 
@@ -22,11 +22,11 @@ export async function POST(req: NextRequest, props: { params: Promise<{ id: stri
         return NextResponse.json({ error: 'Cannot endorse yourself.' }, { status: 400 })
     }
 
-    const { error } = await (supabase.from('skill_endorsements' as any) as any).insert({
+    const { error } = await supabase.from('skill_endorsements').insert({
         member_id: targetUserId,
         endorsed_by: member.id,
         skill
-    } as any)
+    })
 
     if (error) {
         if (error.code === '23505') return NextResponse.json({ error: 'Already endorsed this skill.' }, { status: 400 })
@@ -43,8 +43,8 @@ export async function DELETE(req: NextRequest, props: { params: Promise<{ id: st
     if (!session) return NextResponse.json({ error: 'UNAUTHENTICATED' }, { status: 401 })
 
     const supabase = createServerClient()
-    const { data } = await (supabase.from('members' as any) as any).select('id, status').eq('user_id', session.user.id).single()
-    const member = data as any
+    const { data } = await supabase.from('members').select('id, status').eq('user_id', session.user.id).single()
+    const member = data
     if (!member || member.status !== 'approved') return NextResponse.json({ error: 'UNAUTHORIZED' }, { status: 403 })
 
     const body = await req.json()

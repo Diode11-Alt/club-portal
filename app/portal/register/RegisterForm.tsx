@@ -85,23 +85,23 @@ export default function RegisterForm() {
     return (
         <form onSubmit={handleSubmit} className="space-y-6">
             {error && (
-                <div className="p-3 rounded-sm bg-[#FFEBEE] border border-[#E53935]/20 text-[#C62828] text-sm font-medium animate-slide-in">
+                <div className="p-3 rounded-sm bg-cosmic-brand/10 border border-cosmic-black/20 text-[#C62828] text-sm font-medium animate-slide-in">
                     {error}
                 </div>
             )}
 
             {/* Account credentials */}
             <div className="space-y-1 mb-2">
-                <h3 className="text-[#111111] font-bold text-sm uppercase tracking-wider">Account Credentials</h3>
-                <p className="text-[#9E9E9E] text-xs">Create your login credentials</p>
+                <h3 className="text-cosmic-brand font-bold text-sm uppercase tracking-wider">Account Credentials</h3>
+                <p className="text-cosmic-accent text-xs">Create your login credentials</p>
             </div>
 
             <div className="grid grid-cols-1 gap-5">
                 <div>
-                    <label htmlFor="email" className="block text-sm font-semibold text-[#424242] mb-1.5">Email Address</label>
+                    <label htmlFor="email" className="block text-sm font-semibold text-cosmic-dark mb-1.5">Email Address</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Mail className="h-4 w-4 text-[#9E9E9E]" />
+                            <Mail className="h-4 w-4 text-cosmic-accent" />
                         </div>
                         <input
                             id="email"
@@ -109,7 +109,7 @@ export default function RegisterForm() {
                             required
                             value={form.email}
                             onChange={(e) => setForm({ ...form, email: e.target.value })}
-                            className="block w-full pl-10 pr-3 py-2.5 bg-[#F8F9FA] border border-[#E0E0E0] rounded-sm focus:bg-white focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] text-[#212121] text-sm transition-all"
+                            className="block w-full pl-10 pr-3 py-2.5 bg-cosmic-light border border-cosmic-accent rounded-sm focus:bg-white focus:ring-2 focus:ring-cosmic-brand/20 focus:border-cosmic-brand text-cosmic-black text-sm transition-all"
                             placeholder="you@iimscollege.edu.np"
                         />
                     </div>
@@ -117,10 +117,10 @@ export default function RegisterForm() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
-                        <label htmlFor="password" className="block text-sm font-semibold text-[#424242] mb-1.5">Password</label>
+                        <label htmlFor="password" className="block text-sm font-semibold text-cosmic-dark mb-1.5">Password</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Lock className="h-4 w-4 text-[#9E9E9E]" />
+                                <Lock className="h-4 w-4 text-cosmic-accent" />
                             </div>
                             <input
                                 id="password"
@@ -129,13 +129,13 @@ export default function RegisterForm() {
                                 minLength={6}
                                 value={form.password}
                                 onChange={(e) => setForm({ ...form, password: e.target.value })}
-                                className="block w-full pl-10 pr-10 py-2.5 bg-[#F8F9FA] border border-[#E0E0E0] rounded-sm focus:bg-white focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] text-[#212121] text-sm transition-all"
+                                className="block w-full pl-10 pr-10 py-2.5 bg-cosmic-light border border-cosmic-accent rounded-sm focus:bg-white focus:ring-2 focus:ring-cosmic-brand/20 focus:border-cosmic-brand text-cosmic-black text-sm transition-all"
                                 placeholder="••••••••"
                             />
                             <button
                                 type="button"
                                 onClick={() => setShowPassword(!showPassword)}
-                                className="absolute inset-y-0 right-0 pr-3 flex items-center text-[#9E9E9E] hover:text-[#616161] transition-colors"
+                                className="absolute inset-y-0 right-0 pr-3 flex items-center text-cosmic-accent hover:text-[#616161] transition-colors"
                                 tabIndex={-1}
                             >
                                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -143,10 +143,10 @@ export default function RegisterForm() {
                         </div>
                     </div>
                     <div>
-                        <label htmlFor="confirmPassword" className="block text-sm font-semibold text-[#424242] mb-1.5">Confirm Password</label>
+                        <label htmlFor="confirmPassword" className="block text-sm font-semibold text-cosmic-dark mb-1.5">Confirm Password</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Lock className="h-4 w-4 text-[#9E9E9E]" />
+                                <Lock className="h-4 w-4 text-cosmic-accent" />
                             </div>
                             <input
                                 id="confirmPassword"
@@ -155,7 +155,7 @@ export default function RegisterForm() {
                                 minLength={6}
                                 value={form.confirmPassword}
                                 onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-                                className="block w-full pl-10 pr-3 py-2.5 bg-[#F8F9FA] border border-[#E0E0E0] rounded-sm focus:bg-white focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] text-[#212121] text-sm transition-all"
+                                className="block w-full pl-10 pr-3 py-2.5 bg-cosmic-light border border-cosmic-accent rounded-sm focus:bg-white focus:ring-2 focus:ring-cosmic-brand/20 focus:border-cosmic-brand text-cosmic-black text-sm transition-all"
                                 placeholder="••••••••"
                             />
                         </div>
@@ -164,43 +164,43 @@ export default function RegisterForm() {
             </div>
 
             {/* Divider */}
-            <div className="border-t border-[#E0E0E0] pt-6">
+            <div className="border-t border-cosmic-accent pt-6">
                 <div className="space-y-1 mb-4">
-                    <h3 className="text-[#111111] font-bold text-sm uppercase tracking-wider">Academic Information</h3>
-                    <p className="text-[#9E9E9E] text-xs">Used for membership verification</p>
+                    <h3 className="text-cosmic-brand font-bold text-sm uppercase tracking-wider">Academic Information</h3>
+                    <p className="text-cosmic-accent text-xs">Used for membership verification</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                    <label htmlFor="full_name" className="block text-sm font-semibold text-[#424242] mb-1.5">Full Name</label>
+                    <label htmlFor="full_name" className="block text-sm font-semibold text-cosmic-dark mb-1.5">Full Name</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <User className="h-4 w-4 text-[#9E9E9E]" />
+                            <User className="h-4 w-4 text-cosmic-accent" />
                         </div>
                         <input
                             id="full_name"
                             required
                             value={form.full_name}
                             onChange={(e) => setForm({ ...form, full_name: e.target.value })}
-                            className="block w-full pl-10 pr-3 py-2.5 bg-[#F8F9FA] border border-[#E0E0E0] rounded-sm focus:bg-white focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] text-[#212121] text-sm transition-all"
+                            className="block w-full pl-10 pr-3 py-2.5 bg-cosmic-light border border-cosmic-accent rounded-sm focus:bg-white focus:ring-2 focus:ring-cosmic-brand/20 focus:border-cosmic-brand text-cosmic-black text-sm transition-all"
                             placeholder="John Doe"
                         />
                     </div>
                 </div>
 
                 <div>
-                    <label htmlFor="student_id" className="block text-sm font-semibold text-[#424242] mb-1.5">Student ID</label>
+                    <label htmlFor="student_id" className="block text-sm font-semibold text-cosmic-dark mb-1.5">Student ID</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <BookOpen className="h-4 w-4 text-[#9E9E9E]" />
+                            <BookOpen className="h-4 w-4 text-cosmic-accent" />
                         </div>
                         <input
                             id="student_id"
                             required
                             value={form.student_id}
                             onChange={(e) => setForm({ ...form, student_id: e.target.value })}
-                            className="block w-full pl-10 pr-3 py-2.5 bg-[#F8F9FA] border border-[#E0E0E0] rounded-sm focus:bg-white focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] text-[#212121] text-sm transition-all"
+                            className="block w-full pl-10 pr-3 py-2.5 bg-cosmic-light border border-cosmic-accent rounded-sm focus:bg-white focus:ring-2 focus:ring-cosmic-brand/20 focus:border-cosmic-brand text-cosmic-black text-sm transition-all"
                             placeholder="e.g. 10002345"
                         />
                     </div>
@@ -209,17 +209,17 @@ export default function RegisterForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                    <label htmlFor="program" className="block text-sm font-semibold text-[#424242] mb-1.5">Program</label>
+                    <label htmlFor="program" className="block text-sm font-semibold text-cosmic-dark mb-1.5">Program</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <GraduationCap className="h-4 w-4 text-[#9E9E9E]" />
+                            <GraduationCap className="h-4 w-4 text-cosmic-accent" />
                         </div>
                         <select
                             id="program"
                             required
                             value={form.program}
                             onChange={(e) => setForm({ ...form, program: e.target.value })}
-                            className="block w-full pl-10 pr-3 py-2.5 bg-[#F8F9FA] border border-[#E0E0E0] rounded-sm focus:bg-white focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] text-[#212121] text-sm transition-all appearance-none"
+                            className="block w-full pl-10 pr-3 py-2.5 bg-cosmic-light border border-cosmic-accent rounded-sm focus:bg-white focus:ring-2 focus:ring-cosmic-brand/20 focus:border-cosmic-brand text-cosmic-black text-sm transition-all appearance-none"
                         >
                             {programs.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
                         </select>
@@ -227,17 +227,17 @@ export default function RegisterForm() {
                 </div>
 
                 <div>
-                    <label htmlFor="intake" className="block text-sm font-semibold text-[#424242] mb-1.5">Intake (Year & Session)</label>
+                    <label htmlFor="intake" className="block text-sm font-semibold text-cosmic-dark mb-1.5">Intake (Year & Session)</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Calendar className="h-4 w-4 text-[#9E9E9E]" />
+                            <Calendar className="h-4 w-4 text-cosmic-accent" />
                         </div>
                         <input
                             id="intake"
                             required
                             value={form.intake}
                             onChange={(e) => setForm({ ...form, intake: e.target.value })}
-                            className="block w-full pl-10 pr-3 py-2.5 bg-[#F8F9FA] border border-[#E0E0E0] rounded-sm focus:bg-white focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] text-[#212121] text-sm transition-all"
+                            className="block w-full pl-10 pr-3 py-2.5 bg-cosmic-light border border-cosmic-accent rounded-sm focus:bg-white focus:ring-2 focus:ring-cosmic-brand/20 focus:border-cosmic-brand text-cosmic-black text-sm transition-all"
                             placeholder="e.g. Autumn 2024"
                         />
                     </div>
@@ -245,33 +245,33 @@ export default function RegisterForm() {
             </div>
 
             <div>
-                <label htmlFor="skills" className="block text-sm font-semibold text-[#424242] mb-1.5">Skills (Comma separated)</label>
+                <label htmlFor="skills" className="block text-sm font-semibold text-cosmic-dark mb-1.5">Skills (Comma separated)</label>
                 <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 pt-3 pointer-events-none">
-                        <Code2 className="h-4 w-4 text-[#9E9E9E]" />
+                        <Code2 className="h-4 w-4 text-cosmic-accent" />
                     </div>
                     <input
                         id="skills"
                         value={skillsInput}
                         onChange={(e) => setSkillsInput(e.target.value)}
-                        className="block w-full pl-10 pr-3 py-2.5 bg-[#F8F9FA] border border-[#E0E0E0] rounded-sm focus:bg-white focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] text-[#212121] text-sm transition-all"
+                        className="block w-full pl-10 pr-3 py-2.5 bg-cosmic-light border border-cosmic-accent rounded-sm focus:bg-white focus:ring-2 focus:ring-cosmic-brand/20 focus:border-cosmic-brand text-cosmic-black text-sm transition-all"
                         placeholder="React, Python, Penetration Testing, UI/UX"
                     />
                 </div>
             </div>
 
             <div>
-                <label htmlFor="bio" className="block text-sm font-semibold text-[#424242] mb-1.5">Bio (Optional)</label>
+                <label htmlFor="bio" className="block text-sm font-semibold text-cosmic-dark mb-1.5">Bio (Optional)</label>
                 <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 pt-3 pointer-events-none">
-                        <FileText className="h-4 w-4 text-[#9E9E9E]" />
+                        <FileText className="h-4 w-4 text-cosmic-accent" />
                     </div>
                     <textarea
                         id="bio"
                         rows={3}
                         value={form.bio}
                         onChange={(e) => setForm({ ...form, bio: e.target.value })}
-                        className="block w-full pl-10 pr-3 py-3 bg-[#F8F9FA] border border-[#E0E0E0] rounded-sm focus:bg-white focus:ring-2 focus:ring-[#111111]/20 focus:border-[#111111] text-[#212121] text-sm transition-all resize-none"
+                        className="block w-full pl-10 pr-3 py-3 bg-cosmic-light border border-cosmic-accent rounded-sm focus:bg-white focus:ring-2 focus:ring-cosmic-brand/20 focus:border-cosmic-brand text-cosmic-black text-sm transition-all resize-none"
                         placeholder="Tell us a bit about yourself..."
                     />
                 </div>
@@ -280,7 +280,7 @@ export default function RegisterForm() {
             <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#111111] text-white font-semibold flex items-center justify-center gap-2 py-3.5 rounded-sm hover:bg-[#C8102E] active:bg-[#111111] disabled:opacity-50 disabled:cursor-not-allowed shadow-sm shadow-[#111111]/20 transition-all mt-4"
+                className="w-full bg-cosmic-brand text-white font-semibold flex items-center justify-center gap-2 py-3.5 rounded-sm hover:bg-cosmic-dark active:bg-cosmic-brand disabled:opacity-50 disabled:cursor-not-allowed shadow-sm shadow-[#124E66]/20 transition-all mt-4"
             >
                 {loading ? (
                     <>
@@ -296,9 +296,9 @@ export default function RegisterForm() {
             </button>
 
             <div className="text-center pt-2">
-                <p className="text-[#757575] text-sm">
+                <p className="text-cosmic-accent text-sm">
                     Already have an account?{' '}
-                    <Link href="/portal/login" className="text-[#111111] font-semibold hover:underline">
+                    <Link href="/portal/login" className="text-cosmic-brand font-semibold hover:underline">
                         Sign in
                     </Link>
                 </p>

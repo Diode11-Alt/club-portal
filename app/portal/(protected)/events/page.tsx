@@ -20,7 +20,6 @@ export default async function PortalEventsPage() {
     const { data: events } = await supabase
         .from('public_events')
         .select('id, title, description, type, event_date, end_date, location, meeting_link, cover_image_url, is_published, max_attendees')
-        .gte('event_date', new Date().toISOString())
         .eq('is_published', true)
         .order('event_date', { ascending: true })
 
@@ -42,27 +41,27 @@ export default async function PortalEventsPage() {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
-                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-[#FAFAFA] text-[#111111] font-bold text-[10px] uppercase tracking-widest mb-3 border border-[#E5E5E5]">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-cosmic-light text-cosmic-brand font-bold text-[10px] uppercase tracking-widest mb-3 border border-cosmic-accent">
                         <Calendar className="h-3 w-3" /> Registry
                     </div>
-                    <h1 className="text-3xl md:text-5xl font-bold text-[#212121] leading-tight">
-                        Event <span className="text-[#E53935]">Registry</span>
+                    <h1 className="text-3xl md:text-5xl font-bold text-cosmic-black leading-tight">
+                        Event <span className="text-cosmic-black">Registry</span>
                     </h1>
-                    <p className="text-[#757575] font-medium text-sm mt-3 max-w-xl leading-relaxed">
+                    <p className="text-cosmic-accent font-medium text-sm mt-3 max-w-xl leading-relaxed">
                         Central coordination for upcoming workshops, seminars, and club-wide meetups.
                     </p>
                 </div>
 
                 <div className="flex items-center gap-3">
                     <div className="relative group">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#9E9E9E]" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-cosmic-accent" />
                         <input
                             type="text"
                             placeholder="Search events..."
-                            className="bg-white border border-[#E0E0E0] rounded-sm py-2.5 pl-10 pr-4 text-sm font-semibold focus:ring-4 focus:ring-[#111111]/10 focus:border-[#111111]/30 transition-all outline-none text-[#212121] placeholder:text-[#9E9E9E]"
+                            className="bg-white border border-cosmic-accent rounded-sm py-2.5 pl-10 pr-4 text-sm font-semibold focus:ring-4 focus:ring-cosmic-brand/10 focus:border-cosmic-brand/30 transition-all outline-none text-cosmic-black placeholder:text-cosmic-accent"
                         />
                     </div>
-                    <button className="p-2.5 bg-white border border-[#E0E0E0] rounded-sm text-[#757575] hover:text-[#111111] hover:bg-[#F8F9FA] transition-all">
+                    <button className="p-2.5 bg-white border border-cosmic-accent rounded-sm text-cosmic-accent hover:text-cosmic-brand hover:bg-cosmic-light transition-all">
                         <Filter className="h-5 w-5" />
                     </button>
                 </div>
@@ -75,12 +74,12 @@ export default async function PortalEventsPage() {
                         <EventCard key={event.id} event={event} />
                     ))
                 ) : (
-                    <div className="py-24 rounded-sm border border-dashed border-[#E0E0E0] bg-[#F8F9FA] shadow-sm text-center">
-                        <div className="h-16 w-16 bg-white rounded-sm flex items-center justify-center mx-auto mb-5 border border-[#E0E0E0]">
+                    <div className="py-24 rounded-sm border border-dashed border-cosmic-accent bg-cosmic-light shadow-sm text-center">
+                        <div className="h-16 w-16 bg-white rounded-sm flex items-center justify-center mx-auto mb-5 border border-cosmic-accent">
                             <Loader2 className="h-8 w-8 text-[#BDBDBD]" />
                         </div>
-                        <p className="text-[#424242] font-bold text-lg uppercase tracking-widest">Calendar Empty</p>
-                        <p className="text-[#757575] mt-1 text-sm font-medium">No official events are currently scheduled.</p>
+                        <p className="text-cosmic-dark font-bold text-lg uppercase tracking-widest">Calendar Empty</p>
+                        <p className="text-cosmic-accent mt-1 text-sm font-medium">No official events are currently scheduled.</p>
                     </div>
                 )}
             </div>

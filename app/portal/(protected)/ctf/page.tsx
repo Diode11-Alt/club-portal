@@ -15,7 +15,7 @@ export default async function CTFPage() {
 
     const supabase = createServerClient()
 
-    // Fetch challenges (explicitly NOT selecting 'flag_hash')
+    // Fetch challenges (explicitly NOT selecting the secret hash column)
     const { data: challenges } = await supabase
         .from('ctf_challenges')
         .select('id, title, description, category, difficulty, points, is_active, hint, created_at')

@@ -61,7 +61,7 @@ export default function ContactSection({ contactEmail }: { contactEmail?: string
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a
                             href="/portal/signup"
-                            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#D32F2F] text-white font-bold hover:bg-[#B71C1C] transition-all shadow-lg hover:shadow-xl active:scale-95"
+                            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-cosmic-brand text-white font-bold hover:bg-cosmic-dark transition-all shadow-lg hover:shadow-xl active:scale-95"
                         >
                             Apply Now
                             <ArrowRight className="h-5 w-5" />
@@ -77,15 +77,15 @@ export default function ContactSection({ contactEmail }: { contactEmail?: string
             </section>
 
             {/* Contact Form Section */}
-            <section className="py-24 bg-[#F5F5F5]">
+            <section className="py-24 bg-[var(--color-cosmic-light)]">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                         {/* Contact Info */}
                         <div className="animate-fade-up">
-                            <span className="text-[#D32F2F] text-xs font-bold uppercase tracking-widest mb-4 block">Get in Touch</span>
+                            <span className="text-cosmic-brand text-xs font-bold uppercase tracking-widest mb-4 block">Get in Touch</span>
 
                             <h2 className="text-4xl md:text-5xl font-poppins font-bold text-[#1A1A2E] mb-6 leading-tight">
-                                We'd Love to <span className="text-[#D32F2F]">Hear</span> from You
+                                We'd Love to <span className="text-cosmic-brand">Hear</span> from You
                             </h2>
 
                             <p className="text-[#666666] text-lg mb-10 leading-relaxed">
@@ -170,7 +170,7 @@ export default function ContactSection({ contactEmail }: { contactEmail?: string
                                                 required
                                                 value={formData.message}
                                                 onChange={e => setFormData({ ...formData, message: e.target.value })}
-                                                className="w-full rounded-xl border border-[#EEEEEE] bg-white px-4 py-3 text-sm text-[#333333] focus:ring-2 focus:ring-[#D32F2F] focus:border-transparent transition-all outline-none resize-none"
+                                                className="w-full rounded-xl border border-[#EEEEEE] bg-white px-4 py-3 text-sm text-[#333333] focus:ring-2 focus:ring-cosmic-brand focus:border-transparent transition-all outline-none resize-none"
                                             />
                                             {errors.message && <p className="text-xs text-red-500 font-medium">{errors.message}</p>}
                                         </div>
@@ -195,13 +195,13 @@ export default function ContactSection({ contactEmail }: { contactEmail?: string
 
 function ContactInfoCard({ icon, title, value, href }: { icon: React.ReactNode; title: string; value: string; href: string }) {
     return (
-        <a href={href} className="group flex items-center gap-4 p-4 rounded-xl bg-white border border-[#EEEEEE] hover:border-[#D32F2F]/20 hover:shadow-md transition-all">
-            <div className="p-3 rounded-xl bg-[#D32F2F]/8 text-[#D32F2F] group-hover:bg-[#D32F2F] group-hover:text-white transition-all flex-shrink-0">
+        <a href={href} className="group flex items-center gap-4 p-4 rounded-xl bg-white border border-[#EEEEEE] hover:border-cosmic-brand/20 hover:shadow-md transition-all">
+            <div className="p-3 rounded-xl bg-cosmic-brand/8 text-cosmic-brand group-hover:bg-cosmic-dark group-hover:text-white transition-all flex-shrink-0">
                 {icon}
             </div>
             <div>
                 <span className="block text-xs font-semibold text-[#999999] uppercase tracking-wider mb-0.5">{title}</span>
-                <span className="block text-sm font-bold text-[#1A1A2E] group-hover:text-[#D32F2F] transition-colors">{value}</span>
+                <span className="block text-sm font-bold text-[#1A1A2E] group-hover:text-cosmic-brand transition-colors">{value}</span>
             </div>
         </a>
     )

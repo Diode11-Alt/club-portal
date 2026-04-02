@@ -57,32 +57,32 @@ export default function Sidebar({ member, unreadNotifications, unreadMessages = 
     }
 
     return (
-        <aside className="hidden md:flex flex-col w-64 min-h-screen bg-white border-r border-[#E0E0E0] fixed left-0 top-0 bottom-0 z-50 shadow-sm">
+        <aside className="hidden md:flex flex-col w-64 min-h-screen bg-white border-r border-cosmic-accent fixed left-0 top-0 bottom-0 z-50 shadow-sm">
             {/* Brand Header */}
-            <div className="h-16 flex items-center px-5 border-b border-[#E0E0E0]">
+            <div className="h-16 flex items-center px-5 border-b border-cosmic-accent">
                 <div className="flex items-center gap-3">
-                    <div className="h-9 w-9 rounded-sm bg-[#111111] flex items-center justify-center shadow-sm">
+                    <div className="h-9 w-9 rounded-sm bg-cosmic-brand flex items-center justify-center shadow-sm">
                         <GraduationCap className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                        <span className="font-bold text-[#212121] text-sm block leading-tight">{BRAND.clubShort}</span>
-                        <span className="text-[#9E9E9E] text-[10px] block leading-tight">Member Portal</span>
+                        <span className="font-bold text-cosmic-black text-sm block leading-tight">{BRAND.clubShort}</span>
+                        <span className="text-cosmic-accent text-[10px] block leading-tight">Member Portal</span>
                     </div>
                 </div>
             </div>
 
             {/* Identity Summary */}
-            <div className="px-4 py-4 border-b border-[#E0E0E0]">
-                <Link href="/portal/profile" className="flex items-center gap-3 p-3 rounded-sm hover:bg-[#F5F5F5] transition-colors group">
+            <div className="px-4 py-4 border-b border-cosmic-accent">
+                <Link href="/portal/profile" className="flex items-center gap-3 p-3 rounded-sm hover:bg-[var(--color-cosmic-light)] transition-colors group">
                     <Avatar
                         src={member.avatar_url}
                         name={member.name}
                         size="sm"
-                        className="ring-2 ring-[#E0E0E0] group-hover:ring-[#111111]/30 transition-all flex-shrink-0"
+                        className="ring-2 ring-[#748D92] group-hover:ring-cosmic-brand/30 transition-all flex-shrink-0"
                     />
                     <div className="min-w-0">
-                        <p className="text-[#212121] text-sm font-semibold truncate">{member.name}</p>
-                        <p className="text-[#9E9E9E] text-[10px] font-medium uppercase tracking-wider truncate">
+                        <p className="text-cosmic-black text-sm font-semibold truncate">{member.name}</p>
+                        <p className="text-cosmic-accent text-[10px] font-medium uppercase tracking-wider truncate">
                             {member.club_post || member.role}
                         </p>
                     </div>
@@ -91,7 +91,7 @@ export default function Sidebar({ member, unreadNotifications, unreadMessages = 
 
             {/* Navigation */}
             <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto" aria-label="Main Navigation">
-                <p className="text-[#9E9E9E] text-[10px] font-semibold uppercase tracking-widest px-3 pb-2">Navigation</p>
+                <p className="text-cosmic-accent text-[10px] font-semibold uppercase tracking-widest px-3 pb-2">Navigation</p>
 
                 {navItems.map(({ href, icon: Icon, label }) => {
                     const active = pathname === href || pathname.startsWith(href + '/')
@@ -102,14 +102,14 @@ export default function Sidebar({ member, unreadNotifications, unreadMessages = 
                             className={cn(
                                 'flex items-center gap-3 px-3 py-2.5 rounded-sm text-sm transition-all',
                                 active
-                                    ? 'bg-[#E53935]/8 text-[#E53935] font-medium'
-                                    : 'text-[#757575] hover:text-[#212121] hover:bg-[#F5F5F5]'
+                                    ? 'bg-cosmic-brand/8 text-cosmic-brand font-medium'
+                                    : 'text-cosmic-accent hover:text-cosmic-black hover:bg-[var(--color-cosmic-light)]'
                             )}
                         >
                             <Icon className="h-4 w-4 flex-shrink-0" />
                             <span className="flex-1">{label}</span>
                             {href === '/portal/messages' && unreadMessages > 0 && (
-                                <span className="bg-[#E53935] text-white text-[10px] font-bold rounded-full px-1.5 py-0.5 min-w-[18px] text-center">
+                                <span className="bg-cosmic-brand text-white text-[10px] font-bold rounded-full px-1.5 py-0.5 min-w-[18px] text-center">
                                     {unreadMessages > 99 ? '99+' : unreadMessages}
                                 </span>
                             )}
@@ -123,14 +123,14 @@ export default function Sidebar({ member, unreadNotifications, unreadMessages = 
                     className={cn(
                         'flex items-center gap-3 px-3 py-2.5 rounded-sm text-sm transition-all',
                         pathname.startsWith('/portal/notifications')
-                            ? 'bg-[#E53935]/8 text-[#E53935] font-medium'
-                            : 'text-[#757575] hover:text-[#212121] hover:bg-[#F5F5F5]'
+                            ? 'bg-cosmic-brand/8 text-cosmic-brand font-medium'
+                            : 'text-cosmic-accent hover:text-cosmic-black hover:bg-[var(--color-cosmic-light)]'
                     )}
                 >
                     <Bell className="h-4 w-4 flex-shrink-0" />
                     <span className="flex-1">Notifications</span>
                     {unreadNotifications > 0 && (
-                        <span className="bg-[#E53935] text-white text-[10px] font-bold rounded-full px-1.5 py-0.5 min-w-[18px] text-center">
+                        <span className="bg-cosmic-brand text-white text-[10px] font-bold rounded-full px-1.5 py-0.5 min-w-[18px] text-center">
                             {unreadNotifications > 99 ? '99+' : unreadNotifications}
                         </span>
                     )}
@@ -138,15 +138,15 @@ export default function Sidebar({ member, unreadNotifications, unreadMessages = 
 
                 {/* Admin Section */}
                 {isAdmin && (
-                    <div className="mt-4 pt-4 border-t border-[#E0E0E0]">
-                        <p className="text-[#9E9E9E] text-[10px] font-semibold uppercase tracking-widest px-3 pb-2">Administration</p>
+                    <div className="mt-4 pt-4 border-t border-cosmic-accent">
+                        <p className="text-cosmic-accent text-[10px] font-semibold uppercase tracking-widest px-3 pb-2">Administration</p>
                         <Link
                             href="/portal/admin"
                             className={cn(
                                 'flex items-center gap-3 px-3 py-2.5 rounded-sm text-sm transition-all',
                                 pathname.startsWith('/portal/admin')
-                                    ? 'bg-[#111111] text-white font-medium'
-                                    : 'text-[#111111] hover:bg-[#111111]/8'
+                                    ? 'bg-cosmic-brand text-white font-medium'
+                                    : 'text-cosmic-brand hover:bg-cosmic-dark/8'
                             )}
                         >
                             <ShieldCheck className="h-4 w-4 flex-shrink-0" />
@@ -157,10 +157,10 @@ export default function Sidebar({ member, unreadNotifications, unreadMessages = 
             </nav>
 
             {/* Footer / Sign Out */}
-            <div className="p-3 border-t border-[#E0E0E0]">
+            <div className="p-3 border-t border-cosmic-accent">
                 <button
                     onClick={handleSignOut}
-                    className="flex w-full items-center gap-3 px-3 py-2.5 rounded-sm text-sm text-[#9E9E9E] hover:bg-[#FFEBEE] hover:text-[#B71C1C] transition-all"
+                    className="flex w-full items-center gap-3 px-3 py-2.5 rounded-sm text-sm text-cosmic-accent hover:bg-cosmic-brand/10 hover:text-cosmic-brand transition-all"
                 >
                     <LogOut className="h-4 w-4 flex-shrink-0" />
                     <span>Sign Out</span>

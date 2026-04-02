@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
     // The user's member ID is linked via user_id
     const { data: member, error: fetchErr } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .select('id')
         .eq('user_id', session.user.id)
         .single()
@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     }
 
     const { error: updateErr } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .update({
             deactivation_requested_at: new Date().toISOString(),
             deactivation_reason: reason || null

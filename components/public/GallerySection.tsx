@@ -18,9 +18,9 @@ export default function GallerySection({ images }: { images: GalleryImage[] }) {
         <section className="py-24 bg-white relative">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-16 animate-fade-up">
-                    <span className="text-[#D32F2F] text-xs font-bold uppercase tracking-widest mb-4 block">Campus Life</span>
+                    <span className="text-cosmic-brand text-xs font-bold uppercase tracking-widest mb-4 block">Campus Life</span>
                     <h2 className="text-4xl md:text-5xl font-poppins font-bold text-[#1A1A2E]">
-                        Photo <span className="text-[#D32F2F]">Gallery</span>
+                        Photo <span className="text-cosmic-brand">Gallery</span>
                     </h2>
                 </div>
 
@@ -30,7 +30,7 @@ export default function GallerySection({ images }: { images: GalleryImage[] }) {
                             <div
                                 key={img.id}
                                 onClick={() => setSelectedImage(img)}
-                                className="group relative aspect-[4/3] overflow-hidden rounded-xl cursor-pointer border border-[#EEEEEE] bg-[#F5F5F5] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-fade-up"
+                                className="group relative aspect-[4/3] overflow-hidden rounded-xl cursor-pointer border border-[#EEEEEE] bg-[var(--color-cosmic-light)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-fade-up"
                                 style={{ animationDelay: `${index * 50}ms` }}
                             >
                                 <img
@@ -52,7 +52,7 @@ export default function GallerySection({ images }: { images: GalleryImage[] }) {
                         ))}
                     </div>
                 ) : (
-                    <div className="rounded-2xl border-2 border-dashed border-[#EEEEEE] p-20 text-center bg-[#F5F5F5]">
+                    <div className="rounded-2xl border-2 border-dashed border-[#EEEEEE] p-20 text-center bg-[var(--color-cosmic-light)]">
                         <ImageIcon className="h-12 w-12 text-[#999999] mx-auto mb-4" />
                         <p className="font-poppins font-bold text-[#333333] text-xl">No photos available yet.</p>
                     </div>

@@ -12,7 +12,7 @@ const postSchema = z.object({
     title: z.string().optional()
 })
 
-export async function createPost(prevState: any, formData: FormData) {
+export async function createPost(prevState: unknown, formData: FormData) {
     const session = await getSession()
     if (!session) return { error: 'Unauthorized' }
 
@@ -31,16 +31,15 @@ export async function createPost(prevState: any, formData: FormData) {
     }
 
     const supabase = createServerClient()
-    const { error } = await (supabase.from('posts' as any) as any).insert({
+    const { error } = await supabase.from('posts').insert({
         author_id: member.id,
         content: validated.data.content,
         title: validated.data.title || null,
-        type: validated.data.type as any,
+        type: validated.data.type,
         is_pinned: validated.data.type === 'announcement'
     })
 
     if (error) {
-        console.error('Create post error:', error)
         return { error: 'Failed to create post' }
     }
 
@@ -60,16 +59,16 @@ export async function toggleReaction(postId: string) {
 
     // Using Rpc or direct check
     const { data: existing } = await (supabase
-        .from('post_reactions' as any) as any)
+        .from('post_reactions'))
         .select('id')
         .eq('post_id', postId)
         .eq('member_id', member.id)
         .maybeSingle()
 
     if (existing) {
-        await (supabase.from('post_reactions' as any) as any).delete().eq('id', existing.id)
+        await supabase.from('post_reactions').delete().eq('id', existing.id)
     } else {
-        await (supabase.from('post_reactions' as any) as any).insert({
+        await supabase.from('post_reactions').insert({
             post_id: postId,
             member_id: member.id
         })
@@ -88,7 +87,7 @@ export async function addComment(postId: string, content: string) {
     if (!content.trim()) return { error: 'Comment cannot be empty' }
 
     const supabase = createServerClient()
-    const { error } = await (supabase.from('post_comments' as any) as any).insert({
+    const { error } = await supabase.from('post_comments').insert({
         post_id: postId,
         author_id: member.id,
         content: content.trim()

@@ -26,20 +26,20 @@ export default async function LeaderboardPage(props: {
 
     // Get current member for highlighting
     const { data: currentMember } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .select('id, points')
         .eq('user_id', session.user.id)
         .single()
 
     // Fetch paginated members
     const { data, count } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .select('id, full_name, avatar_url, points, role, club_post', { count: 'exact' })
         .eq('status', 'approved')
         .order('points', { ascending: false })
         .range(from, to)
 
-    const members = (data || []) as any[]
+    const members = (data || [])
 
     return (
         <div className="min-h-screen -m-6 md:-m-10 p-6 md:p-10 bg-[#0D1117]">
@@ -51,7 +51,7 @@ export default async function LeaderboardPage(props: {
                             <Trophy className="h-3.5 w-3.5" /> High Performance Log
                         </div>
                         <h1 className="text-3xl md:text-5xl font-bold text-[#E6EDF3] leading-tight">
-                            Club <span className="text-[#E53935]">Leaderboard</span>
+                            Club <span className="text-cosmic-black">Leaderboard</span>
                         </h1>
                         <p className="text-[#8B949E] font-medium text-sm mt-3 max-w-xl leading-relaxed">
                             Global proficiency rankings based on mission success, CTF flag captures, and unit contributions.
@@ -99,7 +99,7 @@ export default async function LeaderboardPage(props: {
                                                 <div className={cn(
                                                     "w-10 h-10 rounded-sm flex items-center justify-center font-bold text-sm transition-all",
                                                     rank === 1 ? "bg-[#FFF9C4] text-[#F57F17] shadow-sm shadow-[#FFF9C4]/50 scale-110 border border-[#FFF59D]" :
-                                                        rank === 2 ? "bg-[#F5F5F5] text-[#757575] border border-[#E0E0E0]" :
+                                                        rank === 2 ? "bg-[var(--color-cosmic-light)] text-cosmic-accent border border-cosmic-accent" :
                                                             rank === 3 ? "bg-[#FFECB3] text-[#FF8F00] border border-[#FFE082]" :
                                                                 "text-[#8B949E] group-hover:text-[#E6EDF3]"
                                                 )}>
@@ -108,10 +108,10 @@ export default async function LeaderboardPage(props: {
                                             </td>
                                             <td className="px-6 py-5">
                                                 <Link href={isMe ? '/portal/profile' : `/portal/members/${m.id}`} className="flex items-center gap-4 hover:opacity-80 transition-opacity">
-                                                    <Avatar src={m.avatar_url} name={m.full_name || 'Anonymous'} size="sm" className="shadow-sm border border-[#E0E0E0]" />
+                                                    <Avatar src={m.avatar_url} name={m.full_name || 'Anonymous'} size="sm" className="shadow-sm border border-cosmic-accent" />
                                                     <div className="min-w-0">
                                                         <p className={cn(
-                                                            "font-bold text-sm truncate group-hover:text-[#111111] transition-colors",
+                                                            "font-bold text-sm truncate group-hover:text-cosmic-brand transition-colors",
                                                             isMe ? "text-[#58A6FF]" : "text-[#E6EDF3]"
                                                         )}>
                                                             {m.full_name || 'Anonymous Member'} {isMe && "(You)"}
@@ -144,8 +144,8 @@ export default async function LeaderboardPage(props: {
 
                     {members.length === 0 && (
                         <div className="py-24 text-center">
-                            <div className="h-16 w-16 bg-[#F8F9FA] rounded-sm flex items-center justify-center mx-auto mb-5 border border-[#E0E0E0]">
-                                <Target className="h-8 w-8 text-[#9E9E9E]" />
+                            <div className="h-16 w-16 bg-cosmic-light rounded-sm flex items-center justify-center mx-auto mb-5 border border-cosmic-accent">
+                                <Target className="h-8 w-8 text-cosmic-accent" />
                             </div>
                             <p className="text-[#E6EDF3] font-bold text-lg mb-1">Leaderboard Empty</p>
                             <p className="text-[#8B949E] font-medium text-sm">No approved members found.</p>

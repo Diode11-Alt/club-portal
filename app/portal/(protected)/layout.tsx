@@ -28,14 +28,14 @@ export default async function ProtectedPortalLayout({
         }
     }
     if (member.status === 'rejected') redirect('/portal/login?reason=rejected')
-    if ((member.status as any) === 'banned') redirect('/portal/login?reason=banned')
+    if ((member.status) === 'banned') redirect('/portal/login?reason=banned')
 
     // ── Step 3: Fetch unread count efficiently ──
     const supabase = createServerClient()
     const { count: unreadNotifications } = await supabase
         .from('notifications')
         .select('*', { count: 'exact', head: true })
-        .eq('user_id', session.user.id) // using user_id per DB schema
+        .eq('recipient_id', session.user.id) // using recipient_id per DB schema
         .eq('is_read', false)
 
     // ── Fetch Unread Messages ──
@@ -46,7 +46,7 @@ export default async function ProtectedPortalLayout({
 
     let unreadMessagesCount = 0
     if (participations && participations.length > 0) {
-        const conversationIds = (participations as any[]).map(p => p.conversation_id)
+        const conversationIds = (participations || []).map(p => p.conversation_id)
         const { data: recentMsgs } = await supabase
             .from('messages')
             .select('conversation_id, created_at, sender_id')
@@ -55,10 +55,10 @@ export default async function ProtectedPortalLayout({
             .order('created_at', { ascending: false })
 
         const processedConvos = new Set()
-        for (const msg of ((recentMsgs as any[]) || [])) {
+        for (const msg of (recentMsgs || [])) {
             if (processedConvos.has(msg.conversation_id)) continue
             processedConvos.add(msg.conversation_id)
-            const part = (participations as any[]).find(p => p.conversation_id === msg.conversation_id)
+            const part = (participations || []).find(p => p.conversation_id === msg.conversation_id)
             if (part && new Date(msg.created_at) > new Date(part.last_read_at || 0)) {
                 unreadMessagesCount++
             }
@@ -67,7 +67,7 @@ export default async function ProtectedPortalLayout({
 
     // ── Step 4: Render Shell ──
     return (
-        <div className="flex min-h-screen bg-[#F8F9FA]">
+        <div className="flex min-h-screen bg-cosmic-light">
             {/* Desktop Sidebar */}
             <Sidebar
                 member={member}
@@ -88,8 +88,8 @@ export default async function ProtectedPortalLayout({
             </div>
 
             {/* Background design elements across portal */}
-            <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-[#111111]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none -z-10 transform-gpu" />
-            <div className="fixed bottom-0 left-64 w-[500px] h-[500px] bg-[#E53935]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none -z-10 transform-gpu" />
+            <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-cosmic-brand/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none -z-10 transform-gpu" />
+            <div className="fixed bottom-0 left-64 w-[500px] h-[500px] bg-cosmic-black/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none -z-10 transform-gpu" />
         </div>
     )
 }

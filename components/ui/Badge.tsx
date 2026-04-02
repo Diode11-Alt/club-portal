@@ -9,14 +9,14 @@ interface BadgeProps {
 
 // Colors per CONTEXT.md §4.2
 const variants: Record<string, string> = {
-    navy: 'text-[#111111] bg-[#FAFAFA] border border-[#111111]/20',
-    crimson: 'text-[#E53935] bg-[#FFEBEE] border border-[#E53935]/20',
+    navy: 'text-cosmic-brand bg-cosmic-light border border-cosmic-brand/20',
+    crimson: 'text-cosmic-black bg-cosmic-brand/10 border border-cosmic-black/20',
     success: 'text-[#2E7D32] bg-[#E8F5E9] border border-[#2E7D32]/20',
-    warning: 'text-[#F57F17] bg-[#FFF8E1] border border-[#F57F17]/20',
-    danger: 'text-[#B71C1C] bg-[#FFEBEE] border border-[#B71C1C]/20',
-    info: 'text-[#0277BD] bg-[#E1F5FE] border border-[#0277BD]/20',
-    outline: 'border border-[#E0E0E0] text-[#757575] bg-transparent',
-    default: 'text-[#757575] bg-[#F5F5F5] border border-[#E0E0E0]',
+    warning: 'text-[#F57F17] bg-cosmic-light border border-cosmic-brand/20',
+    danger: 'text-cosmic-brand bg-cosmic-brand/10 border border-cosmic-brand/20',
+    info: 'text-cosmic-brand bg-cosmic-brand/10 border border-[#0277BD]/20',
+    outline: 'border border-cosmic-accent text-cosmic-accent bg-transparent',
+    default: 'text-cosmic-accent bg-[var(--color-cosmic-light)] border border-cosmic-accent',
 }
 
 export default function Badge({ variant = 'default', children, className }: BadgeProps) {

@@ -44,7 +44,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <body className="font-sans bg-[#F8F9FA] text-[#212121] min-h-screen antialiased" suppressHydrationWarning>
+      <body className="font-sans bg-cosmic-light text-cosmic-black min-h-screen antialiased" suppressHydrationWarning>
         <ToastProvider>
           {children}
         </ToastProvider>

@@ -3,10 +3,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-icehc-red: #C8102E;
-  --color-icehc-dark: #111111;
-  --color-icehc-gray: #F5F5F5;
-  --color-icehc-text: #4A4A4A;
+  --color-cosmic-white: #FFFFFF;
+  --color-cosmic-light: #F4F6F5;
+  --color-cosmic-muted: #D3D9D4;
+  --color-cosmic-accent: #748D92;
+  --color-cosmic-brand: #124E66;
+  --color-cosmic-dark: #2E3944;
+  --color-cosmic-black: #212A31;
 
   /* Enforce max 4px border radius for institutional clean look */
   --radius-sm: 2px;
@@ -26,35 +29,35 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #F5F5F5;
+  background: var(--color-cosmic-light);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #9FA8DA;
+  background: #EF9A9A;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1A237E;
+  background: #124E66;
 }
 
-/* ─── Selection (IIMS Navy) ─── */
+/* ─── Selection (Cosmic Brand) ─── */
 ::selection {
-  background: rgba(26, 35, 126, 0.15);
-  color: #1A237E;
+  background: rgba(18, 78, 102, 0.15); /* #124E66 with opacity */
+  color: #212A31;
 }
 
-/* ─── Body — Light IIMS theme ─── */
+/* ─── Body — Cosmic theme ─── */
 body {
-  background-color: #F8F9FA;
-  color: #212121;
+  background-color: var(--color-cosmic-light);
+  color: var(--color-cosmic-black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* ─── Focus ring (IIMS Navy) ─── */
 *:focus-visible {
-  outline: 2px solid #1A237E;
+  outline: 2px solid #124E66;
   outline-offset: 2px;
 }
 

@@ -14,7 +14,7 @@ function SubmitButton() {
         <button
             type="submit"
             disabled={pending}
-            className="bg-[#111111] text-white font-semibold text-sm px-5 py-2.5 rounded-sm hover:bg-[#C8102E] active:bg-[#111111] disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-sm shadow-[#111111]/20"
+            className="bg-cosmic-brand text-white font-semibold text-sm px-5 py-2.5 rounded-sm hover:bg-cosmic-dark active:bg-cosmic-brand disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-sm shadow-[#124E66]/20"
         >
             {pending ? (
                 <>
@@ -90,31 +90,31 @@ export default function PostComposer({ userRole, memberName }: { userRole: strin
     const isHighPerms = ['admin', 'superadmin'].includes(userRole)
 
     return (
-        <div className="bg-white rounded-sm p-6 md:p-8 border border-[#E0E0E0] shadow-sm shadow-black/5 mb-8 group animate-fade-up">
+        <div className="bg-white rounded-sm p-6 md:p-8 border border-cosmic-accent shadow-sm shadow-black/5 mb-8 group animate-fade-up">
             <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 rounded-sm bg-[#FAFAFA] text-[#111111]">
+                <div className="p-2 rounded-sm bg-cosmic-light text-cosmic-brand">
                     <PenLine className="h-5 w-5" />
                 </div>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#9E9E9E]">Share an update, {memberName}</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-cosmic-accent">Share an update, {memberName}</span>
             </div>
 
             <form ref={formRef} action={action} className="space-y-5">
                 <textarea
                     name="content"
                     placeholder="Share resources, ask questions, or announce events..."
-                    className="w-full bg-[#F8F9FA] border border-[#E0E0E0] rounded-sm p-5 text-[#212121] text-sm focus:bg-white focus:border-[#111111]/50 focus:ring-4 focus:ring-[#111111]/10 outline-none transition-all min-h-[120px] resize-none placeholder:text-[#9E9E9E]"
+                    className="w-full bg-cosmic-light border border-cosmic-accent rounded-sm p-5 text-cosmic-black text-sm focus:bg-white focus:border-cosmic-brand/50 focus:ring-4 focus:ring-cosmic-brand/10 outline-none transition-all min-h-[120px] resize-none placeholder:text-cosmic-accent"
                     required
                 />
 
                 {showImageInput && (
-                    <div className="bg-[#F8F9FA] border border-[#E0E0E0] rounded-sm p-4 animate-fade-in relative">
+                    <div className="bg-cosmic-light border border-cosmic-accent rounded-sm p-4 animate-fade-in relative">
                         {isUploading ? (
-                            <div className="flex items-center justify-center gap-2 text-sm font-semibold text-[#757575] py-4">
+                            <div className="flex items-center justify-center gap-2 text-sm font-semibold text-cosmic-accent py-4">
                                 <Loader2 className="h-4 w-4 animate-spin" /> Uploading photo...
                             </div>
                         ) : imageUrl ? (
                             <div className="relative group">
-                                <img src={imageUrl} alt="Uploaded" className="h-24 w-auto rounded border border-[#E0E0E0] object-cover" />
+                                <img src={imageUrl} alt="Uploaded" className="h-24 w-auto rounded border border-cosmic-accent object-cover" />
                                 <button type="button" onClick={() => setImageUrl('')} className="absolute top-1 right-1 p-1 bg-white/90 text-red-500 rounded-sm hover:bg-white shadow">
                                     <X className="h-3 w-3" />
                                 </button>
@@ -126,9 +126,9 @@ export default function PostComposer({ userRole, memberName }: { userRole: strin
                                     accept="image/*"
                                     ref={fileInputRef}
                                     onChange={handleFileUpload}
-                                    className="block w-full text-sm text-[#757575] file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-xs file:font-semibold file:bg-[#111111] file:text-white hover:file:bg-[#C8102E] transition-all cursor-pointer"
+                                    className="block w-full text-sm text-cosmic-accent file:mr-4 file:py-2 file:px-4 file:rounded-sm file:border-0 file:text-xs file:font-semibold file:bg-cosmic-brand file:text-white hover:file:bg-cosmic-brand transition-all cursor-pointer"
                                 />
-                                <button type="button" onClick={() => setShowImageInput(false)} className="text-[#9E9E9E] hover:text-[#212121]">
+                                <button type="button" onClick={() => setShowImageInput(false)} className="text-cosmic-accent hover:text-cosmic-black">
                                     <X className="h-4 w-4" />
                                 </button>
                             </div>
@@ -137,26 +137,26 @@ export default function PostComposer({ userRole, memberName }: { userRole: strin
                 )}
 
                 {error && (
-                    <div className="p-3 rounded-sm bg-[#FFEBEE] border border-[#E53935]/20 text-[#C62828] text-xs font-semibold flex items-center gap-2 animate-slide-in">
+                    <div className="p-3 rounded-sm bg-cosmic-brand/10 border border-cosmic-black/20 text-[#C62828] text-xs font-semibold flex items-center gap-2 animate-slide-in">
                         <AlertTriangle className="h-4 w-4 shrink-0" />
                         {error}
                     </div>
                 )}
 
-                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 mt-2 border-t border-[#F5F5F5]">
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 mt-2 border-t border-[var(--color-cosmic-light)]">
                     <div className="flex items-center gap-2 w-full sm:w-auto">
                         {isHighPerms ? (
                             <div className="relative w-full sm:w-auto">
                                 <select
                                     name="type"
-                                    className="w-full appearance-none bg-[#F5F5F5] border border-[#E0E0E0] text-[#424242] text-xs font-bold uppercase tracking-wide rounded-sm px-4 py-2.5 pr-10 hover:bg-[#E0E0E0]/50 focus:ring-2 focus:ring-[#111111]/20 outline-none cursor-pointer transition-all"
+                                    className="w-full appearance-none bg-[var(--color-cosmic-light)] border border-cosmic-accent text-cosmic-dark text-xs font-bold uppercase tracking-wide rounded-sm px-4 py-2.5 pr-10 hover:bg-cosmic-accent/50 focus:ring-2 focus:ring-cosmic-brand/20 outline-none cursor-pointer transition-all"
                                 >
                                     <option value="post">General Post</option>
                                     <option value="announcement">Announcement</option>
                                     <option value="resource">Resource</option>
                                     <option value="question">Question</option>
                                 </select>
-                                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#9E9E9E]">
+                                <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-cosmic-accent">
                                     <Layout className="h-4 w-4" />
                                 </div>
                             </div>
@@ -166,7 +166,7 @@ export default function PostComposer({ userRole, memberName }: { userRole: strin
                         <button
                             type="button"
                             onClick={() => setShowImageInput(!showImageInput)}
-                            className="flex items-center gap-2 px-3 py-2 text-[#9E9E9E] hover:text-[#212121] hover:bg-[#F5F5F5] rounded-sm transition-all text-xs font-medium"
+                            className="flex items-center gap-2 px-3 py-2 text-cosmic-accent hover:text-cosmic-black hover:bg-[var(--color-cosmic-light)] rounded-sm transition-all text-xs font-medium"
                         >
                             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />

@@ -8,12 +8,12 @@ import { revalidatePath } from 'next/cache'
 export async function updateMemberStatus(id: string, status: string, role?: string, club_post?: string) {
     const supabase = createAdminSupabaseClient()
 
-    const updates: any = { status }
+    const updates: { status: string; role?: string; club_post?: string } = { status }
     if (role) updates.role = role
     if (club_post !== undefined) updates.club_post = club_post
 
     const { error } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .update(updates)
         .eq('id', id)
 
@@ -26,7 +26,7 @@ export async function deleteMember(id: string) {
     const supabase = createAdminSupabaseClient()
 
     const { error } = await supabase
-        .from('members' as any)
+        .from('members')
         .delete()
         .eq('id', id)
 
@@ -39,7 +39,7 @@ export async function deleteMember(id: string) {
 export async function toggleEventStatus(id: string, is_published: boolean) {
     const supabase = createAdminSupabaseClient()
     const { error } = await (supabase
-        .from('public_events' as any) as any)
+        .from('public_events'))
         .update({ status: is_published ? 'upcoming' : null })
         .eq('id', id)
 
@@ -54,7 +54,7 @@ export async function toggleEventStatus(id: string, is_published: boolean) {
 export async function updateChallengeStatus(id: string, is_active: boolean) {
     const supabase = createAdminSupabaseClient()
     const { error } = await (supabase
-        .from('ctf_challenges' as any) as any)
+        .from('ctf_challenges'))
         .update({ is_active })
         .eq('id', id)
 
@@ -68,7 +68,7 @@ export async function updateChallengeStatus(id: string, is_active: boolean) {
 export async function deletePost(id: string) {
     const supabase = createAdminSupabaseClient()
     const { error } = await supabase
-        .from('posts' as any)
+        .from('posts')
         .delete()
         .eq('id', id)
 

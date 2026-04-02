@@ -17,7 +17,7 @@ export default async function MessagesLayout({ children }: { children: React.Rea
 
     // 1. Get all conversations the member is part of
     const { data: participations } = await (supabase
-        .from('conversation_participants' as any) as any)
+        .from('conversation_participants'))
         .select('conversation_id, last_read_at')
         .eq('member_id', member.id)
 
@@ -28,7 +28,7 @@ export default async function MessagesLayout({ children }: { children: React.Rea
     if (conversationIds.length > 0) {
         // 2. Fetch those conversations with nested latest messages and other participants
         const { data: convs } = await (supabase
-            .from('conversations' as any) as any)
+            .from('conversations'))
             .select(`
                 id,
                 updated_at,
@@ -69,7 +69,7 @@ export default async function MessagesLayout({ children }: { children: React.Rea
 
     return (
         <MessagesShell
-            conversations={formattedConversations as any}
+            conversations={formattedConversations}
             memberId={member.id}
         >
             {children}

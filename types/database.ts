@@ -9,14 +9,225 @@ export type Json =
 export interface Database {
     public: {
         Tables: {
-            public_events: { Row: Record<string, any>, Insert: Record<string, any>, Update: Record<string, any>, Relationships: [] }
-            posts: { Row: Record<string, any>, Insert: Record<string, any>, Update: Record<string, any>, Relationships: [] }
-            ctf_challenges: { Row: Record<string, any>, Insert: Record<string, any>, Update: Record<string, any>, Relationships: [] }
-            documents: { Row: Record<string, any>, Insert: Record<string, any>, Update: Record<string, any>, Relationships: [] }
-            messages: { Row: Record<string, any>, Insert: Record<string, any>, Update: Record<string, any>, Relationships: [] }
-            conversations: { Row: Record<string, any>, Insert: Record<string, any>, Update: Record<string, any>, Relationships: [] }
-            conversation_participants: { Row: Record<string, any>, Insert: Record<string, any>, Update: Record<string, any>, Relationships: [] }
-            gallery_images: { Row: Record<string, any>, Insert: Record<string, any>, Update: Record<string, any>, Relationships: [] }
+            public_events: {
+                Row: {
+                    id: string
+                    created_by: string
+                    title: string
+                    slug: string
+                    description: string
+                    short_desc: string | null
+                    event_date: string
+                    end_date: string | null
+                    location: string | null
+                    meeting_link: string | null
+                    cover_image_url: string | null
+                    type: 'workshop' | 'ctf' | 'hackathon' | 'seminar' | 'meetup' | 'competition' | 'other'
+                    max_attendees: number | null
+                    is_published: boolean
+                    is_registration_required: boolean
+                    created_at: string
+                }
+                Insert: {
+                    id?: string
+                    created_by: string
+                    title: string
+                    slug: string
+                    description: string
+                    short_desc?: string | null
+                    event_date: string
+                    end_date?: string | null
+                    location?: string | null
+                    meeting_link?: string | null
+                    cover_image_url?: string | null
+                    type?: 'workshop' | 'ctf' | 'hackathon' | 'seminar' | 'meetup' | 'competition' | 'other'
+                    max_attendees?: number | null
+                    is_published?: boolean
+                    is_registration_required?: boolean
+                    created_at?: string
+                }
+                Update: {
+                    id?: string
+                    created_by?: string
+                    title?: string
+                    slug?: string
+                    description?: string
+                    short_desc?: string | null
+                    event_date?: string
+                    end_date?: string | null
+                    location?: string | null
+                    meeting_link?: string | null
+                    cover_image_url?: string | null
+                    type?: 'workshop' | 'ctf' | 'hackathon' | 'seminar' | 'meetup' | 'competition' | 'other'
+                    max_attendees?: number | null
+                    is_published?: boolean
+                    is_registration_required?: boolean
+                    created_at?: string
+                }
+                Relationships: []
+            }
+            posts: {
+                Row: Record<string, any>
+                Insert: Record<string, any>
+                Update: Record<string, any>
+                Relationships: []
+            }
+            ctf_challenges: {
+                Row: Record<string, any>
+                Insert: Record<string, any>
+                Update: Record<string, any>
+                Relationships: []
+            }
+            ctf_solves: {
+                Row: {
+                    id: string
+                    challenge_id: string
+                    member_id: string
+                    solved_at: string
+                }
+                Insert: {
+                    id?: string
+                    challenge_id: string
+                    member_id: string
+                    solved_at?: string
+                }
+                Update: {
+                    id?: string
+                    challenge_id?: string
+                    member_id?: string
+                    solved_at?: string
+                }
+                Relationships: []
+            }
+            event_rsvps: {
+                Row: {
+                    id: string
+                    event_id: string
+                    member_id: string
+                    status: 'going' | 'maybe' | 'not_going'
+                    created_at: string
+                }
+                Insert: {
+                    id?: string
+                    event_id: string
+                    member_id: string
+                    status?: 'going' | 'maybe' | 'not_going'
+                    created_at?: string
+                }
+                Update: {
+                    id?: string
+                    event_id?: string
+                    member_id?: string
+                    status?: 'going' | 'maybe' | 'not_going'
+                    created_at?: string
+                }
+                Relationships: []
+            }
+            documents: {
+                Row: Record<string, any>
+                Insert: Record<string, any>
+                Update: Record<string, any>
+                Relationships: []
+            }
+            messages: {
+                Row: Record<string, any>
+                Insert: Record<string, any>
+                Update: Record<string, any>
+                Relationships: []
+            }
+            conversations: {
+                Row: Record<string, any>
+                Insert: Record<string, any>
+                Update: Record<string, any>
+                Relationships: []
+            }
+            conversation_participants: {
+                Row: Record<string, any>
+                Insert: Record<string, any>
+                Update: Record<string, any>
+                Relationships: []
+            }
+            gallery_images: {
+                Row: {
+                    id: string
+                    uploader_id: string
+                    url: string
+                    caption: string | null
+                    event_id: string | null
+                    created_at: string
+                }
+                Insert: {
+                    id?: string
+                    uploader_id: string
+                    url: string
+                    caption?: string | null
+                    event_id?: string | null
+                    created_at?: string
+                }
+                Update: {
+                    id?: string
+                    uploader_id?: string
+                    url?: string
+                    caption?: string | null
+                    event_id?: string | null
+                    created_at?: string
+                }
+                Relationships: []
+            }
+            contact_messages: {
+                Row: {
+                    id: string
+                    name: string
+                    email: string
+                    subject: string
+                    message: string
+                    ip_address: string | null
+                    is_read: boolean
+                    created_at: string
+                }
+                Insert: {
+                    id?: string
+                    name: string
+                    email: string
+                    subject: string
+                    message: string
+                    ip_address?: string | null
+                    is_read?: boolean
+                    created_at?: string
+                }
+                Update: {
+                    id?: string
+                    name?: string
+                    email?: string
+                    subject?: string
+                    message?: string
+                    ip_address?: string | null
+                    is_read?: boolean
+                    created_at?: string
+                }
+                Relationships: []
+            }
+            site_settings: {
+                Row: {
+                    key: string
+                    value: string
+                    updated_by: string | null
+                    updated_at: string
+                }
+                Insert: {
+                    key: string
+                    value: string
+                    updated_by?: string | null
+                    updated_at?: string
+                }
+                Update: {
+                    key?: string
+                    value?: string
+                    updated_by?: string | null
+                    updated_at?: string
+                }
+                Relationships: []
+            }
             members: {
                 Row: {
                     id: string
@@ -24,7 +235,7 @@ export interface Database {
                     full_name: string | null
                     email: string
                     role: 'member' | 'bod' | 'admin' | 'superadmin'
-                    status: 'pending' | 'approved' | 'rejected'
+                    status: 'pending' | 'approved' | 'rejected' | 'banned'
                     club_post: string | null
                     avatar_url: string | null
                     bio: string | null
@@ -33,6 +244,8 @@ export interface Database {
                     github_url: string | null
                     linkedin_url: string | null
                     program: string | null
+                    intake: string | null
+                    skills: string[] | null
                     created_at: string
                     deactivation_requested_at: string | null
                     deactivation_reason: string | null
@@ -45,7 +258,7 @@ export interface Database {
                     full_name?: string | null
                     email: string
                     role?: 'member' | 'bod' | 'admin' | 'superadmin'
-                    status?: 'pending' | 'approved' | 'rejected'
+                    status?: 'pending' | 'approved' | 'rejected' | 'banned'
                     club_post?: string | null
                     avatar_url?: string | null
                     bio?: string | null
@@ -54,6 +267,8 @@ export interface Database {
                     github_url?: string | null
                     linkedin_url?: string | null
                     program?: string | null
+                    intake?: string | null
+                    skills?: string[] | null
                     created_at?: string
                     deactivation_requested_at?: string | null
                     deactivation_reason?: string | null
@@ -66,7 +281,7 @@ export interface Database {
                     full_name?: string | null
                     email?: string
                     role?: 'member' | 'bod' | 'admin' | 'superadmin'
-                    status?: 'pending' | 'approved' | 'rejected'
+                    status?: 'pending' | 'approved' | 'rejected' | 'banned'
                     club_post?: string | null
                     avatar_url?: string | null
                     bio?: string | null
@@ -75,6 +290,8 @@ export interface Database {
                     github_url?: string | null
                     linkedin_url?: string | null
                     program?: string | null
+                    intake?: string | null
+                    skills?: string[] | null
                     created_at?: string
                     deactivation_requested_at?: string | null
                     deactivation_reason?: string | null
@@ -89,6 +306,7 @@ export interface Database {
                     member_id: string
                     endorsed_by: string
                     skill: string
+                    status: string
                     created_at: string
                 }
                 Insert: {
@@ -96,6 +314,7 @@ export interface Database {
                     member_id: string
                     endorsed_by: string
                     skill: string
+                    status?: string
                     created_at?: string
                 }
                 Update: {
@@ -103,6 +322,7 @@ export interface Database {
                     member_id?: string
                     endorsed_by?: string
                     skill?: string
+                    status?: string
                     created_at?: string
                 }
                 Relationships: [
@@ -187,6 +407,18 @@ export interface Database {
                 }
                 Relationships: []
             }
+        }
+        Views: {
+            [_ in never]: never
+        }
+        Functions: {
+            [_ in never]: never
+        }
+        Enums: {
+            [_ in never]: never
+        }
+        CompositeTypes: {
+            [_ in never]: never
         }
     }
 }

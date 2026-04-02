@@ -13,7 +13,7 @@ export async function toggleRsvp(eventId: string, status: 'going' | 'maybe' | 'n
 
     // Get current member
     const { data: member } = await (supabase
-        .from('members' as any) as any)
+        .from('members'))
         .select('id')
         .eq('user_id', session.user.id)
         .single()
@@ -22,23 +22,23 @@ export async function toggleRsvp(eventId: string, status: 'going' | 'maybe' | 'n
 
     // Check existing RSVP
     const { data: existing } = await (supabase
-        .from('event_rsvps' as any) as any)
+        .from('event_rsvps'))
         .select('id')
         .eq('event_id', eventId)
-        .eq('member_id', (member as any).id)
+        .eq('member_id', (member).id)
         .maybeSingle()
 
     if (existing) {
         if (status === 'not_going') {
-            await (supabase.from('event_rsvps' as any) as any).delete().eq('id', (existing as any).id)
+            await supabase.from('event_rsvps').delete().eq('id', (existing).id)
         } else {
-            await (supabase.from('event_rsvps' as any) as any).update({ status }).eq('id', (existing as any).id)
+            await supabase.from('event_rsvps').update({ status }).eq('id', (existing).id)
         }
     } else {
         if (status !== 'not_going') {
-            await (supabase.from('event_rsvps' as any) as any).insert({
+            await supabase.from('event_rsvps').insert({
                 event_id: eventId,
-                member_id: (member as any).id,
+                member_id: (member).id,
                 status
             })
         }

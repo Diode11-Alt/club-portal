@@ -1,6 +1,7 @@
 // app/api/ctf/submit/route.ts — Secure CTF Flag Submission Endpoint (v4.0)
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase-server'
+import { createAdminSupabaseClient } from '@/lib/supabase/server'
 import { getSession, getMember } from '@/lib/auth'
 import { flagSubmitLimiter } from '@/lib/ratelimit'
 import { ctfSubmitSchema } from '@/lib/validations'
@@ -37,13 +38,12 @@ export async function POST(req: NextRequest) {
 
         const { challenge_id, flag } = validated.data
 
-        // 4. Admin Bypass / Service Role Client
         // We MUST use the service role to read flag_hash if it's protected from public SELECTs
-        const supabaseAdmin = createServerClient()
+        const supabaseAdmin = createAdminSupabaseClient()
 
         // Fetch challenge details
         const { data: challenge } = await (supabaseAdmin
-            .from('ctf_challenges' as any) as any)
+            .from('ctf_challenges'))
             .select('id, flag_hash, is_active')
             .eq('id', challenge_id)
             .single()
@@ -59,9 +59,13 @@ export async function POST(req: NextRequest) {
         // Artificial 50ms delay to deter basic timing analysis attacks
         await new Promise(r => setTimeout(r, 50))
 
+        if (submittedHash !== challenge.flag_hash) {
+            return NextResponse.json({ error: 'Incorrect flag detected' }, { status: 400 })
+        }
+
         // 6. Check for duplicate submissions
         const { data: existingSolve } = await (supabaseAdmin
-            .from('ctf_solves' as any) as any)
+            .from('ctf_solves'))
             .select('id')
             .eq('challenge_id', challenge_id)
             .eq('member_id', member.id)
@@ -73,22 +77,25 @@ export async function POST(req: NextRequest) {
 
         // 7. Record Solve (Points are awarded automatically by DB trigger: trg_ctf_solve)
         const { error: insertError } = await (supabaseAdmin
-            .from('ctf_solves' as any) as any)
+            .from('ctf_solves'))
             .insert({
                 challenge_id,
                 member_id: member.id,
             })
 
         if (insertError) {
-            console.error('CTF Submit Error:', insertError)
             return NextResponse.json({ error: 'Database write failed during capture' }, { status: 500 })
         }
+
+        // 8. Revalidate paths so the UI updates ranking and challenges instantly
+        const { revalidatePath } = require('next/cache')
+        revalidatePath('/portal/dashboard')
+        revalidatePath('/portal/ctf')
 
         // Success! The database trigger has awarded the points behind the scenes.
         return NextResponse.json({ success: true, message: 'Flag captured successfully' })
 
     } catch (error) {
-        console.error('Unhandled CTF Route Error:', error)
         return NextResponse.json({ error: 'Internal server error during analysis' }, { status: 500 })
     }
 }

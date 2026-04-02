@@ -11,7 +11,7 @@ const HeroTerminal = dynamic(() => import('@/components/public/HeroTerminal'), {
 
 export default function HeroSection() {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#1A237E] via-[#1A237E] to-[#0D1757]">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#124E66] via-[#124E66] to-[#7F0000]">
             {/* Subtle pattern overlay */}
             <div className="absolute inset-0 opacity-[0.04]" style={{
                 backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
@@ -19,11 +19,11 @@ export default function HeroSection() {
             }} />
 
             {/* Gradient glow */}
-            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#E53935]/10 rounded-full blur-[120px] pointer-events-none transform-gpu" />
+            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#FFD54F]/15 rounded-full blur-[120px] pointer-events-none transform-gpu" />
 
             <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-20 grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
                 <div className="lg:col-span-3">
-                    <p className="text-[#E53935] uppercase tracking-[0.2em] text-xs font-semibold mb-5">IIMS COLLEGE · KATHMANDU · EST. 2026</p>
+                    <p className="text-white/60 uppercase tracking-[0.2em] text-xs font-semibold mb-5">IIMS COLLEGE · KATHMANDU · EST. 2026</p>
                     <h1 className="font-bold text-5xl md:text-7xl tracking-tight text-white leading-[1.05]">
                         Hack Ethically.<br />Defend Relentlessly.
                     </h1>
@@ -33,7 +33,7 @@ export default function HeroSection() {
                     <div className="flex flex-col sm:flex-row items-center gap-4 mb-10">
                         <Link
                             href="/portal/login"
-                            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#E53935] text-white font-bold text-base hover:bg-[#C62828] transition-all hover:scale-[1.02] flex items-center justify-center gap-3 shadow-xl shadow-red-900/30 active:scale-95"
+                            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-cosmic-brand font-bold text-base hover:bg-[#FFD54F] hover:text-[#7F0000] transition-all hover:scale-[1.02] flex items-center justify-center gap-3 shadow-xl shadow-red-900/30 active:scale-95"
                         >
                             Join ICEHC
                             <ArrowRight className="h-5 w-5" />

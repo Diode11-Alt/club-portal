@@ -81,13 +81,13 @@ export default function CTFChallengeCard({ challenge }: CTFChallengeCardProps) {
                             {challenge.category}
                         </span>
                     </div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-[#E53935] transition-colors leading-tight font-mono">
+                    <h3 className="text-xl font-bold text-white group-hover:text-cosmic-black transition-colors leading-tight font-mono">
                         {challenge.title}
                     </h3>
                 </div>
 
                 <div className="text-right">
-                    <div className="text-2xl font-bold text-[#E53935] font-mono">{challenge.points}</div>
+                    <div className="text-2xl font-bold text-cosmic-black font-mono">{challenge.points}</div>
                     <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest leading-none">PTS</div>
                 </div>
             </div>
@@ -103,13 +103,13 @@ export default function CTFChallengeCard({ challenge }: CTFChallengeCardProps) {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="flex flex-col sm:flex-row gap-3">
                             <div className="relative flex-1">
-                                <Flag className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 group-focus-within:text-[#E53935] transition-colors" />
+                                <Flag className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 group-focus-within:text-cosmic-black transition-colors" />
                                 <input
                                     type="text"
                                     placeholder="Flag format: ICEHC{...}"
                                     value={flagInput}
                                     onChange={(e) => setFlagInput(e.target.value)}
-                                    className="w-full bg-black/40 border border-white/10 rounded-sm pl-11 pr-4 py-3 text-sm font-mono text-white focus:bg-black/60 focus:ring-1 focus:ring-[#E53935] focus:border-[#E53935] transition-all outline-none placeholder:text-gray-600"
+                                    className="w-full bg-black/40 border border-white/10 rounded-sm pl-11 pr-4 py-3 text-sm font-mono text-white focus:bg-black/60 focus:ring-1 focus:ring-cosmic-black focus:border-cosmic-black transition-all outline-none placeholder:text-gray-600"
                                     disabled={loading}
                                 />
                             </div>
@@ -117,7 +117,7 @@ export default function CTFChallengeCard({ challenge }: CTFChallengeCardProps) {
                                 type="submit"
                                 loading={loading}
                                 disabled={!flagInput.trim()}
-                                className="rounded-sm h-12 px-6 bg-[#E53935] hover:bg-[#C62828] text-white border-none font-bold shadow-sm shadow-[#E53935]/20"
+                                className="rounded-sm h-12 px-6 bg-cosmic-black hover:bg-[#C62828] text-white border-none font-bold shadow-sm shadow-[#212A31]/20"
                             >
                                 Capture <ChevronRight className="inline h-4 w-4 ml-1" />
                             </Button>

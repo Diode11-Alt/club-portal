@@ -40,7 +40,7 @@ export default function Avatar({ src, name, size = 'md', className }: AvatarProp
     return (
         <div
             className={cn(
-                'rounded-full bg-[#111111] text-white font-semibold flex items-center justify-center flex-shrink-0',
+                'rounded-full bg-cosmic-brand text-white font-semibold flex items-center justify-center flex-shrink-0',
                 sizeClass,
                 className
             )}

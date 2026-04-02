@@ -37,8 +37,8 @@ export default function EventGrid({ events }: { events: EventItem[] }) {
                         key={value}
                         onClick={() => setFilter(value)}
                         className={`text-sm px-6 py-2 transition-colors border ${filter === value
-                            ? 'bg-[#111111] text-white border-[#111111] font-bold'
-                            : 'bg-white text-[#4A4A4A] border-[#E5E5E5] hover:border-[#111111] hover:text-[#111111] font-medium'
+                            ? 'bg-cosmic-brand text-white border-cosmic-brand font-bold'
+                            : 'bg-white text-[#4A4A4A] border-cosmic-accent hover:border-cosmic-brand hover:text-cosmic-brand font-medium'
                             }`}
                     >
                         {label}
@@ -48,7 +48,7 @@ export default function EventGrid({ events }: { events: EventItem[] }) {
 
             {/* Event cards */}
             {filtered.length === 0 ? (
-                <div className="py-20 text-center border-2 border-dashed border-[#E5E5E5] bg-[#FAFAFA]">
+                <div className="py-20 text-center border-2 border-dashed border-cosmic-accent bg-cosmic-light">
                     <p className="text-[#4A4A4A] font-medium">
                         No upcoming events match this filter. Check back soon.
                     </p>
@@ -63,20 +63,20 @@ export default function EventGrid({ events }: { events: EventItem[] }) {
                         return (
                             <div
                                 key={event.id}
-                                className="bg-white border border-[#E5E5E5] hover:border-[#111111] transition-colors group flex flex-col h-full"
+                                className="bg-white border border-cosmic-accent hover:border-cosmic-brand transition-colors group flex flex-col h-full"
                             >
                                 <div className="p-6 flex-1 flex flex-col">
                                     <div className="flex justify-between items-start mb-4">
-                                        <span className="text-xs font-bold px-3 py-1 border border-[#E5E5E5] text-[#4A4A4A] uppercase tracking-wider group-hover:bg-[#111111] group-hover:text-white group-hover:border-[#111111] transition-colors">
+                                        <span className="text-xs font-bold px-3 py-1 border border-cosmic-accent text-[#4A4A4A] uppercase tracking-wider group-hover:bg-cosmic-dark group-hover:text-white group-hover:border-cosmic-brand transition-colors">
                                             {event.type}
                                         </span>
                                         <div className="text-right">
-                                            <div className="text-xs font-bold text-[#C8102E] tracking-widest">{month}</div>
-                                            <div className="text-2xl font-bold text-[#111111] leading-none">{day}</div>
+                                            <div className="text-xs font-bold text-cosmic-brand tracking-widest">{month}</div>
+                                            <div className="text-2xl font-bold text-cosmic-brand leading-none">{day}</div>
                                         </div>
                                     </div>
 
-                                    <h3 className="font-bold text-xl text-[#111111] mb-3 leading-tight group-hover:text-[#C8102E] transition-colors">
+                                    <h3 className="font-bold text-xl text-cosmic-brand mb-3 leading-tight group-hover:text-cosmic-brand transition-colors">
                                         {event.title}
                                     </h3>
 
@@ -86,7 +86,7 @@ export default function EventGrid({ events }: { events: EventItem[] }) {
                                         </p>
                                     )}
 
-                                    <div className="mt-auto pt-4 border-t border-[#E5E5E5]">
+                                    <div className="mt-auto pt-4 border-t border-cosmic-accent">
                                         <span className="text-xs font-medium text-[#4A4A4A] tracking-wide uppercase">
                                             {event.location || 'Location TBA'}
                                         </span>
