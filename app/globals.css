@@ -18,7 +18,7 @@
   --radius-xl: 4px;
   --radius-2xl: 4px;
   --radius-3xl: 4px;
-  --radius-full: 4px;
+  --radius-full: 9999px;
   /* We still allow full rounded where strictly necessary but override the presets */
 }
 

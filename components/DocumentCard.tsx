@@ -4,8 +4,17 @@
 
 'use client'
 
-import type { Document } from '@/lib/types'
 import { Download, Trash2 } from 'lucide-react'
+
+type Document = {
+    id: string
+    title: string
+    file_url: string
+    file_type: 'pdf' | 'docx' | 'doc' | null
+    uploaded_by: string | null
+    created_at: string
+    uploader?: { name?: string | null; email?: string | null }
+}
 
 type DocumentCardProps = {
     document: Document

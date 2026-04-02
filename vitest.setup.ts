@@ -11,16 +11,38 @@ vi.mock('next/navigation', () => ({
     redirect: vi.fn(),
 }))
 
-// Mock Supabase Server Client
-vi.mock('@/lib/supabase-server', () => ({
-    createServerClient: vi.fn(() => ({
+// Mock Supabase Admin Client (canonical path)
+vi.mock('@/lib/supabase/server', () => ({
+    createAdminSupabaseClient: vi.fn(() => ({
         from: vi.fn(() => ({
             select: vi.fn().mockReturnThis(),
             order: vi.fn().mockReturnThis(),
             range: vi.fn().mockReturnThis(),
             eq: vi.fn().mockReturnThis(),
             in: vi.fn().mockReturnThis(),
+            single: vi.fn().mockReturnThis(),
+            maybeSingle: vi.fn().mockReturnThis(),
+            insert: vi.fn().mockReturnThis(),
+            update: vi.fn().mockReturnThis(),
+            delete: vi.fn().mockReturnThis(),
         })),
+        auth: {
+            admin: {
+                createUser: vi.fn(),
+            },
+        },
+    })),
+    createServerSupabaseClient: vi.fn(),
+}))
+
+// Mock Supabase Browser Client
+vi.mock('@/lib/supabase/client', () => ({
+    createClient: vi.fn(() => ({
+        channel: vi.fn(() => ({
+            on: vi.fn().mockReturnThis(),
+            subscribe: vi.fn(),
+        })),
+        removeChannel: vi.fn(),
     })),
 }))
 
@@ -33,4 +55,8 @@ vi.mock('@/lib/auth', () => ({
         full_name: 'Test Member',
         status: 'approved'
     })),
+    assertRole: vi.fn(),
 }))
+
+// Mock server-only (no-op in test env)
+vi.mock('server-only', () => ({}))

@@ -9,8 +9,8 @@ import { z } from 'zod'
 const profileSchema = z.object({
     full_name: z.string().min(2, "Name must be at least 2 characters").max(60).optional(),
     bio: z.string().max(500, "Bio cannot exceed 500 characters").optional(),
-    github_url: z.string().url("Must be a valid URL for GitHub").optional(),
-    linkedin_url: z.string().url("Must be a valid URL for LinkedIn").optional(),
+    github_url: z.union([z.string().url("Must be a valid URL for GitHub"), z.literal('')]).optional(),
+    linkedin_url: z.union([z.string().url("Must be a valid URL for LinkedIn"), z.literal('')]).optional(),
     skills: z.string().optional() // Comma separated list of skills
 })
 

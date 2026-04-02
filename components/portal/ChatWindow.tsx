@@ -9,15 +9,35 @@ import { sendMessage } from '@/app/portal/(protected)/messages/actions'
 import { formatDate, cn } from '@/lib/utils'
 import Link from 'next/link'
 
+interface ChatMessage {
+    id: string
+    content: string
+    sender_id: string
+    conversation_id: string | null
+    created_at: string
+    is_deleted: boolean
+    attachment_url: string | null
+    attachment_type: string | null
+}
+
+interface ChatUser {
+    id: string
+    name: string | null
+    full_name?: string | null
+    avatar_url: string | null
+    role: string
+    club_post?: string | null
+}
+
 interface ChatWindowProps {
-    initialMessages: any[]
-    currentUser: any
-    otherUser: any
+    initialMessages: ChatMessage[]
+    currentUser: ChatUser
+    otherUser: ChatUser
     conversationId: string | null
 }
 
 export default function ChatWindow({ initialMessages, currentUser, otherUser, conversationId }: ChatWindowProps) {
-    const [messages, setMessages] = useState<any[]>(initialMessages)
+    const [messages, setMessages] = useState<ChatMessage[]>(initialMessages)
     const [input, setInput] = useState('')
     const [sending, setSending] = useState(false)
     const [uploading, setUploading] = useState(false)
@@ -39,7 +59,7 @@ export default function ChatWindow({ initialMessages, currentUser, otherUser, co
                 table: 'messages',
                 filter: `conversation_id=eq.${conversationId}`
             }, (payload) => {
-                const newMsg = payload.new
+                const newMsg = payload.new as ChatMessage
                 // Prevent duplicate processing if it's our own optimistic message
                 if (newMsg.sender_id !== currentUser.id) {
                     setMessages(prev => [...prev, newMsg])
@@ -121,9 +141,9 @@ export default function ChatWindow({ initialMessages, currentUser, otherUser, co
             if (!res.ok) throw new Error(data.error || 'Upload failed')
 
             setAttachment({ url: data.url, type: data.type })
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('File upload err:', err)
-            alert(err.message || 'Upload failed')
+            alert(err instanceof Error ? err.message : 'Upload failed')
         } finally {
             setUploading(false)
             if (fileInputRef.current) fileInputRef.current.value = ''

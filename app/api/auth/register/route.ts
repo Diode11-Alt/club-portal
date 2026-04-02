@@ -57,9 +57,24 @@ export async function POST(req: NextRequest) {
         }
 
         // 3. The DB trigger trg_auth_user_created creates the members row.
-        //    Wait briefly for trigger to execute, then update with profile data.
-        await new Promise(r => setTimeout(r, 500))
+        //    Poll for the trigger-created row (max 500ms, same budget as old sleep).
+        let memberExists = false
+        for (let i = 0; i < 5; i++) {
+            const { data } = await (supabase
+                .from('members'))
+                .select('id')
+                .eq('user_id', authData.user.id)
+                .maybeSingle()
+            if (data) { memberExists = true; break }
+            await new Promise(r => setTimeout(r, 100))
+        }
 
+        if (!memberExists) {
+            // Trigger hasn't fired yet — auth user was created, return success anyway
+            return NextResponse.json({ success: true })
+        }
+
+        // 4. Update the trigger-created row with full profile data.
         const { error: updateError } = await (supabase
             .from('members'))
             .update({

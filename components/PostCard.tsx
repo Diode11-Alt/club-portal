@@ -5,8 +5,17 @@
 
 'use client'
 
-import type { Post } from '@/lib/types'
 import { Pin } from 'lucide-react'
+
+type Post = {
+    id: string
+    title: string
+    content: string
+    author_id: string | null
+    pinned: boolean
+    created_at: string
+    author?: { name?: string | null; email?: string | null }
+}
 
 type PostCardProps = {
     post: Post

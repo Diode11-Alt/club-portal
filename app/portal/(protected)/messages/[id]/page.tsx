@@ -4,6 +4,21 @@ import ChatWindow from '@/components/portal/ChatWindow'
 import { redirect, notFound } from 'next/navigation'
 import { getSession, getMember } from '@/lib/auth'
 
+interface Participation {
+    conversation_id: string
+}
+
+interface ChatMessage {
+    id: string
+    content: string
+    sender_id: string
+    conversation_id: string
+    created_at: string
+    is_deleted: boolean
+    attachment_url: string | null
+    attachment_type: string | null
+}
+
 
 
 export default async function MessageThreadPage(props: { params: Promise<{ id: string }> }) {
@@ -36,13 +51,13 @@ export default async function MessageThreadPage(props: { params: Promise<{ id: s
     const counts: Record<string, number> = {}
     let activeConvId: string | null = null
 
-    participations?.forEach((p: any) => {
+    ;(participations as Participation[] | null)?.forEach((p) => {
         counts[p.conversation_id] = (counts[p.conversation_id] || 0) + 1
         if (counts[p.conversation_id] === 2) activeConvId = p.conversation_id
     })
 
     // Fetch direct messages between these two using the conversation ID
-    let messages: any[] = []
+    let messages: ChatMessage[] = []
 
     if (activeConvId) {
         const { data: msgs } = await (supabase
@@ -51,7 +66,7 @@ export default async function MessageThreadPage(props: { params: Promise<{ id: s
             .eq('conversation_id', activeConvId)
             .order('created_at', { ascending: true })
 
-        messages = msgs || []
+        messages = (msgs || []) as ChatMessage[]
 
         // Update my participant record as read since I just opened the thread
         await (supabase
@@ -64,7 +79,13 @@ export default async function MessageThreadPage(props: { params: Promise<{ id: s
     return (
         <ChatWindow
             initialMessages={messages}
-            currentUser={member}
+            currentUser={{
+                id: member.id,
+                name: member.full_name,
+                avatar_url: member.avatar_url,
+                role: member.role,
+                club_post: member.club_post,
+            }}
             otherUser={{
                 ...otherUser,
                 name: otherUser.full_name // Map to generic name property for UI
