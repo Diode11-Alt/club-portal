@@ -1,8 +1,36 @@
 # IIMS IT Club Portal
 
+## 📸 Preview
+
+![Club Portal Preview](https://club-portal-eight.vercel.app/preview.png)
+> Note: A live preview of the interactive landing page. [Visit Live Site](https://club-portal-eight.vercel.app/)
+
 ## Project Overview
 
 The comprehensive web platform for the IIMS IT Club. This repository serves as the central hub for our community, offering public-facing insights into our operations, events, and a secure administrative portal for member management and feed updates. The platform is designed to prioritize performance, security, and a modern aesthetic design architecture.
+
+## 🏗️ Architecture
+
+```mermaid
+graph TD
+    User((User)) -->|HTTPS| NextJS[Next.js App Router]
+    
+    subgraph "Frontend Layer"
+        NextJS --> |React Server Components| UI[Tailwind CSS v4 & Lucide Icons]
+        NextJS --> |Client Components| Forms[Zod Validations & Sonner Toasts]
+    end
+
+    subgraph "Backend & Logic"
+        NextJS --> |Server Actions| Auth[Supabase Auth]
+        NextJS --> |API Routes| Cache[Upstash Redis Rate-Limiting]
+        NextJS --> |Server Utilities| Mail[Resend Transactional Email]
+    end
+
+    subgraph "Data Layer"
+        Auth --> |PostgreSQL| DB[(Supabase Database)]
+        DB --> |Realtime| Feed[Operational Feed Updates]
+    end
+```
 
 ## Architecture and Technologies
 
@@ -66,3 +94,6 @@ This platform is optimized for deployment on Vercel. Ensure all environment vari
 - All API routes mutating or viewing sensitive data must enforce Supabase session verification.
 - Publicly accessible mutation endpoints (e.g., Contact forms, Join applications) are shielded by Upstash rate-limiting to mitigate automated attacks.
 - Component designs must strictly adhere to sanitizing user-generated markdown inputs via `react-markdown` and associated plugins.
+
+---
+© 2026 Sujal Mainali | [MIT License](LICENSE)
